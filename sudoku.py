@@ -10,6 +10,7 @@ menú = tk.Tk()
 menú.title("Juego Sudoku")
 menú.geometry("{}x{}+{}+{}".format(370, 382, int((menú.winfo_screenwidth() / 2) - (370 / 2)),
                                    int((menú.winfo_screenheight() / 2) - (382 / 2))))
+tablero=[]
 anterior=0
 elección=""
 reloj = 0
@@ -51,7 +52,7 @@ def jugar():
 
     #  Aparecen numeros según la partida escogida del diccionario en configuración
     def escoger_partida():
-        global dificultad
+        global dificultad,tablero
         partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb")
         lista_diccionarios_partidas=pickle.load(partidas_iniciales)
         partidas_iniciales.close()
@@ -60,12 +61,11 @@ def jugar():
         diccionario_difícil=lista_diccionarios_partidas[2]
         if dificultad==1:
             tablero=diccionario_fácil[list(diccionario_fácil.keys())[random.randint(0,len(diccionario_fácil)-1)]]
-        if dificultad==2:
+        elif dificultad==2:
             tablero=diccionario_intermedio[list(diccionario_intermedio.keys())[random.randint(0,len(diccionario_intermedio)-1)]]
-        if dificultad==3:
+        elif dificultad==3:
             tablero=diccionario_difícil[list(diccionario_difícil.keys())[random.randint(0,len(diccionario_difícil)-1)]]
-        return tablero
-
+    
     ventana_principal_juego.title("Juego Sudoku")
     ventana_principal_juego.geometry("{}x{}+{}+{}".format(700, 500, int((menú.winfo_screenwidth() / 2) - (382 / 2)),
                                                           int((menú.winfo_screenheight() / 2) - (360 / 2))))
@@ -226,4216 +226,5190 @@ def jugar():
     num86=grid[8][6]
     num87=grid[8][7]
     num88=grid[8][8]
+
+
     def func00():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][0])
-        anterior=str(tablero[0][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num00["text"]
         color_anterior=num00["bg"]
-        num00.config(text=str(elección))
-        tablero[0][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num00.config(text=elección)
+        tablero[0][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia00(event):
-            global tablero,anterior
             habilitar_botones()
             num00.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][0]=anterior
+
         if num00["bg"]!="#02ac66":
-            num00.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             deshabilitar_botones()
+            num00.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             
         elif dividir(tablero)[0].count(tablero[0][0])>1:
-            num00.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             deshabilitar_botones()
-                
+            num00.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
+
         elif tablero[0].count(tablero[0][0])>1:
-            num00.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             deshabilitar_botones()
+            num00.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
+                    
         elif invertir(tablero)[0].count(tablero[0][0])>1:
-            num00.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             deshabilitar_botones()
+            num00.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
             
     num00.config(command=func00)
     def func01():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][1])
-        anterior=str(tablero[0][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num01["text"]
         color_anterior=num01["bg"]
-        num01.config(text=str(elección))
-        tablero[0][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num01.config(text=elección)
+        tablero[0][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia01(event):
-            global tablero,anterior
             habilitar_botones()
             num01.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][1]=anterior
+
         if num01["bg"]!="#02ac66":
-            num01.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             deshabilitar_botones()
+            num01.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             
         elif dividir(tablero)[0].count(tablero[0][1])>1:
-            num01.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             deshabilitar_botones()
-                
+            num01.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
+
         elif tablero[0].count(tablero[0][1])>1:
-            num01.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             deshabilitar_botones()
+            num01.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
+                    
         elif invertir(tablero)[0].count(tablero[0][1])>1:
-            num01.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             deshabilitar_botones()
+            num01.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
             
     num01.config(command=func01)
     def func02():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][2])
-        anterior=str(tablero[0][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num02["text"]
         color_anterior=num02["bg"]
-        num02.config(text=str(elección))
-        tablero[0][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num02.config(text=elección)
+        tablero[0][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia02(event):
-            global tablero,anterior
             habilitar_botones()
             num02.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][2]=anterior
+
         if num02["bg"]!="#02ac66":
-            num02.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             deshabilitar_botones()
+            num02.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             
         elif dividir(tablero)[0].count(tablero[0][2])>1:
-            num02.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             deshabilitar_botones()
-                
+            num02.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
+
         elif tablero[0].count(tablero[0][2])>1:
-            num02.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             deshabilitar_botones()
+            num02.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
+                    
         elif invertir(tablero)[0].count(tablero[0][2])>1:
-            num02.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             deshabilitar_botones()
+            num02.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
             
     num02.config(command=func02)
     def func03():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][3])
-        anterior=str(tablero[0][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num03["text"]
         color_anterior=num03["bg"]
-        num03.config(text=str(elección))
-        tablero[0][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num03.config(text=elección)
+        tablero[0][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia03(event):
-            global tablero,anterior
             habilitar_botones()
             num03.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][3]=anterior
+
         if num03["bg"]!="#02ac66":
-            num03.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             deshabilitar_botones()
+            num03.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             
         elif dividir(tablero)[0].count(tablero[0][3])>1:
-            num03.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             deshabilitar_botones()
-                
+            num03.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
+
         elif tablero[0].count(tablero[0][3])>1:
-            num03.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             deshabilitar_botones()
+            num03.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
+                    
         elif invertir(tablero)[0].count(tablero[0][3])>1:
-            num03.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             deshabilitar_botones()
+            num03.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
             
     num03.config(command=func03)
     def func04():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][4])
-        anterior=str(tablero[0][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num04["text"]
         color_anterior=num04["bg"]
-        num04.config(text=str(elección))
-        tablero[0][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num04.config(text=elección)
+        tablero[0][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia04(event):
-            global tablero,anterior
             habilitar_botones()
             num04.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][4]=anterior
+
         if num04["bg"]!="#02ac66":
-            num04.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             deshabilitar_botones()
+            num04.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             
         elif dividir(tablero)[0].count(tablero[0][4])>1:
-            num04.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             deshabilitar_botones()
-                
+            num04.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
+
         elif tablero[0].count(tablero[0][4])>1:
-            num04.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             deshabilitar_botones()
+            num04.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
+                    
         elif invertir(tablero)[0].count(tablero[0][4])>1:
-            num04.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             deshabilitar_botones()
+            num04.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
             
     num04.config(command=func04)
     def func05():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][5])
-        anterior=str(tablero[0][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num05["text"]
         color_anterior=num05["bg"]
-        num05.config(text=str(elección))
-        tablero[0][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num05.config(text=elección)
+        tablero[0][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia05(event):
-            global tablero,anterior
             habilitar_botones()
             num05.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][5]=anterior
+
         if num05["bg"]!="#02ac66":
-            num05.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             deshabilitar_botones()
+            num05.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             
         elif dividir(tablero)[0].count(tablero[0][5])>1:
-            num05.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             deshabilitar_botones()
-                
+            num05.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
+
         elif tablero[0].count(tablero[0][5])>1:
-            num05.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             deshabilitar_botones()
+            num05.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
+                    
         elif invertir(tablero)[0].count(tablero[0][5])>1:
-            num05.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             deshabilitar_botones()
+            num05.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
             
     num05.config(command=func05)
     def func06():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][6])
-        anterior=str(tablero[0][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num06["text"]
         color_anterior=num06["bg"]
-        num06.config(text=str(elección))
-        tablero[0][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num06.config(text=elección)
+        tablero[0][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia06(event):
-            global tablero,anterior
             habilitar_botones()
             num06.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][6]=anterior
+
         if num06["bg"]!="#02ac66":
-            num06.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             deshabilitar_botones()
+            num06.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             
         elif dividir(tablero)[0].count(tablero[0][6])>1:
-            num06.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             deshabilitar_botones()
-                
+            num06.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
+
         elif tablero[0].count(tablero[0][6])>1:
-            num06.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             deshabilitar_botones()
+            num06.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
+                    
         elif invertir(tablero)[0].count(tablero[0][6])>1:
-            num06.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             deshabilitar_botones()
+            num06.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
             
     num06.config(command=func06)
     def func07():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][7])
-        anterior=str(tablero[0][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num07["text"]
         color_anterior=num07["bg"]
-        num07.config(text=str(elección))
-        tablero[0][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num07.config(text=elección)
+        tablero[0][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia07(event):
-            global tablero,anterior
             habilitar_botones()
             num07.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][7]=anterior
+
         if num07["bg"]!="#02ac66":
-            num07.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             deshabilitar_botones()
+            num07.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             
         elif dividir(tablero)[0].count(tablero[0][7])>1:
-            num07.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             deshabilitar_botones()
-                
+            num07.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
+
         elif tablero[0].count(tablero[0][7])>1:
-            num07.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             deshabilitar_botones()
+            num07.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
+                    
         elif invertir(tablero)[0].count(tablero[0][7])>1:
-            num07.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             deshabilitar_botones()
+            num07.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
             
     num07.config(command=func07)
     def func08():
-        global elección,tablero,anterior
-        print(tablero[0])
-        print()
-        print(tablero[0][8])
-        anterior=str(tablero[0][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num08["text"]
         color_anterior=num08["bg"]
-        num08.config(text=str(elección))
-        tablero[0][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num08.config(text=elección)
+        tablero[0][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia08(event):
-            global tablero,anterior
             habilitar_botones()
             num08.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[0][8]=anterior
+
         if num08["bg"]!="#02ac66":
-            num08.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             deshabilitar_botones()
+            num08.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             
         elif dividir(tablero)[0].count(tablero[0][8])>1:
-            num08.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             deshabilitar_botones()
-                
+            num08.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
+
         elif tablero[0].count(tablero[0][8])>1:
-            num08.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             deshabilitar_botones()
+            num08.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
+                    
         elif invertir(tablero)[0].count(tablero[0][8])>1:
-            num08.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             deshabilitar_botones()
+            num08.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
             
     num08.config(command=func08)
     def func10():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][0])
-        anterior=str(tablero[1][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num10["text"]
         color_anterior=num10["bg"]
-        num10.config(text=str(elección))
-        tablero[1][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num10.config(text=elección)
+        tablero[1][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia10(event):
-            global tablero,anterior
             habilitar_botones()
             num10.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][0]=anterior
+
         if num10["bg"]!="#02ac66":
-            num10.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             deshabilitar_botones()
+            num10.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             
         elif dividir(tablero)[1].count(tablero[1][0])>1:
-            num10.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             deshabilitar_botones()
-                
+            num10.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
+
         elif tablero[1].count(tablero[1][0])>1:
-            num10.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             deshabilitar_botones()
+            num10.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
+                    
         elif invertir(tablero)[1].count(tablero[1][0])>1:
-            num10.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             deshabilitar_botones()
+            num10.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             
     num10.config(command=func10)
     def func11():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][1])
-        anterior=str(tablero[1][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num11["text"]
         color_anterior=num11["bg"]
-        num11.config(text=str(elección))
-        tablero[1][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num11.config(text=elección)
+        tablero[1][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia11(event):
-            global tablero,anterior
             habilitar_botones()
             num11.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][1]=anterior
+
         if num11["bg"]!="#02ac66":
-            num11.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             deshabilitar_botones()
+            num11.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             
         elif dividir(tablero)[1].count(tablero[1][1])>1:
-            num11.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             deshabilitar_botones()
-                
+            num11.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
+
         elif tablero[1].count(tablero[1][1])>1:
-            num11.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             deshabilitar_botones()
+            num11.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
+                    
         elif invertir(tablero)[1].count(tablero[1][1])>1:
-            num11.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             deshabilitar_botones()
+            num11.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             
     num11.config(command=func11)
     def func12():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][2])
-        anterior=str(tablero[1][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num12["text"]
         color_anterior=num12["bg"]
-        num12.config(text=str(elección))
-        tablero[1][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num12.config(text=elección)
+        tablero[1][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia12(event):
-            global tablero,anterior
             habilitar_botones()
             num12.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][2]=anterior
+
         if num12["bg"]!="#02ac66":
-            num12.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             deshabilitar_botones()
+            num12.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             
         elif dividir(tablero)[1].count(tablero[1][2])>1:
-            num12.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             deshabilitar_botones()
-                
+            num12.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
+
         elif tablero[1].count(tablero[1][2])>1:
-            num12.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             deshabilitar_botones()
+            num12.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
+                    
         elif invertir(tablero)[1].count(tablero[1][2])>1:
-            num12.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             deshabilitar_botones()
+            num12.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
             
     num12.config(command=func12)
     def func13():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][3])
-        anterior=str(tablero[1][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num13["text"]
         color_anterior=num13["bg"]
-        num13.config(text=str(elección))
-        tablero[1][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num13.config(text=elección)
+        tablero[1][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia13(event):
-            global tablero,anterior
             habilitar_botones()
             num13.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][3]=anterior
+
         if num13["bg"]!="#02ac66":
-            num13.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             deshabilitar_botones()
+            num13.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             
         elif dividir(tablero)[1].count(tablero[1][3])>1:
-            num13.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             deshabilitar_botones()
-                
+            num13.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
+
         elif tablero[1].count(tablero[1][3])>1:
-            num13.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             deshabilitar_botones()
+            num13.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
+                    
         elif invertir(tablero)[1].count(tablero[1][3])>1:
-            num13.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             deshabilitar_botones()
+            num13.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             
     num13.config(command=func13)
     def func14():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][4])
-        anterior=str(tablero[1][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num14["text"]
         color_anterior=num14["bg"]
-        num14.config(text=str(elección))
-        tablero[1][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num14.config(text=elección)
+        tablero[1][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia14(event):
-            global tablero,anterior
             habilitar_botones()
             num14.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][4]=anterior
+
         if num14["bg"]!="#02ac66":
-            num14.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             deshabilitar_botones()
+            num14.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             
         elif dividir(tablero)[1].count(tablero[1][4])>1:
-            num14.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             deshabilitar_botones()
-                
+            num14.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
+
         elif tablero[1].count(tablero[1][4])>1:
-            num14.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             deshabilitar_botones()
+            num14.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
+                    
         elif invertir(tablero)[1].count(tablero[1][4])>1:
-            num14.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             deshabilitar_botones()
+            num14.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             
     num14.config(command=func14)
     def func15():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][5])
-        anterior=str(tablero[1][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num15["text"]
         color_anterior=num15["bg"]
-        num15.config(text=str(elección))
-        tablero[1][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num15.config(text=elección)
+        tablero[1][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia15(event):
-            global tablero,anterior
             habilitar_botones()
             num15.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][5]=anterior
+
         if num15["bg"]!="#02ac66":
-            num15.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             deshabilitar_botones()
+            num15.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             
         elif dividir(tablero)[1].count(tablero[1][5])>1:
-            num15.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             deshabilitar_botones()
-                
+            num15.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
+
         elif tablero[1].count(tablero[1][5])>1:
-            num15.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             deshabilitar_botones()
+            num15.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
+                    
         elif invertir(tablero)[1].count(tablero[1][5])>1:
-            num15.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             deshabilitar_botones()
+            num15.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
             
     num15.config(command=func15)
     def func16():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][6])
-        anterior=str(tablero[1][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num16["text"]
         color_anterior=num16["bg"]
-        num16.config(text=str(elección))
-        tablero[1][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num16.config(text=elección)
+        tablero[1][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia16(event):
-            global tablero,anterior
             habilitar_botones()
             num16.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][6]=anterior
+
         if num16["bg"]!="#02ac66":
-            num16.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             deshabilitar_botones()
+            num16.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             
         elif dividir(tablero)[1].count(tablero[1][6])>1:
-            num16.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             deshabilitar_botones()
-                
+            num16.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
+
         elif tablero[1].count(tablero[1][6])>1:
-            num16.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             deshabilitar_botones()
+            num16.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
+                    
         elif invertir(tablero)[1].count(tablero[1][6])>1:
-            num16.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             deshabilitar_botones()
+            num16.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             
     num16.config(command=func16)
     def func17():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][7])
-        anterior=str(tablero[1][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num17["text"]
         color_anterior=num17["bg"]
-        num17.config(text=str(elección))
-        tablero[1][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num17.config(text=elección)
+        tablero[1][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia17(event):
-            global tablero,anterior
             habilitar_botones()
             num17.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][7]=anterior
+
         if num17["bg"]!="#02ac66":
-            num17.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             deshabilitar_botones()
+            num17.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             
         elif dividir(tablero)[1].count(tablero[1][7])>1:
-            num17.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             deshabilitar_botones()
-                
+            num17.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
+
         elif tablero[1].count(tablero[1][7])>1:
-            num17.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             deshabilitar_botones()
+            num17.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
+                    
         elif invertir(tablero)[1].count(tablero[1][7])>1:
-            num17.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             deshabilitar_botones()
+            num17.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             
     num17.config(command=func17)
     def func18():
-        global elección,tablero,anterior
-        print(tablero[1])
-        print()
-        print(tablero[1][8])
-        anterior=str(tablero[1][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num18["text"]
         color_anterior=num18["bg"]
-        num18.config(text=str(elección))
-        tablero[1][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num18.config(text=elección)
+        tablero[1][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia18(event):
-            global tablero,anterior
             habilitar_botones()
             num18.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[1][8]=anterior
+
         if num18["bg"]!="#02ac66":
-            num18.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             deshabilitar_botones()
+            num18.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             
         elif dividir(tablero)[1].count(tablero[1][8])>1:
-            num18.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             deshabilitar_botones()
-                
+            num18.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
+
         elif tablero[1].count(tablero[1][8])>1:
-            num18.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             deshabilitar_botones()
+            num18.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
+                    
         elif invertir(tablero)[1].count(tablero[1][8])>1:
-            num18.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             deshabilitar_botones()
+            num18.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
             
     num18.config(command=func18)
     def func20():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][0])
-        anterior=str(tablero[2][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num20["text"]
         color_anterior=num20["bg"]
-        num20.config(text=str(elección))
-        tablero[2][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num20.config(text=elección)
+        tablero[2][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia20(event):
-            global tablero,anterior
             habilitar_botones()
             num20.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][0]=anterior
+
         if num20["bg"]!="#02ac66":
-            num20.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             deshabilitar_botones()
+            num20.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             
         elif dividir(tablero)[2].count(tablero[2][0])>1:
-            num20.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             deshabilitar_botones()
-                
+            num20.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
+
         elif tablero[2].count(tablero[2][0])>1:
-            num20.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             deshabilitar_botones()
+            num20.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
+                    
         elif invertir(tablero)[2].count(tablero[2][0])>1:
-            num20.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             deshabilitar_botones()
+            num20.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
             
     num20.config(command=func20)
     def func21():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][1])
-        anterior=str(tablero[2][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num21["text"]
         color_anterior=num21["bg"]
-        num21.config(text=str(elección))
-        tablero[2][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num21.config(text=elección)
+        tablero[2][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia21(event):
-            global tablero,anterior
             habilitar_botones()
             num21.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][1]=anterior
+
         if num21["bg"]!="#02ac66":
-            num21.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             deshabilitar_botones()
+            num21.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             
         elif dividir(tablero)[2].count(tablero[2][1])>1:
-            num21.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             deshabilitar_botones()
-                
+            num21.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
+
         elif tablero[2].count(tablero[2][1])>1:
-            num21.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             deshabilitar_botones()
+            num21.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
+                    
         elif invertir(tablero)[2].count(tablero[2][1])>1:
-            num21.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             deshabilitar_botones()
+            num21.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
             
     num21.config(command=func21)
     def func22():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][2])
-        anterior=str(tablero[2][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num22["text"]
         color_anterior=num22["bg"]
-        num22.config(text=str(elección))
-        tablero[2][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num22.config(text=elección)
+        tablero[2][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia22(event):
-            global tablero,anterior
             habilitar_botones()
             num22.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][2]=anterior
+
         if num22["bg"]!="#02ac66":
-            num22.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             deshabilitar_botones()
+            num22.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             
         elif dividir(tablero)[2].count(tablero[2][2])>1:
-            num22.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             deshabilitar_botones()
-                
+            num22.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
+
         elif tablero[2].count(tablero[2][2])>1:
-            num22.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             deshabilitar_botones()
+            num22.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
+                    
         elif invertir(tablero)[2].count(tablero[2][2])>1:
-            num22.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             deshabilitar_botones()
+            num22.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
             
     num22.config(command=func22)
     def func23():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][3])
-        anterior=str(tablero[2][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num23["text"]
         color_anterior=num23["bg"]
-        num23.config(text=str(elección))
-        tablero[2][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num23.config(text=elección)
+        tablero[2][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia23(event):
-            global tablero,anterior
             habilitar_botones()
             num23.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][3]=anterior
+
         if num23["bg"]!="#02ac66":
-            num23.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             deshabilitar_botones()
+            num23.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             
         elif dividir(tablero)[2].count(tablero[2][3])>1:
-            num23.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             deshabilitar_botones()
-                
+            num23.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
+
         elif tablero[2].count(tablero[2][3])>1:
-            num23.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             deshabilitar_botones()
+            num23.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
+                    
         elif invertir(tablero)[2].count(tablero[2][3])>1:
-            num23.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             deshabilitar_botones()
+            num23.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
             
     num23.config(command=func23)
     def func24():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][4])
-        anterior=str(tablero[2][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num24["text"]
         color_anterior=num24["bg"]
-        num24.config(text=str(elección))
-        tablero[2][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num24.config(text=elección)
+        tablero[2][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia24(event):
-            global tablero,anterior
             habilitar_botones()
             num24.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][4]=anterior
+
         if num24["bg"]!="#02ac66":
-            num24.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             deshabilitar_botones()
+            num24.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             
         elif dividir(tablero)[2].count(tablero[2][4])>1:
-            num24.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             deshabilitar_botones()
-                
+            num24.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
+
         elif tablero[2].count(tablero[2][4])>1:
-            num24.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             deshabilitar_botones()
+            num24.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
+                    
         elif invertir(tablero)[2].count(tablero[2][4])>1:
-            num24.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             deshabilitar_botones()
+            num24.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
             
     num24.config(command=func24)
     def func25():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][5])
-        anterior=str(tablero[2][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num25["text"]
         color_anterior=num25["bg"]
-        num25.config(text=str(elección))
-        tablero[2][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num25.config(text=elección)
+        tablero[2][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia25(event):
-            global tablero,anterior
             habilitar_botones()
             num25.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][5]=anterior
+
         if num25["bg"]!="#02ac66":
-            num25.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             deshabilitar_botones()
+            num25.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             
         elif dividir(tablero)[2].count(tablero[2][5])>1:
-            num25.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             deshabilitar_botones()
-                
+            num25.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
+
         elif tablero[2].count(tablero[2][5])>1:
-            num25.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             deshabilitar_botones()
+            num25.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
+                    
         elif invertir(tablero)[2].count(tablero[2][5])>1:
-            num25.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             deshabilitar_botones()
+            num25.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
             
     num25.config(command=func25)
     def func26():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][6])
-        anterior=str(tablero[2][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num26["text"]
         color_anterior=num26["bg"]
-        num26.config(text=str(elección))
-        tablero[2][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num26.config(text=elección)
+        tablero[2][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia26(event):
-            global tablero,anterior
             habilitar_botones()
             num26.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][6]=anterior
+
         if num26["bg"]!="#02ac66":
-            num26.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             deshabilitar_botones()
+            num26.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             
         elif dividir(tablero)[2].count(tablero[2][6])>1:
-            num26.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             deshabilitar_botones()
-                
+            num26.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
+
         elif tablero[2].count(tablero[2][6])>1:
-            num26.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             deshabilitar_botones()
+            num26.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
+                    
         elif invertir(tablero)[2].count(tablero[2][6])>1:
-            num26.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             deshabilitar_botones()
+            num26.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
             
     num26.config(command=func26)
     def func27():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][7])
-        anterior=str(tablero[2][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num27["text"]
         color_anterior=num27["bg"]
-        num27.config(text=str(elección))
-        tablero[2][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num27.config(text=elección)
+        tablero[2][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia27(event):
-            global tablero,anterior
             habilitar_botones()
             num27.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][7]=anterior
+
         if num27["bg"]!="#02ac66":
-            num27.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             deshabilitar_botones()
+            num27.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             
         elif dividir(tablero)[2].count(tablero[2][7])>1:
-            num27.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             deshabilitar_botones()
-                
+            num27.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
+
         elif tablero[2].count(tablero[2][7])>1:
-            num27.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             deshabilitar_botones()
+            num27.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
+                    
         elif invertir(tablero)[2].count(tablero[2][7])>1:
-            num27.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             deshabilitar_botones()
+            num27.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
             
     num27.config(command=func27)
     def func28():
-        global elección,tablero,anterior
-        print(tablero[2])
-        print()
-        print(tablero[2][8])
-        anterior=str(tablero[2][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num28["text"]
         color_anterior=num28["bg"]
-        num28.config(text=str(elección))
-        tablero[2][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num28.config(text=elección)
+        tablero[2][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia28(event):
-            global tablero,anterior
             habilitar_botones()
             num28.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[2][8]=anterior
+
         if num28["bg"]!="#02ac66":
-            num28.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             deshabilitar_botones()
+            num28.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             
         elif dividir(tablero)[2].count(tablero[2][8])>1:
-            num28.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             deshabilitar_botones()
-                
+            num28.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
+
         elif tablero[2].count(tablero[2][8])>1:
-            num28.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             deshabilitar_botones()
+            num28.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
+                    
         elif invertir(tablero)[2].count(tablero[2][8])>1:
-            num28.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             deshabilitar_botones()
+            num28.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
             
     num28.config(command=func28)
     def func30():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][0])
-        anterior=str(tablero[3][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num30["text"]
         color_anterior=num30["bg"]
-        num30.config(text=str(elección))
-        tablero[3][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num30.config(text=elección)
+        tablero[3][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia30(event):
-            global tablero,anterior
             habilitar_botones()
             num30.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][0]=anterior
+
         if num30["bg"]!="#02ac66":
-            num30.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             deshabilitar_botones()
+            num30.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             
         elif dividir(tablero)[3].count(tablero[3][0])>1:
-            num30.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             deshabilitar_botones()
-                
+            num30.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
+
         elif tablero[3].count(tablero[3][0])>1:
-            num30.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             deshabilitar_botones()
+            num30.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
+                    
         elif invertir(tablero)[3].count(tablero[3][0])>1:
-            num30.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             deshabilitar_botones()
+            num30.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
             
     num30.config(command=func30)
     def func31():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][1])
-        anterior=str(tablero[3][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num31["text"]
         color_anterior=num31["bg"]
-        num31.config(text=str(elección))
-        tablero[3][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num31.config(text=elección)
+        tablero[3][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia31(event):
-            global tablero,anterior
             habilitar_botones()
             num31.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][1]=anterior
+
         if num31["bg"]!="#02ac66":
-            num31.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             deshabilitar_botones()
+            num31.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             
         elif dividir(tablero)[3].count(tablero[3][1])>1:
-            num31.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             deshabilitar_botones()
-                
+            num31.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
+
         elif tablero[3].count(tablero[3][1])>1:
-            num31.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             deshabilitar_botones()
+            num31.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
+                    
         elif invertir(tablero)[3].count(tablero[3][1])>1:
-            num31.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             deshabilitar_botones()
+            num31.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
             
     num31.config(command=func31)
     def func32():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][2])
-        anterior=str(tablero[3][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num32["text"]
         color_anterior=num32["bg"]
-        num32.config(text=str(elección))
-        tablero[3][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num32.config(text=elección)
+        tablero[3][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia32(event):
-            global tablero,anterior
             habilitar_botones()
             num32.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][2]=anterior
+
         if num32["bg"]!="#02ac66":
-            num32.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             deshabilitar_botones()
+            num32.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             
         elif dividir(tablero)[3].count(tablero[3][2])>1:
-            num32.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             deshabilitar_botones()
-                
+            num32.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
+
         elif tablero[3].count(tablero[3][2])>1:
-            num32.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             deshabilitar_botones()
+            num32.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
+                    
         elif invertir(tablero)[3].count(tablero[3][2])>1:
-            num32.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             deshabilitar_botones()
+            num32.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
             
     num32.config(command=func32)
     def func33():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][3])
-        anterior=str(tablero[3][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num33["text"]
         color_anterior=num33["bg"]
-        num33.config(text=str(elección))
-        tablero[3][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num33.config(text=elección)
+        tablero[3][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia33(event):
-            global tablero,anterior
             habilitar_botones()
             num33.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][3]=anterior
+
         if num33["bg"]!="#02ac66":
-            num33.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             deshabilitar_botones()
+            num33.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             
         elif dividir(tablero)[3].count(tablero[3][3])>1:
-            num33.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             deshabilitar_botones()
-                
+            num33.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
+
         elif tablero[3].count(tablero[3][3])>1:
-            num33.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             deshabilitar_botones()
+            num33.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
+                    
         elif invertir(tablero)[3].count(tablero[3][3])>1:
-            num33.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             deshabilitar_botones()
+            num33.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
             
     num33.config(command=func33)
     def func34():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][4])
-        anterior=str(tablero[3][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num34["text"]
         color_anterior=num34["bg"]
-        num34.config(text=str(elección))
-        tablero[3][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num34.config(text=elección)
+        tablero[3][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia34(event):
-            global tablero,anterior
             habilitar_botones()
             num34.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][4]=anterior
+
         if num34["bg"]!="#02ac66":
-            num34.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             deshabilitar_botones()
+            num34.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             
         elif dividir(tablero)[3].count(tablero[3][4])>1:
-            num34.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             deshabilitar_botones()
-                
+            num34.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
+
         elif tablero[3].count(tablero[3][4])>1:
-            num34.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             deshabilitar_botones()
+            num34.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
+                    
         elif invertir(tablero)[3].count(tablero[3][4])>1:
-            num34.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             deshabilitar_botones()
+            num34.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
             
     num34.config(command=func34)
     def func35():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][5])
-        anterior=str(tablero[3][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num35["text"]
         color_anterior=num35["bg"]
-        num35.config(text=str(elección))
-        tablero[3][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num35.config(text=elección)
+        tablero[3][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia35(event):
-            global tablero,anterior
             habilitar_botones()
             num35.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][5]=anterior
+
         if num35["bg"]!="#02ac66":
-            num35.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             deshabilitar_botones()
+            num35.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             
         elif dividir(tablero)[3].count(tablero[3][5])>1:
-            num35.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             deshabilitar_botones()
-                
+            num35.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
+
         elif tablero[3].count(tablero[3][5])>1:
-            num35.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             deshabilitar_botones()
+            num35.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
+                    
         elif invertir(tablero)[3].count(tablero[3][5])>1:
-            num35.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             deshabilitar_botones()
+            num35.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
             
     num35.config(command=func35)
     def func36():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][6])
-        anterior=str(tablero[3][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num36["text"]
         color_anterior=num36["bg"]
-        num36.config(text=str(elección))
-        tablero[3][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num36.config(text=elección)
+        tablero[3][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia36(event):
-            global tablero,anterior
             habilitar_botones()
             num36.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][6]=anterior
+
         if num36["bg"]!="#02ac66":
-            num36.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             deshabilitar_botones()
+            num36.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             
         elif dividir(tablero)[3].count(tablero[3][6])>1:
-            num36.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             deshabilitar_botones()
-                
+            num36.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
+
         elif tablero[3].count(tablero[3][6])>1:
-            num36.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             deshabilitar_botones()
+            num36.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
+                    
         elif invertir(tablero)[3].count(tablero[3][6])>1:
-            num36.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             deshabilitar_botones()
+            num36.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
             
     num36.config(command=func36)
     def func37():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][7])
-        anterior=str(tablero[3][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num37["text"]
         color_anterior=num37["bg"]
-        num37.config(text=str(elección))
-        tablero[3][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num37.config(text=elección)
+        tablero[3][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia37(event):
-            global tablero,anterior
             habilitar_botones()
             num37.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][7]=anterior
+
         if num37["bg"]!="#02ac66":
-            num37.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             deshabilitar_botones()
+            num37.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             
         elif dividir(tablero)[3].count(tablero[3][7])>1:
-            num37.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             deshabilitar_botones()
-                
+            num37.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
+
         elif tablero[3].count(tablero[3][7])>1:
-            num37.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             deshabilitar_botones()
+            num37.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
+                    
         elif invertir(tablero)[3].count(tablero[3][7])>1:
-            num37.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             deshabilitar_botones()
+            num37.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
             
     num37.config(command=func37)
     def func38():
-        global elección,tablero,anterior
-        print(tablero[3])
-        print()
-        print(tablero[3][8])
-        anterior=str(tablero[3][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num38["text"]
         color_anterior=num38["bg"]
-        num38.config(text=str(elección))
-        tablero[3][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num38.config(text=elección)
+        tablero[3][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia38(event):
-            global tablero,anterior
             habilitar_botones()
             num38.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[3][8]=anterior
+
         if num38["bg"]!="#02ac66":
-            num38.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             deshabilitar_botones()
+            num38.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             
         elif dividir(tablero)[3].count(tablero[3][8])>1:
-            num38.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             deshabilitar_botones()
-                
+            num38.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
+
         elif tablero[3].count(tablero[3][8])>1:
-            num38.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             deshabilitar_botones()
+            num38.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
+                    
         elif invertir(tablero)[3].count(tablero[3][8])>1:
-            num38.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             deshabilitar_botones()
+            num38.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
             
     num38.config(command=func38)
     def func40():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][0])
-        anterior=str(tablero[4][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num40["text"]
         color_anterior=num40["bg"]
-        num40.config(text=str(elección))
-        tablero[4][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num40.config(text=elección)
+        tablero[4][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia40(event):
-            global tablero,anterior
             habilitar_botones()
             num40.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][0]=anterior
+
         if num40["bg"]!="#02ac66":
-            num40.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             deshabilitar_botones()
+            num40.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             
         elif dividir(tablero)[4].count(tablero[4][0])>1:
-            num40.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             deshabilitar_botones()
-                
+            num40.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
+
         elif tablero[4].count(tablero[4][0])>1:
-            num40.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             deshabilitar_botones()
+            num40.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
+                    
         elif invertir(tablero)[4].count(tablero[4][0])>1:
-            num40.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             deshabilitar_botones()
+            num40.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             
     num40.config(command=func40)
     def func41():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][1])
-        anterior=str(tablero[4][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num41["text"]
         color_anterior=num41["bg"]
-        num41.config(text=str(elección))
-        tablero[4][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num41.config(text=elección)
+        tablero[4][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia41(event):
-            global tablero,anterior
             habilitar_botones()
             num41.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][1]=anterior
+
         if num41["bg"]!="#02ac66":
-            num41.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             deshabilitar_botones()
+            num41.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             
         elif dividir(tablero)[4].count(tablero[4][1])>1:
-            num41.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             deshabilitar_botones()
-                
+            num41.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
+
         elif tablero[4].count(tablero[4][1])>1:
-            num41.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             deshabilitar_botones()
+            num41.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
+                    
         elif invertir(tablero)[4].count(tablero[4][1])>1:
-            num41.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             deshabilitar_botones()
+            num41.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             
     num41.config(command=func41)
     def func42():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][2])
-        anterior=str(tablero[4][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num42["text"]
         color_anterior=num42["bg"]
-        num42.config(text=str(elección))
-        tablero[4][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num42.config(text=elección)
+        tablero[4][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia42(event):
-            global tablero,anterior
             habilitar_botones()
             num42.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][2]=anterior
+
         if num42["bg"]!="#02ac66":
-            num42.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             deshabilitar_botones()
+            num42.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             
         elif dividir(tablero)[4].count(tablero[4][2])>1:
-            num42.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             deshabilitar_botones()
-                
+            num42.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
+
         elif tablero[4].count(tablero[4][2])>1:
-            num42.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             deshabilitar_botones()
+            num42.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
+                    
         elif invertir(tablero)[4].count(tablero[4][2])>1:
-            num42.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             deshabilitar_botones()
+            num42.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
             
     num42.config(command=func42)
     def func43():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][3])
-        anterior=str(tablero[4][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num43["text"]
         color_anterior=num43["bg"]
-        num43.config(text=str(elección))
-        tablero[4][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num43.config(text=elección)
+        tablero[4][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia43(event):
-            global tablero,anterior
             habilitar_botones()
             num43.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][3]=anterior
+
         if num43["bg"]!="#02ac66":
-            num43.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             deshabilitar_botones()
+            num43.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             
         elif dividir(tablero)[4].count(tablero[4][3])>1:
-            num43.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             deshabilitar_botones()
-                
+            num43.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
+
         elif tablero[4].count(tablero[4][3])>1:
-            num43.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             deshabilitar_botones()
+            num43.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
+                    
         elif invertir(tablero)[4].count(tablero[4][3])>1:
-            num43.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             deshabilitar_botones()
+            num43.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             
     num43.config(command=func43)
     def func44():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][4])
-        anterior=str(tablero[4][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num44["text"]
         color_anterior=num44["bg"]
-        num44.config(text=str(elección))
-        tablero[4][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num44.config(text=elección)
+        tablero[4][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia44(event):
-            global tablero,anterior
             habilitar_botones()
             num44.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][4]=anterior
+
         if num44["bg"]!="#02ac66":
-            num44.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             deshabilitar_botones()
+            num44.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             
         elif dividir(tablero)[4].count(tablero[4][4])>1:
-            num44.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             deshabilitar_botones()
-                
+            num44.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
+
         elif tablero[4].count(tablero[4][4])>1:
-            num44.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             deshabilitar_botones()
+            num44.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
+                    
         elif invertir(tablero)[4].count(tablero[4][4])>1:
-            num44.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             deshabilitar_botones()
+            num44.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             
     num44.config(command=func44)
     def func45():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][5])
-        anterior=str(tablero[4][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num45["text"]
         color_anterior=num45["bg"]
-        num45.config(text=str(elección))
-        tablero[4][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num45.config(text=elección)
+        tablero[4][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia45(event):
-            global tablero,anterior
             habilitar_botones()
             num45.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][5]=anterior
+
         if num45["bg"]!="#02ac66":
-            num45.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             deshabilitar_botones()
+            num45.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             
         elif dividir(tablero)[4].count(tablero[4][5])>1:
-            num45.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             deshabilitar_botones()
-                
+            num45.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
+
         elif tablero[4].count(tablero[4][5])>1:
-            num45.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             deshabilitar_botones()
+            num45.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
+                    
         elif invertir(tablero)[4].count(tablero[4][5])>1:
-            num45.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             deshabilitar_botones()
+            num45.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
             
     num45.config(command=func45)
     def func46():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][6])
-        anterior=str(tablero[4][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num46["text"]
         color_anterior=num46["bg"]
-        num46.config(text=str(elección))
-        tablero[4][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num46.config(text=elección)
+        tablero[4][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia46(event):
-            global tablero,anterior
             habilitar_botones()
             num46.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][6]=anterior
+
         if num46["bg"]!="#02ac66":
-            num46.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             deshabilitar_botones()
+            num46.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             
         elif dividir(tablero)[4].count(tablero[4][6])>1:
-            num46.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             deshabilitar_botones()
-                
+            num46.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
+
         elif tablero[4].count(tablero[4][6])>1:
-            num46.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             deshabilitar_botones()
+            num46.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
+                    
         elif invertir(tablero)[4].count(tablero[4][6])>1:
-            num46.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             deshabilitar_botones()
+            num46.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             
     num46.config(command=func46)
     def func47():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][7])
-        anterior=str(tablero[4][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num47["text"]
         color_anterior=num47["bg"]
-        num47.config(text=str(elección))
-        tablero[4][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num47.config(text=elección)
+        tablero[4][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia47(event):
-            global tablero,anterior
             habilitar_botones()
             num47.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][7]=anterior
+
         if num47["bg"]!="#02ac66":
-            num47.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             deshabilitar_botones()
+            num47.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             
         elif dividir(tablero)[4].count(tablero[4][7])>1:
-            num47.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             deshabilitar_botones()
-                
+            num47.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
+
         elif tablero[4].count(tablero[4][7])>1:
-            num47.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             deshabilitar_botones()
+            num47.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
+                    
         elif invertir(tablero)[4].count(tablero[4][7])>1:
-            num47.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             deshabilitar_botones()
+            num47.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             
     num47.config(command=func47)
     def func48():
-        global elección,tablero,anterior
-        print(tablero[4])
-        print()
-        print(tablero[4][8])
-        anterior=str(tablero[4][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num48["text"]
         color_anterior=num48["bg"]
-        num48.config(text=str(elección))
-        tablero[4][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num48.config(text=elección)
+        tablero[4][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia48(event):
-            global tablero,anterior
             habilitar_botones()
             num48.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[4][8]=anterior
+
         if num48["bg"]!="#02ac66":
-            num48.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             deshabilitar_botones()
+            num48.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             
         elif dividir(tablero)[4].count(tablero[4][8])>1:
-            num48.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             deshabilitar_botones()
-                
+            num48.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
+
         elif tablero[4].count(tablero[4][8])>1:
-            num48.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             deshabilitar_botones()
+            num48.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
+                    
         elif invertir(tablero)[4].count(tablero[4][8])>1:
-            num48.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             deshabilitar_botones()
+            num48.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
             
     num48.config(command=func48)
     def func50():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][0])
-        anterior=str(tablero[5][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num50["text"]
         color_anterior=num50["bg"]
-        num50.config(text=str(elección))
-        tablero[5][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num50.config(text=elección)
+        tablero[5][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia50(event):
-            global tablero,anterior
             habilitar_botones()
             num50.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][0]=anterior
+
         if num50["bg"]!="#02ac66":
-            num50.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             deshabilitar_botones()
+            num50.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             
         elif dividir(tablero)[5].count(tablero[5][0])>1:
-            num50.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             deshabilitar_botones()
-                
+            num50.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
+
         elif tablero[5].count(tablero[5][0])>1:
-            num50.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             deshabilitar_botones()
+            num50.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
+                    
         elif invertir(tablero)[5].count(tablero[5][0])>1:
-            num50.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             deshabilitar_botones()
+            num50.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
             
     num50.config(command=func50)
     def func51():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][1])
-        anterior=str(tablero[5][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num51["text"]
         color_anterior=num51["bg"]
-        num51.config(text=str(elección))
-        tablero[5][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num51.config(text=elección)
+        tablero[5][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia51(event):
-            global tablero,anterior
             habilitar_botones()
             num51.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][1]=anterior
+
         if num51["bg"]!="#02ac66":
-            num51.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             deshabilitar_botones()
+            num51.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             
         elif dividir(tablero)[5].count(tablero[5][1])>1:
-            num51.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             deshabilitar_botones()
-                
+            num51.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
+
         elif tablero[5].count(tablero[5][1])>1:
-            num51.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             deshabilitar_botones()
+            num51.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
+                    
         elif invertir(tablero)[5].count(tablero[5][1])>1:
-            num51.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             deshabilitar_botones()
+            num51.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
             
     num51.config(command=func51)
     def func52():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][2])
-        anterior=str(tablero[5][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num52["text"]
         color_anterior=num52["bg"]
-        num52.config(text=str(elección))
-        tablero[5][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num52.config(text=elección)
+        tablero[5][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia52(event):
-            global tablero,anterior
             habilitar_botones()
             num52.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][2]=anterior
+
         if num52["bg"]!="#02ac66":
-            num52.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             deshabilitar_botones()
+            num52.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             
         elif dividir(tablero)[5].count(tablero[5][2])>1:
-            num52.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             deshabilitar_botones()
-                
+            num52.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
+
         elif tablero[5].count(tablero[5][2])>1:
-            num52.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             deshabilitar_botones()
+            num52.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
+                    
         elif invertir(tablero)[5].count(tablero[5][2])>1:
-            num52.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             deshabilitar_botones()
+            num52.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
             
     num52.config(command=func52)
     def func53():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][3])
-        anterior=str(tablero[5][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num53["text"]
         color_anterior=num53["bg"]
-        num53.config(text=str(elección))
-        tablero[5][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num53.config(text=elección)
+        tablero[5][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia53(event):
-            global tablero,anterior
             habilitar_botones()
             num53.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][3]=anterior
+
         if num53["bg"]!="#02ac66":
-            num53.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             deshabilitar_botones()
+            num53.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             
         elif dividir(tablero)[5].count(tablero[5][3])>1:
-            num53.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             deshabilitar_botones()
-                
+            num53.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
+
         elif tablero[5].count(tablero[5][3])>1:
-            num53.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             deshabilitar_botones()
+            num53.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
+                    
         elif invertir(tablero)[5].count(tablero[5][3])>1:
-            num53.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             deshabilitar_botones()
+            num53.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
             
     num53.config(command=func53)
     def func54():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][4])
-        anterior=str(tablero[5][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num54["text"]
         color_anterior=num54["bg"]
-        num54.config(text=str(elección))
-        tablero[5][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num54.config(text=elección)
+        tablero[5][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia54(event):
-            global tablero,anterior
             habilitar_botones()
             num54.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][4]=anterior
+
         if num54["bg"]!="#02ac66":
-            num54.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             deshabilitar_botones()
+            num54.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             
         elif dividir(tablero)[5].count(tablero[5][4])>1:
-            num54.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             deshabilitar_botones()
-                
+            num54.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
+
         elif tablero[5].count(tablero[5][4])>1:
-            num54.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             deshabilitar_botones()
+            num54.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
+                    
         elif invertir(tablero)[5].count(tablero[5][4])>1:
-            num54.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             deshabilitar_botones()
+            num54.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
             
     num54.config(command=func54)
     def func55():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][5])
-        anterior=str(tablero[5][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num55["text"]
         color_anterior=num55["bg"]
-        num55.config(text=str(elección))
-        tablero[5][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num55.config(text=elección)
+        tablero[5][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia55(event):
-            global tablero,anterior
             habilitar_botones()
             num55.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][5]=anterior
+
         if num55["bg"]!="#02ac66":
-            num55.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             deshabilitar_botones()
+            num55.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             
         elif dividir(tablero)[5].count(tablero[5][5])>1:
-            num55.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             deshabilitar_botones()
-                
+            num55.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
+
         elif tablero[5].count(tablero[5][5])>1:
-            num55.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             deshabilitar_botones()
+            num55.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
+                    
         elif invertir(tablero)[5].count(tablero[5][5])>1:
-            num55.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             deshabilitar_botones()
+            num55.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
             
     num55.config(command=func55)
     def func56():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][6])
-        anterior=str(tablero[5][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num56["text"]
         color_anterior=num56["bg"]
-        num56.config(text=str(elección))
-        tablero[5][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num56.config(text=elección)
+        tablero[5][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia56(event):
-            global tablero,anterior
             habilitar_botones()
             num56.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][6]=anterior
+
         if num56["bg"]!="#02ac66":
-            num56.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             deshabilitar_botones()
+            num56.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             
         elif dividir(tablero)[5].count(tablero[5][6])>1:
-            num56.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             deshabilitar_botones()
-                
+            num56.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
+
         elif tablero[5].count(tablero[5][6])>1:
-            num56.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             deshabilitar_botones()
+            num56.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
+                    
         elif invertir(tablero)[5].count(tablero[5][6])>1:
-            num56.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             deshabilitar_botones()
+            num56.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
             
     num56.config(command=func56)
     def func57():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][7])
-        anterior=str(tablero[5][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num57["text"]
         color_anterior=num57["bg"]
-        num57.config(text=str(elección))
-        tablero[5][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num57.config(text=elección)
+        tablero[5][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia57(event):
-            global tablero,anterior
             habilitar_botones()
             num57.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][7]=anterior
+
         if num57["bg"]!="#02ac66":
-            num57.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             deshabilitar_botones()
+            num57.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             
         elif dividir(tablero)[5].count(tablero[5][7])>1:
-            num57.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             deshabilitar_botones()
-                
+            num57.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
+
         elif tablero[5].count(tablero[5][7])>1:
-            num57.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             deshabilitar_botones()
+            num57.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
+                    
         elif invertir(tablero)[5].count(tablero[5][7])>1:
-            num57.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             deshabilitar_botones()
+            num57.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
             
     num57.config(command=func57)
     def func58():
-        global elección,tablero,anterior
-        print(tablero[5])
-        print()
-        print(tablero[5][8])
-        anterior=str(tablero[5][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num58["text"]
         color_anterior=num58["bg"]
-        num58.config(text=str(elección))
-        tablero[5][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num58.config(text=elección)
+        tablero[5][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia58(event):
-            global tablero,anterior
             habilitar_botones()
             num58.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[5][8]=anterior
+
         if num58["bg"]!="#02ac66":
-            num58.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             deshabilitar_botones()
+            num58.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             
         elif dividir(tablero)[5].count(tablero[5][8])>1:
-            num58.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             deshabilitar_botones()
-                
+            num58.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
+
         elif tablero[5].count(tablero[5][8])>1:
-            num58.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             deshabilitar_botones()
+            num58.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
+                    
         elif invertir(tablero)[5].count(tablero[5][8])>1:
-            num58.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             deshabilitar_botones()
+            num58.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
             
     num58.config(command=func58)
     def func60():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][0])
-        anterior=str(tablero[6][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num60["text"]
         color_anterior=num60["bg"]
-        num60.config(text=str(elección))
-        tablero[6][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num60.config(text=elección)
+        tablero[6][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia60(event):
-            global tablero,anterior
             habilitar_botones()
             num60.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][0]=anterior
+
         if num60["bg"]!="#02ac66":
-            num60.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             deshabilitar_botones()
+            num60.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             
         elif dividir(tablero)[6].count(tablero[6][0])>1:
-            num60.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             deshabilitar_botones()
-                
+            num60.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
+
         elif tablero[6].count(tablero[6][0])>1:
-            num60.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             deshabilitar_botones()
+            num60.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
+                    
         elif invertir(tablero)[6].count(tablero[6][0])>1:
-            num60.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             deshabilitar_botones()
+            num60.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
             
     num60.config(command=func60)
     def func61():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][1])
-        anterior=str(tablero[6][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num61["text"]
         color_anterior=num61["bg"]
-        num61.config(text=str(elección))
-        tablero[6][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num61.config(text=elección)
+        tablero[6][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia61(event):
-            global tablero,anterior
             habilitar_botones()
             num61.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][1]=anterior
+
         if num61["bg"]!="#02ac66":
-            num61.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             deshabilitar_botones()
+            num61.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             
         elif dividir(tablero)[6].count(tablero[6][1])>1:
-            num61.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             deshabilitar_botones()
-                
+            num61.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
+
         elif tablero[6].count(tablero[6][1])>1:
-            num61.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             deshabilitar_botones()
+            num61.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
+                    
         elif invertir(tablero)[6].count(tablero[6][1])>1:
-            num61.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             deshabilitar_botones()
+            num61.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
             
     num61.config(command=func61)
     def func62():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][2])
-        anterior=str(tablero[6][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num62["text"]
         color_anterior=num62["bg"]
-        num62.config(text=str(elección))
-        tablero[6][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num62.config(text=elección)
+        tablero[6][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia62(event):
-            global tablero,anterior
             habilitar_botones()
             num62.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][2]=anterior
+
         if num62["bg"]!="#02ac66":
-            num62.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             deshabilitar_botones()
+            num62.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             
         elif dividir(tablero)[6].count(tablero[6][2])>1:
-            num62.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             deshabilitar_botones()
-                
+            num62.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
+
         elif tablero[6].count(tablero[6][2])>1:
-            num62.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             deshabilitar_botones()
+            num62.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
+                    
         elif invertir(tablero)[6].count(tablero[6][2])>1:
-            num62.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             deshabilitar_botones()
+            num62.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
             
     num62.config(command=func62)
     def func63():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][3])
-        anterior=str(tablero[6][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num63["text"]
         color_anterior=num63["bg"]
-        num63.config(text=str(elección))
-        tablero[6][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num63.config(text=elección)
+        tablero[6][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia63(event):
-            global tablero,anterior
             habilitar_botones()
             num63.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][3]=anterior
+
         if num63["bg"]!="#02ac66":
-            num63.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             deshabilitar_botones()
+            num63.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             
         elif dividir(tablero)[6].count(tablero[6][3])>1:
-            num63.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             deshabilitar_botones()
-                
+            num63.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
+
         elif tablero[6].count(tablero[6][3])>1:
-            num63.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             deshabilitar_botones()
+            num63.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
+                    
         elif invertir(tablero)[6].count(tablero[6][3])>1:
-            num63.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             deshabilitar_botones()
+            num63.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
             
     num63.config(command=func63)
     def func64():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][4])
-        anterior=str(tablero[6][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num64["text"]
         color_anterior=num64["bg"]
-        num64.config(text=str(elección))
-        tablero[6][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num64.config(text=elección)
+        tablero[6][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia64(event):
-            global tablero,anterior
             habilitar_botones()
             num64.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][4]=anterior
+
         if num64["bg"]!="#02ac66":
-            num64.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             deshabilitar_botones()
+            num64.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             
         elif dividir(tablero)[6].count(tablero[6][4])>1:
-            num64.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             deshabilitar_botones()
-                
+            num64.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
+
         elif tablero[6].count(tablero[6][4])>1:
-            num64.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             deshabilitar_botones()
+            num64.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
+                    
         elif invertir(tablero)[6].count(tablero[6][4])>1:
-            num64.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             deshabilitar_botones()
+            num64.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
             
     num64.config(command=func64)
     def func65():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][5])
-        anterior=str(tablero[6][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num65["text"]
         color_anterior=num65["bg"]
-        num65.config(text=str(elección))
-        tablero[6][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num65.config(text=elección)
+        tablero[6][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia65(event):
-            global tablero,anterior
             habilitar_botones()
             num65.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][5]=anterior
+
         if num65["bg"]!="#02ac66":
-            num65.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             deshabilitar_botones()
+            num65.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             
         elif dividir(tablero)[6].count(tablero[6][5])>1:
-            num65.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             deshabilitar_botones()
-                
+            num65.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
+
         elif tablero[6].count(tablero[6][5])>1:
-            num65.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             deshabilitar_botones()
+            num65.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
+                    
         elif invertir(tablero)[6].count(tablero[6][5])>1:
-            num65.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             deshabilitar_botones()
+            num65.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
             
     num65.config(command=func65)
     def func66():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][6])
-        anterior=str(tablero[6][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num66["text"]
         color_anterior=num66["bg"]
-        num66.config(text=str(elección))
-        tablero[6][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num66.config(text=elección)
+        tablero[6][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia66(event):
-            global tablero,anterior
             habilitar_botones()
             num66.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][6]=anterior
+
         if num66["bg"]!="#02ac66":
-            num66.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             deshabilitar_botones()
+            num66.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             
         elif dividir(tablero)[6].count(tablero[6][6])>1:
-            num66.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             deshabilitar_botones()
-                
+            num66.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
+
         elif tablero[6].count(tablero[6][6])>1:
-            num66.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             deshabilitar_botones()
+            num66.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
+                    
         elif invertir(tablero)[6].count(tablero[6][6])>1:
-            num66.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             deshabilitar_botones()
+            num66.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
             
     num66.config(command=func66)
     def func67():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][7])
-        anterior=str(tablero[6][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num67["text"]
         color_anterior=num67["bg"]
-        num67.config(text=str(elección))
-        tablero[6][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num67.config(text=elección)
+        tablero[6][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia67(event):
-            global tablero,anterior
             habilitar_botones()
             num67.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][7]=anterior
+
         if num67["bg"]!="#02ac66":
-            num67.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             deshabilitar_botones()
+            num67.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             
         elif dividir(tablero)[6].count(tablero[6][7])>1:
-            num67.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             deshabilitar_botones()
-                
+            num67.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
+
         elif tablero[6].count(tablero[6][7])>1:
-            num67.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             deshabilitar_botones()
+            num67.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
+                    
         elif invertir(tablero)[6].count(tablero[6][7])>1:
-            num67.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             deshabilitar_botones()
+            num67.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
             
     num67.config(command=func67)
     def func68():
-        global elección,tablero,anterior
-        print(tablero[6])
-        print()
-        print(tablero[6][8])
-        anterior=str(tablero[6][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num68["text"]
         color_anterior=num68["bg"]
-        num68.config(text=str(elección))
-        tablero[6][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num68.config(text=elección)
+        tablero[6][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia68(event):
-            global tablero,anterior
             habilitar_botones()
             num68.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[6][8]=anterior
+
         if num68["bg"]!="#02ac66":
-            num68.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             deshabilitar_botones()
+            num68.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             
         elif dividir(tablero)[6].count(tablero[6][8])>1:
-            num68.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             deshabilitar_botones()
-                
+            num68.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
+
         elif tablero[6].count(tablero[6][8])>1:
-            num68.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             deshabilitar_botones()
+            num68.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
+                    
         elif invertir(tablero)[6].count(tablero[6][8])>1:
-            num68.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             deshabilitar_botones()
+            num68.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
             
     num68.config(command=func68)
     def func70():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][0])
-        anterior=str(tablero[7][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num70["text"]
         color_anterior=num70["bg"]
-        num70.config(text=str(elección))
-        tablero[7][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num70.config(text=elección)
+        tablero[7][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia70(event):
-            global tablero,anterior
             habilitar_botones()
             num70.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][0]=anterior
+
         if num70["bg"]!="#02ac66":
-            num70.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             deshabilitar_botones()
+            num70.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             
         elif dividir(tablero)[7].count(tablero[7][0])>1:
-            num70.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             deshabilitar_botones()
-                
+            num70.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
+
         elif tablero[7].count(tablero[7][0])>1:
-            num70.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             deshabilitar_botones()
+            num70.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
+                    
         elif invertir(tablero)[7].count(tablero[7][0])>1:
-            num70.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             deshabilitar_botones()
+            num70.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             
     num70.config(command=func70)
     def func71():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][1])
-        anterior=str(tablero[7][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num71["text"]
         color_anterior=num71["bg"]
-        num71.config(text=str(elección))
-        tablero[7][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num71.config(text=elección)
+        tablero[7][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia71(event):
-            global tablero,anterior
             habilitar_botones()
             num71.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][1]=anterior
+
         if num71["bg"]!="#02ac66":
-            num71.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             deshabilitar_botones()
+            num71.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             
         elif dividir(tablero)[7].count(tablero[7][1])>1:
-            num71.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             deshabilitar_botones()
-                
+            num71.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
+
         elif tablero[7].count(tablero[7][1])>1:
-            num71.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             deshabilitar_botones()
+            num71.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
+                    
         elif invertir(tablero)[7].count(tablero[7][1])>1:
-            num71.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             deshabilitar_botones()
+            num71.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             
     num71.config(command=func71)
     def func72():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][2])
-        anterior=str(tablero[7][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num72["text"]
         color_anterior=num72["bg"]
-        num72.config(text=str(elección))
-        tablero[7][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num72.config(text=elección)
+        tablero[7][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia72(event):
-            global tablero,anterior
             habilitar_botones()
             num72.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][2]=anterior
+
         if num72["bg"]!="#02ac66":
-            num72.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             deshabilitar_botones()
+            num72.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             
         elif dividir(tablero)[7].count(tablero[7][2])>1:
-            num72.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             deshabilitar_botones()
-                
+            num72.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
+
         elif tablero[7].count(tablero[7][2])>1:
-            num72.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             deshabilitar_botones()
+            num72.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
+                    
         elif invertir(tablero)[7].count(tablero[7][2])>1:
-            num72.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             deshabilitar_botones()
+            num72.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
             
     num72.config(command=func72)
     def func73():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][3])
-        anterior=str(tablero[7][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num73["text"]
         color_anterior=num73["bg"]
-        num73.config(text=str(elección))
-        tablero[7][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num73.config(text=elección)
+        tablero[7][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia73(event):
-            global tablero,anterior
             habilitar_botones()
             num73.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][3]=anterior
+
         if num73["bg"]!="#02ac66":
-            num73.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             deshabilitar_botones()
+            num73.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             
         elif dividir(tablero)[7].count(tablero[7][3])>1:
-            num73.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             deshabilitar_botones()
-                
+            num73.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
+
         elif tablero[7].count(tablero[7][3])>1:
-            num73.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             deshabilitar_botones()
+            num73.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
+                    
         elif invertir(tablero)[7].count(tablero[7][3])>1:
-            num73.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             deshabilitar_botones()
+            num73.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             
     num73.config(command=func73)
     def func74():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][4])
-        anterior=str(tablero[7][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num74["text"]
         color_anterior=num74["bg"]
-        num74.config(text=str(elección))
-        tablero[7][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num74.config(text=elección)
+        tablero[7][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia74(event):
-            global tablero,anterior
             habilitar_botones()
             num74.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][4]=anterior
+
         if num74["bg"]!="#02ac66":
-            num74.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             deshabilitar_botones()
+            num74.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             
         elif dividir(tablero)[7].count(tablero[7][4])>1:
-            num74.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             deshabilitar_botones()
-                
+            num74.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
+
         elif tablero[7].count(tablero[7][4])>1:
-            num74.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             deshabilitar_botones()
+            num74.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
+                    
         elif invertir(tablero)[7].count(tablero[7][4])>1:
-            num74.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             deshabilitar_botones()
+            num74.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             
     num74.config(command=func74)
     def func75():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][5])
-        anterior=str(tablero[7][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num75["text"]
         color_anterior=num75["bg"]
-        num75.config(text=str(elección))
-        tablero[7][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num75.config(text=elección)
+        tablero[7][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia75(event):
-            global tablero,anterior
             habilitar_botones()
             num75.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][5]=anterior
+
         if num75["bg"]!="#02ac66":
-            num75.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             deshabilitar_botones()
+            num75.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             
         elif dividir(tablero)[7].count(tablero[7][5])>1:
-            num75.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             deshabilitar_botones()
-                
+            num75.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
+
         elif tablero[7].count(tablero[7][5])>1:
-            num75.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             deshabilitar_botones()
+            num75.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
+                    
         elif invertir(tablero)[7].count(tablero[7][5])>1:
-            num75.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             deshabilitar_botones()
+            num75.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
             
     num75.config(command=func75)
     def func76():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][6])
-        anterior=str(tablero[7][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num76["text"]
         color_anterior=num76["bg"]
-        num76.config(text=str(elección))
-        tablero[7][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num76.config(text=elección)
+        tablero[7][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia76(event):
-            global tablero,anterior
             habilitar_botones()
             num76.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][6]=anterior
+
         if num76["bg"]!="#02ac66":
-            num76.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             deshabilitar_botones()
+            num76.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             
         elif dividir(tablero)[7].count(tablero[7][6])>1:
-            num76.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             deshabilitar_botones()
-                
+            num76.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
+
         elif tablero[7].count(tablero[7][6])>1:
-            num76.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             deshabilitar_botones()
+            num76.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
+                    
         elif invertir(tablero)[7].count(tablero[7][6])>1:
-            num76.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             deshabilitar_botones()
+            num76.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             
     num76.config(command=func76)
     def func77():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][7])
-        anterior=str(tablero[7][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num77["text"]
         color_anterior=num77["bg"]
-        num77.config(text=str(elección))
-        tablero[7][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num77.config(text=elección)
+        tablero[7][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia77(event):
-            global tablero,anterior
             habilitar_botones()
             num77.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][7]=anterior
+
         if num77["bg"]!="#02ac66":
-            num77.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             deshabilitar_botones()
+            num77.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             
         elif dividir(tablero)[7].count(tablero[7][7])>1:
-            num77.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             deshabilitar_botones()
-                
+            num77.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
+
         elif tablero[7].count(tablero[7][7])>1:
-            num77.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             deshabilitar_botones()
+            num77.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
+                    
         elif invertir(tablero)[7].count(tablero[7][7])>1:
-            num77.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             deshabilitar_botones()
+            num77.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             
     num77.config(command=func77)
     def func78():
-        global elección,tablero,anterior
-        print(tablero[7])
-        print()
-        print(tablero[7][8])
-        anterior=str(tablero[7][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num78["text"]
         color_anterior=num78["bg"]
-        num78.config(text=str(elección))
-        tablero[7][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num78.config(text=elección)
+        tablero[7][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia78(event):
-            global tablero,anterior
             habilitar_botones()
             num78.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[7][8]=anterior
+
         if num78["bg"]!="#02ac66":
-            num78.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             deshabilitar_botones()
+            num78.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             
         elif dividir(tablero)[7].count(tablero[7][8])>1:
-            num78.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             deshabilitar_botones()
-                
+            num78.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
+
         elif tablero[7].count(tablero[7][8])>1:
-            num78.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             deshabilitar_botones()
+            num78.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
+                    
         elif invertir(tablero)[7].count(tablero[7][8])>1:
-            num78.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             deshabilitar_botones()
+            num78.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
             
     num78.config(command=func78)
     def func80():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][0])
-        anterior=str(tablero[8][0])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num80["text"]
         color_anterior=num80["bg"]
-        num80.config(text=str(elección))
-        tablero[8][0]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num80.config(text=elección)
+        tablero[8][0]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia80(event):
-            global tablero,anterior
             habilitar_botones()
             num80.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][0]=anterior
+
         if num80["bg"]!="#02ac66":
-            num80.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             deshabilitar_botones()
+            num80.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             
         elif dividir(tablero)[8].count(tablero[8][0])>1:
-            num80.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             deshabilitar_botones()
-                
+            num80.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
+
         elif tablero[8].count(tablero[8][0])>1:
-            num80.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             deshabilitar_botones()
+            num80.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
+                    
         elif invertir(tablero)[8].count(tablero[8][0])>1:
-            num80.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             deshabilitar_botones()
+            num80.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
             
     num80.config(command=func80)
     def func81():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][1])
-        anterior=str(tablero[8][1])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num81["text"]
         color_anterior=num81["bg"]
-        num81.config(text=str(elección))
-        tablero[8][1]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num81.config(text=elección)
+        tablero[8][1]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia81(event):
-            global tablero,anterior
             habilitar_botones()
             num81.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][1]=anterior
+
         if num81["bg"]!="#02ac66":
-            num81.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             deshabilitar_botones()
+            num81.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             
         elif dividir(tablero)[8].count(tablero[8][1])>1:
-            num81.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             deshabilitar_botones()
-                
+            num81.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
+
         elif tablero[8].count(tablero[8][1])>1:
-            num81.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             deshabilitar_botones()
+            num81.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
+                    
         elif invertir(tablero)[8].count(tablero[8][1])>1:
-            num81.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             deshabilitar_botones()
+            num81.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
             
     num81.config(command=func81)
     def func82():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][2])
-        anterior=str(tablero[8][2])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num82["text"]
         color_anterior=num82["bg"]
-        num82.config(text=str(elección))
-        tablero[8][2]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num82.config(text=elección)
+        tablero[8][2]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia82(event):
-            global tablero,anterior
             habilitar_botones()
             num82.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][2]=anterior
+
         if num82["bg"]!="#02ac66":
-            num82.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             deshabilitar_botones()
+            num82.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             
         elif dividir(tablero)[8].count(tablero[8][2])>1:
-            num82.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             deshabilitar_botones()
-                
+            num82.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
+
         elif tablero[8].count(tablero[8][2])>1:
-            num82.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             deshabilitar_botones()
+            num82.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
+                    
         elif invertir(tablero)[8].count(tablero[8][2])>1:
-            num82.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             deshabilitar_botones()
+            num82.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
             
     num82.config(command=func82)
     def func83():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][3])
-        anterior=str(tablero[8][3])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num83["text"]
         color_anterior=num83["bg"]
-        num83.config(text=str(elección))
-        tablero[8][3]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num83.config(text=elección)
+        tablero[8][3]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia83(event):
-            global tablero,anterior
             habilitar_botones()
             num83.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][3]=anterior
+
         if num83["bg"]!="#02ac66":
-            num83.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             deshabilitar_botones()
+            num83.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             
         elif dividir(tablero)[8].count(tablero[8][3])>1:
-            num83.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             deshabilitar_botones()
-                
+            num83.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
+
         elif tablero[8].count(tablero[8][3])>1:
-            num83.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             deshabilitar_botones()
+            num83.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
+                    
         elif invertir(tablero)[8].count(tablero[8][3])>1:
-            num83.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             deshabilitar_botones()
+            num83.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
             
     num83.config(command=func83)
     def func84():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][4])
-        anterior=str(tablero[8][4])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num84["text"]
         color_anterior=num84["bg"]
-        num84.config(text=str(elección))
-        tablero[8][4]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num84.config(text=elección)
+        tablero[8][4]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia84(event):
-            global tablero,anterior
             habilitar_botones()
             num84.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][4]=anterior
+
         if num84["bg"]!="#02ac66":
-            num84.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             deshabilitar_botones()
+            num84.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             
         elif dividir(tablero)[8].count(tablero[8][4])>1:
-            num84.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             deshabilitar_botones()
-                
+            num84.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
+
         elif tablero[8].count(tablero[8][4])>1:
-            num84.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             deshabilitar_botones()
+            num84.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
+                    
         elif invertir(tablero)[8].count(tablero[8][4])>1:
-            num84.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             deshabilitar_botones()
+            num84.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
             
     num84.config(command=func84)
     def func85():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][5])
-        anterior=str(tablero[8][5])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num85["text"]
         color_anterior=num85["bg"]
-        num85.config(text=str(elección))
-        tablero[8][5]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num85.config(text=elección)
+        tablero[8][5]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia85(event):
-            global tablero,anterior
             habilitar_botones()
             num85.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][5]=anterior
+
         if num85["bg"]!="#02ac66":
-            num85.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             deshabilitar_botones()
+            num85.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             
         elif dividir(tablero)[8].count(tablero[8][5])>1:
-            num85.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             deshabilitar_botones()
-                
+            num85.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
+
         elif tablero[8].count(tablero[8][5])>1:
-            num85.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             deshabilitar_botones()
+            num85.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
+                    
         elif invertir(tablero)[8].count(tablero[8][5])>1:
-            num85.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             deshabilitar_botones()
+            num85.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
             
     num85.config(command=func85)
     def func86():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][6])
-        anterior=str(tablero[8][6])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num86["text"]
         color_anterior=num86["bg"]
-        num86.config(text=str(elección))
-        tablero[8][6]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num86.config(text=elección)
+        tablero[8][6]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia86(event):
-            global tablero,anterior
             habilitar_botones()
             num86.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][6]=anterior
+
         if num86["bg"]!="#02ac66":
-            num86.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             deshabilitar_botones()
+            num86.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             
         elif dividir(tablero)[8].count(tablero[8][6])>1:
-            num86.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             deshabilitar_botones()
-                
+            num86.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
+
         elif tablero[8].count(tablero[8][6])>1:
-            num86.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             deshabilitar_botones()
+            num86.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
+                    
         elif invertir(tablero)[8].count(tablero[8][6])>1:
-            num86.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             deshabilitar_botones()
+            num86.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
             
     num86.config(command=func86)
     def func87():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][7])
-        anterior=str(tablero[8][7])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num87["text"]
         color_anterior=num87["bg"]
-        num87.config(text=str(elección))
-        tablero[8][7]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num87.config(text=elección)
+        tablero[8][7]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia87(event):
-            global tablero,anterior
             habilitar_botones()
             num87.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][7]=anterior
+
         if num87["bg"]!="#02ac66":
-            num87.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             deshabilitar_botones()
+            num87.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             
         elif dividir(tablero)[8].count(tablero[8][7])>1:
-            num87.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             deshabilitar_botones()
-                
+            num87.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
+
         elif tablero[8].count(tablero[8][7])>1:
-            num87.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             deshabilitar_botones()
+            num87.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
+                    
         elif invertir(tablero)[8].count(tablero[8][7])>1:
-            num87.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             deshabilitar_botones()
+            num87.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
             
     num87.config(command=func87)
     def func88():
-        global elección,tablero,anterior
-        print(tablero[8])
-        print()
-        print(tablero[8][8])
-        anterior=str(tablero[8][8])
+        global elección,tablero
+        
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
+        anterior=num88["text"]
         color_anterior=num88["bg"]
-        num88.config(text=str(elección))
-        tablero[8][8]=str(elección)
-        print(elección,tablero,anterior,color_anterior)
+        num88.config(text=elección)
+        tablero[8][8]=elección
+        tablero=invertir([[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],
+        [num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],
+        [num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],
+        [num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],
+        [num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],
+        [num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],
+        [num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],
+        [num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],
+        [num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]])
         def cerrar_advertencia88(event):
-            global tablero,anterior
             habilitar_botones()
             num88.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
             tablero[8][8]=anterior
+
         if num88["bg"]!="#02ac66":
-            num88.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             deshabilitar_botones()
+            num88.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             
         elif dividir(tablero)[8].count(tablero[8][8])>1:
-            num88.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula",
-            bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             deshabilitar_botones()
-                
+            num88.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
+
         elif tablero[8].count(tablero[8][8])>1:
-            num88.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la fila",bd=3,
-            bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             deshabilitar_botones()
+            num88.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
+                    
         elif invertir(tablero)[8].count(tablero[8][8])>1:
-            num88.config(bg="red")
-            lbl_advertencia_1 = tk.Label(ventana_principal_juego, text="Jugada no es válida porque el elemento yabanderocool está en la columna",
-                bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.place(x=370,y=450)
-            print(anterior)
-            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             deshabilitar_botones()
+            num88.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
             
     num88.config(command=func88)
     """def convertir(n):
@@ -4508,7 +5482,7 @@ def jugar():
         reloj = 0
         temporizador = horas * 3600 + minutos * 60 + segundos
         # Inicia la matriz con numeros del diccionario deseado
-        tablero=escoger_partida()
+        escoger_partida()
         # Dibuja la matriz
         draw(grid, tablero)
         botón00=grid[0][0]
@@ -4614,7 +5588,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=1
+        elección="1"
         return
     def selecciona_2():
         global elección
@@ -4627,7 +5601,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=2
+        elección="2"
         return
     def selecciona_3():
         global elección
@@ -4640,7 +5614,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=3
+        elección="3"
         return
     def selecciona_4():
         global elección
@@ -4653,7 +5627,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=4
+        elección="4"
         return
     def selecciona_5():
         global elección
@@ -4666,7 +5640,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=5
+        elección="5"
         return
     def selecciona_6():
         global elección
@@ -4679,7 +5653,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=6
+        elección="6"
         return
     def selecciona_7():
         global elección
@@ -4692,7 +5666,7 @@ def jugar():
         btn7.config(bg="light blue")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección=7
+        elección="7"
         return
     def selecciona_8():
         global elección
@@ -4705,7 +5679,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="light blue")
         btn9.config(bg="#e9fb2c")
-        elección=8
+        elección="8"
         return
     def selecciona_9():
         global elección
@@ -4718,7 +5692,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="light blue")
-        elección=9
+        elección="9"
         return
     # Agrega espacio donde se coloca el nombre del jugador
     entryNombre = tk.Entry(ventana_principal_juego, bd=2, bg="#e9bd15", font=("Century", 13))
