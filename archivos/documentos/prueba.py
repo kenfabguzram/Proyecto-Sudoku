@@ -91,17 +91,142 @@ def ganó(matriz):
                 return False
     return True
 
-string="""def func{x}{y}():
-    global elección,tablero
+
+        
+string2="num{x}{y}.config(command=func{x}{y})"
+
+
+string00="""def func{x}{y}():
+    global elección
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
-    tablero[{x}][{y}]=elección
     def cerrar_advertencia{x}{y}(event):
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-        tablero[{x}][{y}]=anterior
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif [num{x}{y}["text"],num{x}{sumay1}["text"],num{x}{sumay2}["text"],num{sumax1}{y}["text"],num{sumax1}{sumay1}["text"],num{sumax1}{sumay2}["text"],num{sumax2}{y}["text"],num{sumax2}{sumay1}["text"],num{sumax2}{sumay2}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+
+string01="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}{restay1}["text"],num{x}{y}["text"],num{x}{sumay1}["text"],num{sumax1}{restay1}["text"],num{sumax1}{y}["text"],num{sumax1}{sumay1}["text"],num{sumax2}{restay1}["text"],num{sumax2}{y}["text"],num{sumax2}{sumay1}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+
+
+string02="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif [num{x}{restay2}["text"],num{x}{restay1}["text"],num{x}{y}["text"],num{sumax1}{restay2}["text"],num{sumax1}{restay1}["text"],num{sumax1}{y}["text"],num{sumax2}{restay2}["text"],num{sumax2}{restay1}["text"],num{sumax2}{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+string10="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
     if num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
@@ -110,7 +235,7 @@ string="""def func{x}{y}():
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
         
-    elif dividir()[{x}].count(tablero[{x}][{y}])>1:
+    elif [num{restax1}{y}["text"],num{restax1}{sumay1}["text"],num{restax1}{sumay2}["text"],num{x}{y}["text"],num{x}{sumay1}["text"],num{x}{sumay2}["text"],num{sumax1}{y}["text"],num{sumax1}{sumay1}["text"],num{sumax1}{sumay2}["text"]].count(num{x}{y}["text"])>1:
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -118,27 +243,312 @@ string="""def func{x}{y}():
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
 
-    elif tablero[{x}].count(tablero[{x}][{y}])>1:
-        deshabilitar_botones()
-        num{x}{y}.config(bg="red")
-        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
-        lbl_advertencia_1.place(x=370,y=450)
-        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
-                
-    elif invertir()[{x}].count(tablero[{x}][{y}])>1:
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
         lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+string11="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
         
-string2="num{x}{y}.config(command=func{x}{y})"
+    elif [num{restax1}{restay1}["text"],num{restax1}{y}["text"],num{restax1}{sumay1}["text"],num{x}{restay1}["text"],num{x}{y}["text"],num{x}{sumay1}["text"],num{sumax1}{restay1}["text"],num{sumax1}{y}["text"],num{sumax1}{sumay1}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
 
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+
+
+string12="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{restax1}{restay2}["text"],num{restax1}{restay1}["text"],num{restax1}{y}["text"],num{x}{restay2}["text"],num{x}{restay1}["text"],num{x}{y}["text"],num{sumax1}{restay2}["text"],num{sumax1}{restay1}["text"],num{sumax1}{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+string20="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{restax2}{y}["text"],num{restax2}{sumay1}["text"],num{restax2}{sumay2}["text"],num{restax1}{y}["text"],num{restax1}{sumay1}["text"],num{restax1}{sumay2}["text"],num{x}{y}["text"],num{x}{sumay1}["text"],num{x}{sumay2}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+string21="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{restax2}{restay1}["text"],num{restax2}{y}["text"],num{restax2}{sumay1}["text"],num{restax1}{restay1}["text"],num{restax1}{y}["text"],num{restax1}{sumay1}["text"],num{x}{restay1}["text"],num{x}{y}["text"],num{x}{sumay1}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+string22="""def func{x}{y}():
+    global elección
+    anterior=num{x}{y}["text"]
+    color_anterior=num{x}{y}["bg"]
+    num{x}{y}.config(text=elección)
+    def cerrar_advertencia{x}{y}(event):
+        habilitar_botones()
+        num{x}{y}.config(text=anterior,bg=color_anterior)
+        lbl_advertencia_1.destroy()
+    if num{x}{y}["bg"]!="#02ac66":
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif [num{restax2}{restay2}["text"],num{restax2}{restay1}["text"],num{restax2}{y}["text"],num{restax1}{restay2}["text"],num{restax1}{restay1}["text"],num{restax1}{y}["text"],num{x}{restay2}["text"],num{x}{restay1}["text"],num{x}{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+
+    elif [num{x}0["text"],num{x}1["text"],num{x}2["text"],num{x}3["text"],num{x}4["text"],num{x}5["text"],num{x}6["text"],num{x}7["text"],num{x}8["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+                
+    elif [num0{y}["text"],num1{y}["text"],num2{y}["text"],num3{y}["text"],num4{y}["text"],num5{y}["text"],num6{y}["text"],num7{y}["text"],num8{y}["text"]].count(num{x}{y}["text"])>1:
+        deshabilitar_botones()
+        num{x}{y}.config(bg="red")
+        lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+        lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+        lbl_advertencia_1.place(x=370,y=450)
+        ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})"""
+
+"""for x in range(9):
+    for y in range(9):
+        sumax1=x+1
+        sumax2=x+2
+        restax1=x-1
+        restax2=x-2
+        sumay1=y+1
+        sumay2=y+2
+        restay1=y-1
+        restay2=y-2
+        print(string.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,restax2=restax2,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1,restay2=restay2))
+"""
 for x in range(9):
     for y in range(9):
-        print(string.format(x=x,y=y))
+        if x==0 or x==3 or x==6:
+            if y==0 or y==3 or y==6:
+                sumax1=x+1
+                sumax2=x+2
+                sumay1=y+1
+                sumay2=y+2
+                print(string00.format(x=x,sumax1=sumax1,sumax2=sumax2, y=y,sumay1=sumay1,sumay2=sumay2))
+            if y==1 or y==4 or y==7:
+                sumax1=x+1
+                sumax2=x+2
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                print(string01.format(x=x,sumax1=sumax1,sumax2=sumax2, y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1))
+            if y==2 or y==5 or y==8:
+                sumax1=x+1
+                sumax2=x+2
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                restay2=y-2
+                print(string02.format(x=x,sumax1=sumax1,sumax2=sumax2, y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1,restay2=restay2))
+        if x==1 or x==4 or x==7:
+            if y==0 or y==3 or y==6:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                sumay1=y+1
+                sumay2=y+2
+                print(string10.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,y=y,sumay1=sumay1,sumay2=sumay2))
+            if y==1 or y==4 or y==7:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                print(string11.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1))
+            if y==2 or y==5 or y==8:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                restay2=y-2
+                print(string12.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1,restay2=restay2))
+        if x==2 or x==5 or x==8:
+            if y==0 or y==3 or y==6:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                restax2=x-2
+                sumay1=y+1
+                sumay2=y+2
+                print(string20.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,restax2=restax2,y=y,sumay1=sumay1,sumay2=sumay2))
+            if y==1 or y==4 or y==7:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                restax2=x-2
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                print(string21.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,restax2=restax2,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1))
+            if y==2 or y==5 or y==8:
+                sumax1=x+1
+                sumax2=x+2
+                restax1=x-1
+                restax2=x-2
+                sumay1=y+1
+                sumay2=y+2
+                restay1=y-1
+                restay2=y-2
+                print(string22.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,restax2=restax2,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1,restay2=restay2))
 for x in range(9):
     for y in range(9):
         print(string2.format(x=x,y=y))
