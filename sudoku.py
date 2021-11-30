@@ -1,12 +1,12 @@
-# -----------------------------------------------------------------------------------------------------------------------
-# Módulos
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+# Modulos
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 import os
 import random
 import pickle
-# -----------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Clases
 class Pila:
     def __init__(self):
@@ -30,12 +30,12 @@ class Pila:
     def cantidad(self):
         """número de elementos en la pila"""
         return len(self.elementos)
-# -----------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Definición de variables iniciales requeridas para las funciones
 menú = tk.Tk()
 menú.title("Juego Sudoku")
 menú.geometry("{}x{}+{}+{}".format(370, 382, int((menú.winfo_screenwidth() / 2) - (370 / 2)),
-                                   int((menú.winfo_screenheight() / 2) - (382 / 2))))
+                                   int((menú.winfo_screenheight() / 2) - (382 / 2)))) #decide el tamaño, la posición y algunos otros atributos del diseño de pantalla que vamos a crear.
 jugadas_viejas=Pila()
 jugadas_nuevas=Pila()
 partida=0
@@ -53,6 +53,7 @@ dificultad = tk.IntVar()
 dificultad.set(0)
 configuración_valores= tk.IntVar()
 configuración_valores.set(1)
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # indica si el juego inicio
 jugando = False
 hay_reloj = False
@@ -64,17 +65,21 @@ imagen.config(width="500",height="500")
 fondo = tk.Label(menú, image=imagen)
 fondo.config(image=imagen)
 fondo.place(x=70, y=70)
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
+###################################################
+#           SECCIÓN DE FUNCIONES                  #
+###################################################
 def jugar():
-    global grid, reloj
-    reloj = 0
+    global grid, reloj #globales
+    reloj = 0 # se define la variable reloj
     # Esconde el menú
     menú.withdraw()
     # Con top level se crea una ventana secundaria donde se van a ingresar los datos del juego
     ventana_principal_juego = tk.Toplevel()
     elección=""
-    #se deshabilitan todos los botones
-    #  Aparecen numeros según la partida escogida del diccionario en configuración
+    # se deshabilitan todos los botones
+    # Aparecen numeros según la partida escogida del diccionario en configuración
     def escoger_partida(partida):
         global dificultad,tablero
         partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb")
@@ -90,19 +95,19 @@ def jugar():
         elif dificultad.get()==2:
             tablero=diccionario_difícil[list(diccionario_difícil.keys())[partida]]
     
-    ventana_principal_juego.title("Juego Sudoku")
+    ventana_principal_juego.title("Juego Sudoku") #Titulo de la ventana
     ventana_principal_juego.geometry("{}x{}+{}+{}".format(700, 500, int((menú.winfo_screenwidth() / 2) - (382 / 2)),
-                                                          int((menú.winfo_screenheight() / 2) - (360 / 2))))
+                                                          int((menú.winfo_screenheight() / 2) - (360 / 2)))) #decide el tamaño, la posición y algunos otros atributos del diseño de pantalla que vamos a crear.
 
-    ventana_principal_juego.resizable(width=False, height=False)
-    ventana_principal_juego.config(bg="#8c004b")
+    ventana_principal_juego.resizable(width=False, height=False)  #crea una ventana de tamaño fijo
+    ventana_principal_juego.config(bg="#8c004b") #se define el color
 
-    frame = tk.Frame(ventana_principal_juego)
-    frame.place(x=0, y=45)
-    frame.config(width="1", height="1")
+    frame = tk.Frame(ventana_principal_juego) 
+    frame.place(x=0, y=45) #coloca en una posición específica en el widget principal.
+    frame.config(width="1", height="1") #Alto y ancho en píxeles
     
     lblJugador = tk.Label(ventana_principal_juego, text="Jugador:", bd=3, bg="#8c004b", fg="black",
-                          font=("Century", 11))
+                          font=("Century", 11)) 
     lblJugador.place(x=0, y=0)
 
     lblClock = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
@@ -110,7 +115,7 @@ def jugar():
 
     lblTimer = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
     lblTimer.place(x=350, y=0)
-    
+    #verifica si gana 
     def invertir():
         global tablero
         m=tablero
@@ -122,7 +127,7 @@ def jugar():
     # Label que dibuja  la matriz
             
     grid = [[tk.Button(frame, width=2, height=1, borderwidth=2, relief="solid", font=("Century", 18)) for i in
-             range(9)] for j in range(9)]
+             range(9)] for j in range(9)] #organiza los widgets en una estructura similar a una tabla en el widget principal.
     num00=grid[0][0]
     num01=grid[0][1]
     num02=grid[0][2]
@@ -205,14 +210,14 @@ def jugar():
     num87=grid[8][7]
     num88=grid[8][8]
 
-
-
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#validaciones de cada elemento del tablero
 
     def func00():
-        global elección,jugadas_viejas
-        anterior=num00["text"]
-        color_anterior=num00["bg"]
-        num00.config(text=elección)
+        global elección,jugadas_viejas #globales
+        anterior=num00["text"] # se define la variable anterior
+        color_anterior=num00["bg"] #se define una variable para el color
+        num00.config(text=elección) 
         def cerrar_advertencia00(event):
             habilitar_botones()
             num00.config(text=anterior,bg=color_anterior)
@@ -3984,6 +3989,7 @@ def jugar():
     num87.config(command=func87)
     num88.config(command=func88)
 
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     def ganó():
         return
@@ -4049,17 +4055,20 @@ def jugar():
                     cuadrícula[x][y].config(bg="#02ac66")
                 # Acomoda los labels segun la cuadricula
                 cuadrícula[x][y].grid(column=x, row=y)
-                
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#Funciones de los botones 
+
     def iniciarPartida():
-        global grid, tablero, jugando, nombre_jugador, reloj, temporizador, configuración_reloj,dificultad,partida
-        global horas, minutos, segundos, jugadas_viejas
-        jugando = False
-        reloj = 0
-        temporizador = horas * 3600 + minutos * 60 + segundos
+        global grid, tablero, jugando, nombre_jugador, reloj, temporizador, configuración_reloj,dificultad,partida #globales
+        global horas, minutos, segundos, jugadas_viejas #globales
+        jugando = False #flag
+        reloj = 0 # define la variable de reloj
+        temporizador = horas * 3600 + minutos * 60 + segundos #contiene la cantidad de los tiempos  
         # Inicia la matriz con numeros del diccionario deseado
-        partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb")
-        lista_diccionarios_partidas=pickle.load(partidas_iniciales)
-        partidas_iniciales.close()
+        partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb") #abre el archivo 
+        lista_diccionarios_partidas=pickle.load(partidas_iniciales) #lee varios archivos
+        partidas_iniciales.close() #cierra el archivo que estaba abierto
+        #variables con cada nivel
         diccionario_fácil=lista_diccionarios_partidas[0]
         diccionario_intermedio=lista_diccionarios_partidas[1]
         diccionario_difícil=lista_diccionarios_partidas[2]
@@ -4093,18 +4102,18 @@ def jugar():
             archivo_para_escribir.write(str(tablero))
             # Se cierra el archivo
             archivo_para_escribir.close()
-            messagebox.showinfo("Guardado", "Partida guardada")
+            messagebox.showinfo("Guardado", "Partida guardada") #envia el mensaje una vez guardada la partida
         else:
-            messagebox.showerror("Error", "No hay partida en curso")
+            messagebox.showerror("Error", "No hay partida en curso") #envia un mensaje de que no se puede guardar si la partida no se ha iniciado
 
     def cargarJuego():
         global archivo_datos, nombre_jugador, tablero, jugando, grid
         # Lee los datos guardados
-        archivo_para_cargar = open(archivo_datos, 'r')
+        archivo_para_cargar = open(archivo_datos, 'r') #abre el archivo de datos
         datos = archivo_para_cargar.read()
         # Si no hay datos muestra el error
         if datos == "":
-            messagebox.showerror("Error", "No hay partida guardad")
+            messagebox.showerror("Error", "No hay partida guardada") #envia un mensaje de que no se puede cargar la partida si no hay partidas grabadas
         else:
             # Me devuelve los datos separados
             lineas = datos.split('\n')
@@ -4127,8 +4136,9 @@ def jugar():
 
             
     def iniciar_juego():
+        #inicia partida si se escribe el nombre
         global jugando, jugadas_viejas,jugadas_nuevas
-        nombre_jugador = entryNombre.get()
+        nombre_jugador = entryNombre.get() #recupera el valor del diccionario
         if nombre_jugador == "":
             # Envia mensaje de error si no se introduce el nombre
             messagebox.showerror("Nombre no asignado",
@@ -4137,44 +4147,40 @@ def jugar():
             # Si el nombre ingresado es mayor a 30  retorna error
             messagebox.showerror("Nombre invalido", "El nombre del jugador debe contener máximo 30 caracteres")
         else:
-            #  Disable : desabilita la ventana
+            # State: cambia el estado del boton
+            # Disable : desabilita la ventana
             jugando=True
             entryNombre.config(state='disabled')
             btnIniciarPartida.config(state="disabled")
-            habilitar_botones()
+            habilitar_botones() #habilita los botones
             jugadas_viejas.elementos=[]
             jugadas_nuevas.elementos=[]
         return
+    
     def deshacer_jugada():
         global jugando,jugadas_viejas,jugadas_nuevas
         if jugando:
             if len(jugadas_viejas.elementos)==0:
-                messagebox.showerror("Botón no válido", "No hay jugadas para deshacer")
+                messagebox.showerror("Botón no válido", "No hay jugadas para deshacer") #envia mensaje de error si no hay ningun movimiento por dehacer
             else:
-                cambio=jugadas_viejas.sacar()
-                jugadas_nuevas.meter([cambio[0],cambio[0]["text"]])
+                cambio=jugadas_viejas.sacar() #elimina las jugadas viejas
+                jugadas_nuevas.meter([cambio[0],cambio[0]["text"]]) #introduce las nuevas
                 cambio[0].config(text=cambio[1])
         else:
-            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
-
-
-
+            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.") #envia mensaje de error si no se ha iniciado una partida 
 
     def rehacer_jugada():
         global jugando,jugadas_viejas,jugadas_nuevas
         if jugando:
             if len(jugadas_nuevas.elementos)==0:
-                messagebox.showerror("Botón no válido", "No hay jugadas para rehacer")
+                messagebox.showerror("Botón no válido", "No hay jugadas para rehacer") #envia mensaje de error si no hay ningun movimiento que se pueda rehacer
             else:
                 cambio=jugadas_nuevas.sacar()
                 jugadas_viejas.meter([cambio[0],cambio[0]["text"]])
                 cambio[0].config(text=cambio[1])
         else:
-            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
+            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.") #envia mensaje de error si no se ha iniciado una partida
 
-
-
-            
     def cargar_juego():
         return
     def guardar_juego():
@@ -4183,10 +4189,11 @@ def jugar():
     def borrar_juego():
         global jugadas_viejas,jugadas_nuevas,jugando
         if not jugando:
-            messagebox.showinfo(message="No se ha iniciado el juego", title="Atención")
+            messagebox.showinfo(message="No se ha iniciado el juego", title="Atención") #envia un mensaje de que no se puede borrar el juego si no hay una partida iniciada 
         if jugando:
-            deshabilitar_botones()
-            if messagebox.askyesno(message="¿Desea borrar el juego?", title="Atención"):
+            deshabilitar_botones() # deshabilita los botones 
+            if messagebox.askyesno(message="¿Desea borrar el juego?", title="Atención"): #envia un mensaje de que si está seguro de borrar el juego ya iniciado
+                # deshace la jugada si indica que si 
                 while jugadas_viejas.elementos!=[]:
                     deshacer_jugada()
                 jugadas_viejas.elementos=[]
@@ -4195,21 +4202,25 @@ def jugar():
                 jugando=False
                 entryNombre.config(state='normal')
                 btnIniciarPartida.config(state="normal")
+              # si no sigue con la partida
             else:
                 habilitar_botones()
+                
     def terminar_juego():
         global jugando
         if not jugando:
-            messagebox.showinfo(message="No se ha iniciado el juego", title="Atención")
+            messagebox.showinfo(message="No se ha iniciado el juego", title="Atención") # envia un mensaje si no ha iniciado ninguna partida
         if jugando:
             deshabilitar_botones()
-            if messagebox.askyesno(message="¿Desea terminar el juego?", title="Atención"):
-                ventana_principal_juego.destroy()
+            if messagebox.askyesno(message="¿Desea terminar el juego?", title="Atención"): # envia un mensaje de si desea terminar el juego o continua
+                ventana_principal_juego.destroy() #elimina el juego si indica que si
                 jugar()
+            #si indica que no, continua la partida 
             else:
                 habilitar_botones()
     def top_x():
         return
+    
     def selecciona_1():
         global elección
         btn1.config(bg="light blue")
@@ -4328,10 +4339,11 @@ def jugar():
         btn9.config(bg="light blue")
         elección="9"
         return
+    
     # Agrega espacio donde se coloca el nombre del jugador
     entryNombre = tk.Entry(ventana_principal_juego, bd=2, bg="#8c004b", font=("Century", 13))
     entryNombre.place(x=100, y=0)
-
+    #botones de la ventana jugar 
     btnIniciarPartida = tk.Button(ventana_principal_juego, text="INICIAR \n  JUEGO  ",
                                   bg="#de14e5", fg="black",
                                   font=("Century", 12),
@@ -4467,8 +4479,10 @@ def jugar():
                                 command=selecciona_9)
     btn9.config(bg="light blue")
     btn9.place(x=440, y=120)
-    def habilitar_botones():
-        num00.config(state="normal")
+    
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#    
+    def habilitar_botones(): #funcion que habilita los botones
+        num00.config(state="normal") #state: cambia el estado del boton 
         num01.config(state="normal")
         num02.config(state="normal")
         num03.config(state="normal")
@@ -4558,8 +4572,9 @@ def jugar():
         btn7.config(state="normal")
         btn8.config(state="normal")
         btn9.config(state="normal")
-    def deshabilitar_botones():
-        num00.config(state="disabled")
+        
+    def deshabilitar_botones(): #funcion que deshabilita los botones
+        num00.config(state="disabled") #state: cambia el estado del boton
         num01.config(state="disabled")
         num02.config(state="disabled")
         num03.config(state="disabled")
@@ -4658,12 +4673,15 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        
+    
     # Crea el tablero inicial
     iniciarPartida()
     return
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+#------------------------Funcion de configuracion------------------------#
 def configuración():
-    global hay_reloj, hay_temporizador, configuración_reloj, horas, minutos, segundos
+    global hay_reloj, hay_temporizador, configuración_reloj, horas, minutos, segundos #globales
     menú.withdraw()
     # Genera una ventana secundaria
     ventanaConfig = tk.Toplevel()
@@ -4703,11 +4721,11 @@ def configuración():
 
     entryEsp1= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp1.insert(0, "1")
-    entryEsp1.place(x=300, y=360)
+    entryEsp1.place(x=470, y=360)
 
     entryEsp2= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp2.insert(0, "2")
-    entryEsp2.place(x=300, y=360)
+    entryEsp2.place(x=470, y=360)
 
     entryEsp3= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp3.insert(0, "3")
@@ -4725,6 +4743,7 @@ def configuración():
     entryEsp6.insert(0, "2")
     entryEsp6.place(x=470, y=360)
     
+    #guarda los datos ingresados 
     def guardarConfig():
         global horas, minutos, segundos
         try:
@@ -4735,11 +4754,13 @@ def configuración():
             ventanaConfig.destroy()
         except ValueError:
             messagebox.showerror('Error', 'Los campos no deben estar vacios')
-
+            
+    #no guarda los cambios en la configuracion 
     def cancelarConfig():
         menú.deiconify()
         ventanaConfig.destroy()
-
+        
+    #botones de la configuracion 
     btnGuardarConfig = tk.Button(ventanaConfig, text="     Guardar     ",
                                  bg="#de2644", fg="black",
                                  font=("Century", 12),
@@ -4886,15 +4907,16 @@ def configuración():
     lbltopX.place(x=0, y=360)
     return 
 
+#------------------------Funcion para dar informacion a base del documento------------------------#
 def acerca_de():
-    ventanaAcercaDe = tk.Toplevel()
+    ventanaAcercaDe = tk.Toplevel() # Con top level se crea una ventana secundaria donde se van a ingresar los datos del documento
     ventanaAcercaDe.title("Juego Sudoku")
     ventanaAcercaDe.geometry("{}x{}+{}+{}".format(440, 440, int((menú.winfo_screenwidth() / 2) - (440 / 2)),
                                                   int((menú.winfo_screenheight() / 2) - (440 / 2))))
 
     ventanaAcercaDe.resizable(width=False, height=False)
     ventanaAcercaDe.config(bg="white")
-
+    #datos del documento con label
     lblnombreJuego = tk.Label(ventanaAcercaDe, text="Sudoku", bg="#0CB7F2", fg="black", font=("Century", 24))
     lblnombreJuego.place(x=440 // 2, y=100, anchor="center")
 
@@ -4914,12 +4936,17 @@ def acerca_de():
     lblautorb.place(x=440 // 2, y=400, anchor="center")
     return
 
+#------------------------Funcion para desplegar el manual de usuario------------------------#
 def ayuda():
-    os.system("archivos\\documentos\\manual_de_usuario_sudoku.pdf")
+    os.system("archivos\\documentos\\manual_de_usuario_sudoku.pdf") #ejecuta el comando (una cadena) en un subshell. (abre el pdf
     return
+
+#------------------------Funcion para cerrar el programa------------------------#
 def salir():
     # Destruye la ventana
     menú.destroy()
+
+#------------------------botones del menu principal------------------------#
 btnjugar = tk.Button(menú, text="Jugar",
                      bg="#FF99C4", fg="black",
                      font=("Century", 9),
@@ -4961,4 +4988,4 @@ btnSalir = tk.Button(menú, text="     Salir     ",
 btnSalir.place(x=308, y=362, width=60, height=20)
 
 
-menú.mainloop()
+menú.mainloop() #ejecuta el ciclo de eventos de la ventana de tkinter
