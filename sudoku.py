@@ -37,6 +37,7 @@ menú.title("Juego Sudoku")
 menú.geometry("{}x{}+{}+{}".format(370, 382, int((menú.winfo_screenwidth() / 2) - (370 / 2)),
                                    int((menú.winfo_screenheight() / 2) - (382 / 2))))
 jugadas_viejas=Pila()
+jugadas_nuevas=Pila()
 partida=0
 tablero=[]
 anterior=0
@@ -216,14 +217,14 @@ def jugar():
             deshabilitar_botones()
             num00.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
         elif [num00["text"],num01["text"],num02["text"],num10["text"],num11["text"],num12["text"],num20["text"],num21["text"],num22["text"]].count(num00["text"])>1:
             deshabilitar_botones()
             num00.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
 
@@ -231,7 +232,7 @@ def jugar():
             deshabilitar_botones()
             num00.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
                     
@@ -239,7 +240,7 @@ def jugar():
             deshabilitar_botones()
             num00.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
         else:
@@ -260,7 +261,7 @@ def jugar():
             deshabilitar_botones()
             num01.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
 
@@ -268,7 +269,7 @@ def jugar():
             deshabilitar_botones()
             num01.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
 
@@ -276,7 +277,7 @@ def jugar():
             deshabilitar_botones()
             num01.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
                     
@@ -284,7 +285,7 @@ def jugar():
             deshabilitar_botones()
             num01.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
         else:
@@ -305,14 +306,14 @@ def jugar():
             deshabilitar_botones()
             num02.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
         elif [num00["text"],num01["text"],num02["text"],num10["text"],num11["text"],num12["text"],num20["text"],num21["text"],num22["text"]].count(num02["text"])>1:
             deshabilitar_botones()
             num02.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
 
@@ -321,7 +322,7 @@ def jugar():
             deshabilitar_botones()
             num02.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
                     
@@ -329,7 +330,7 @@ def jugar():
             deshabilitar_botones()
             num02.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
         else:
@@ -350,14 +351,14 @@ def jugar():
             deshabilitar_botones()
             num03.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
         elif [num03["text"],num04["text"],num05["text"],num13["text"],num14["text"],num15["text"],num23["text"],num24["text"],num25["text"]].count(num03["text"])>1:
             deshabilitar_botones()
             num03.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
 
@@ -365,7 +366,7 @@ def jugar():
             deshabilitar_botones()
             num03.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
                     
@@ -373,7 +374,7 @@ def jugar():
             deshabilitar_botones()
             num03.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
         else:
@@ -394,7 +395,7 @@ def jugar():
             deshabilitar_botones()
             num04.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
 
@@ -402,7 +403,7 @@ def jugar():
             deshabilitar_botones()
             num04.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
 
@@ -410,7 +411,7 @@ def jugar():
             deshabilitar_botones()
             num04.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
                     
@@ -418,7 +419,7 @@ def jugar():
             deshabilitar_botones()
             num04.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
         else:
@@ -439,14 +440,14 @@ def jugar():
             deshabilitar_botones()
             num05.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
         elif [num03["text"],num04["text"],num05["text"],num13["text"],num14["text"],num15["text"],num23["text"],num24["text"],num25["text"]].count(num05["text"])>1:
             deshabilitar_botones()
             num05.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
 
@@ -455,7 +456,7 @@ def jugar():
             deshabilitar_botones()
             num05.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
                     
@@ -463,7 +464,7 @@ def jugar():
             deshabilitar_botones()
             num05.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
         else:
@@ -484,14 +485,14 @@ def jugar():
             deshabilitar_botones()
             num06.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
         elif [num06["text"],num07["text"],num08["text"],num16["text"],num17["text"],num18["text"],num26["text"],num27["text"],num28["text"]].count(num06["text"])>1:
             deshabilitar_botones()
             num06.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
 
@@ -499,7 +500,7 @@ def jugar():
             deshabilitar_botones()
             num06.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
                     
@@ -507,7 +508,7 @@ def jugar():
             deshabilitar_botones()
             num06.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
         else:
@@ -528,7 +529,7 @@ def jugar():
             deshabilitar_botones()
             num07.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
 
@@ -536,7 +537,7 @@ def jugar():
             deshabilitar_botones()
             num07.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
 
@@ -544,7 +545,7 @@ def jugar():
             deshabilitar_botones()
             num07.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
                     
@@ -552,7 +553,7 @@ def jugar():
             deshabilitar_botones()
             num07.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
         else:
@@ -573,14 +574,14 @@ def jugar():
             deshabilitar_botones()
             num08.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
         elif [num06["text"],num07["text"],num08["text"],num16["text"],num17["text"],num18["text"],num26["text"],num27["text"],num28["text"]].count(num08["text"])>1:
             deshabilitar_botones()
             num08.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
 
@@ -589,7 +590,7 @@ def jugar():
             deshabilitar_botones()
             num08.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
                     
@@ -597,7 +598,7 @@ def jugar():
             deshabilitar_botones()
             num08.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
         else:
@@ -618,7 +619,7 @@ def jugar():
             deshabilitar_botones()
             num10.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
             
@@ -626,7 +627,7 @@ def jugar():
             deshabilitar_botones()
             num10.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
 
@@ -634,7 +635,7 @@ def jugar():
             deshabilitar_botones()
             num10.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
                     
@@ -642,7 +643,7 @@ def jugar():
             deshabilitar_botones()
             num10.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
         else:
@@ -664,7 +665,7 @@ def jugar():
             deshabilitar_botones()
             num11.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
             
@@ -672,7 +673,7 @@ def jugar():
             deshabilitar_botones()
             num11.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
 
@@ -680,7 +681,7 @@ def jugar():
             deshabilitar_botones()
             num11.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
                     
@@ -688,7 +689,7 @@ def jugar():
             deshabilitar_botones()
             num11.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
         else:
@@ -710,7 +711,7 @@ def jugar():
             deshabilitar_botones()
             num12.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
 
@@ -718,7 +719,7 @@ def jugar():
             deshabilitar_botones()
             num12.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
 
@@ -726,7 +727,7 @@ def jugar():
             deshabilitar_botones()
             num12.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
                     
@@ -734,7 +735,7 @@ def jugar():
             deshabilitar_botones()
             num12.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
         else:
@@ -756,7 +757,7 @@ def jugar():
             deshabilitar_botones()
             num13.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
             
@@ -764,7 +765,7 @@ def jugar():
             deshabilitar_botones()
             num13.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
 
@@ -772,7 +773,7 @@ def jugar():
             deshabilitar_botones()
             num13.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
                     
@@ -780,7 +781,7 @@ def jugar():
             deshabilitar_botones()
             num13.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
         else:
@@ -802,7 +803,7 @@ def jugar():
             deshabilitar_botones()
             num14.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
             
@@ -810,7 +811,7 @@ def jugar():
             deshabilitar_botones()
             num14.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
 
@@ -818,7 +819,7 @@ def jugar():
             deshabilitar_botones()
             num14.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
                     
@@ -826,7 +827,7 @@ def jugar():
             deshabilitar_botones()
             num14.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
         else:
@@ -848,7 +849,7 @@ def jugar():
             deshabilitar_botones()
             num15.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
 
@@ -856,7 +857,7 @@ def jugar():
             deshabilitar_botones()
             num15.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
 
@@ -864,7 +865,7 @@ def jugar():
             deshabilitar_botones()
             num15.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
                     
@@ -872,7 +873,7 @@ def jugar():
             deshabilitar_botones()
             num15.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
         else:
@@ -894,7 +895,7 @@ def jugar():
             deshabilitar_botones()
             num16.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
             
@@ -902,7 +903,7 @@ def jugar():
             deshabilitar_botones()
             num16.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
 
@@ -910,7 +911,7 @@ def jugar():
             deshabilitar_botones()
             num16.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
                     
@@ -918,7 +919,7 @@ def jugar():
             deshabilitar_botones()
             num16.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
         else:
@@ -940,7 +941,7 @@ def jugar():
             deshabilitar_botones()
             num17.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
             
@@ -948,7 +949,7 @@ def jugar():
             deshabilitar_botones()
             num17.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
 
@@ -956,7 +957,7 @@ def jugar():
             deshabilitar_botones()
             num17.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
                     
@@ -964,7 +965,7 @@ def jugar():
             deshabilitar_botones()
             num17.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
         else:
@@ -986,7 +987,7 @@ def jugar():
             deshabilitar_botones()
             num18.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
 
@@ -994,7 +995,7 @@ def jugar():
             deshabilitar_botones()
             num18.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
 
@@ -1002,7 +1003,7 @@ def jugar():
             deshabilitar_botones()
             num18.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
                     
@@ -1010,7 +1011,7 @@ def jugar():
             deshabilitar_botones()
             num18.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
         else:
@@ -1032,7 +1033,7 @@ def jugar():
             deshabilitar_botones()
             num20.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
 
@@ -1040,7 +1041,7 @@ def jugar():
             deshabilitar_botones()
             num20.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
 
@@ -1048,7 +1049,7 @@ def jugar():
             deshabilitar_botones()
             num20.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
                     
@@ -1056,7 +1057,7 @@ def jugar():
             deshabilitar_botones()
             num20.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
         else:
@@ -1079,7 +1080,7 @@ def jugar():
             deshabilitar_botones()
             num21.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
 
@@ -1087,7 +1088,7 @@ def jugar():
             deshabilitar_botones()
             num21.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
 
@@ -1095,7 +1096,7 @@ def jugar():
             deshabilitar_botones()
             num21.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
                     
@@ -1103,7 +1104,7 @@ def jugar():
             deshabilitar_botones()
             num21.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
         else:
@@ -1125,14 +1126,14 @@ def jugar():
             deshabilitar_botones()
             num22.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
         elif [num00["text"],num01["text"],num02["text"],num10["text"],num11["text"],num12["text"],num20["text"],num21["text"],num22["text"]].count(num22["text"])>1:
             deshabilitar_botones()
             num22.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
 
@@ -1140,7 +1141,7 @@ def jugar():
             deshabilitar_botones()
             num22.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
                     
@@ -1148,7 +1149,7 @@ def jugar():
             deshabilitar_botones()
             num22.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
         else:
@@ -1170,7 +1171,7 @@ def jugar():
             deshabilitar_botones()
             num23.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
 
@@ -1178,7 +1179,7 @@ def jugar():
             deshabilitar_botones()
             num23.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
 
@@ -1186,7 +1187,7 @@ def jugar():
             deshabilitar_botones()
             num23.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
                     
@@ -1194,7 +1195,7 @@ def jugar():
             deshabilitar_botones()
             num23.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
         else:
@@ -1217,7 +1218,7 @@ def jugar():
             deshabilitar_botones()
             num24.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
 
@@ -1225,7 +1226,7 @@ def jugar():
             deshabilitar_botones()
             num24.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
 
@@ -1233,7 +1234,7 @@ def jugar():
             deshabilitar_botones()
             num24.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
                     
@@ -1241,7 +1242,7 @@ def jugar():
             deshabilitar_botones()
             num24.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
         else:
@@ -1263,14 +1264,14 @@ def jugar():
             deshabilitar_botones()
             num25.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
         elif [num03["text"],num04["text"],num05["text"],num13["text"],num14["text"],num15["text"],num23["text"],num24["text"],num25["text"]].count(num25["text"])>1:
             deshabilitar_botones()
             num25.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
 
@@ -1278,7 +1279,7 @@ def jugar():
             deshabilitar_botones()
             num25.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
                     
@@ -1286,7 +1287,7 @@ def jugar():
             deshabilitar_botones()
             num25.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
         else:
@@ -1308,7 +1309,7 @@ def jugar():
             deshabilitar_botones()
             num26.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
 
@@ -1316,7 +1317,7 @@ def jugar():
             deshabilitar_botones()
             num26.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
 
@@ -1324,7 +1325,7 @@ def jugar():
             deshabilitar_botones()
             num26.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
                     
@@ -1332,7 +1333,7 @@ def jugar():
             deshabilitar_botones()
             num26.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
         else:
@@ -1355,7 +1356,7 @@ def jugar():
             deshabilitar_botones()
             num27.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
 
@@ -1363,7 +1364,7 @@ def jugar():
             deshabilitar_botones()
             num27.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
 
@@ -1371,7 +1372,7 @@ def jugar():
             deshabilitar_botones()
             num27.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
                     
@@ -1379,7 +1380,7 @@ def jugar():
             deshabilitar_botones()
             num27.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
         else:
@@ -1401,14 +1402,14 @@ def jugar():
             deshabilitar_botones()
             num28.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
         elif [num06["text"],num07["text"],num08["text"],num16["text"],num17["text"],num18["text"],num26["text"],num27["text"],num28["text"]].count(num28["text"])>1:
             deshabilitar_botones()
             num28.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
 
@@ -1416,7 +1417,7 @@ def jugar():
             deshabilitar_botones()
             num28.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
                     
@@ -1424,7 +1425,7 @@ def jugar():
             deshabilitar_botones()
             num28.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
         else:
@@ -1446,14 +1447,14 @@ def jugar():
             deshabilitar_botones()
             num30.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
         elif [num30["text"],num31["text"],num32["text"],num40["text"],num41["text"],num42["text"],num50["text"],num51["text"],num52["text"]].count(num30["text"])>1:
             deshabilitar_botones()
             num30.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
 
@@ -1461,7 +1462,7 @@ def jugar():
             deshabilitar_botones()
             num30.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
                     
@@ -1469,7 +1470,7 @@ def jugar():
             deshabilitar_botones()
             num30.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
         else:
@@ -1490,7 +1491,7 @@ def jugar():
             deshabilitar_botones()
             num31.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
 
@@ -1498,7 +1499,7 @@ def jugar():
             deshabilitar_botones()
             num31.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
 
@@ -1506,7 +1507,7 @@ def jugar():
             deshabilitar_botones()
             num31.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
                     
@@ -1514,7 +1515,7 @@ def jugar():
             deshabilitar_botones()
             num31.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
         else:
@@ -1535,14 +1536,14 @@ def jugar():
             deshabilitar_botones()
             num32.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
         elif [num30["text"],num31["text"],num32["text"],num40["text"],num41["text"],num42["text"],num50["text"],num51["text"],num52["text"]].count(num32["text"])>1:
             deshabilitar_botones()
             num32.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
 
@@ -1551,7 +1552,7 @@ def jugar():
             deshabilitar_botones()
             num32.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
                     
@@ -1559,7 +1560,7 @@ def jugar():
             deshabilitar_botones()
             num32.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
         else:
@@ -1580,14 +1581,14 @@ def jugar():
             deshabilitar_botones()
             num33.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
         elif [num33["text"],num34["text"],num35["text"],num43["text"],num44["text"],num45["text"],num53["text"],num54["text"],num55["text"]].count(num33["text"])>1:
             deshabilitar_botones()
             num33.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
 
@@ -1595,7 +1596,7 @@ def jugar():
             deshabilitar_botones()
             num33.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
                     
@@ -1603,7 +1604,7 @@ def jugar():
             deshabilitar_botones()
             num33.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
         else:
@@ -1624,7 +1625,7 @@ def jugar():
             deshabilitar_botones()
             num34.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
 
@@ -1632,7 +1633,7 @@ def jugar():
             deshabilitar_botones()
             num34.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
 
@@ -1640,7 +1641,7 @@ def jugar():
             deshabilitar_botones()
             num34.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
                     
@@ -1648,7 +1649,7 @@ def jugar():
             deshabilitar_botones()
             num34.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
         else:
@@ -1669,14 +1670,14 @@ def jugar():
             deshabilitar_botones()
             num35.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
         elif [num33["text"],num34["text"],num35["text"],num43["text"],num44["text"],num45["text"],num53["text"],num54["text"],num55["text"]].count(num35["text"])>1:
             deshabilitar_botones()
             num35.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
 
@@ -1685,7 +1686,7 @@ def jugar():
             deshabilitar_botones()
             num35.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
                     
@@ -1693,7 +1694,7 @@ def jugar():
             deshabilitar_botones()
             num35.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
         else:
@@ -1714,14 +1715,14 @@ def jugar():
             deshabilitar_botones()
             num36.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
         elif [num36["text"],num37["text"],num38["text"],num46["text"],num47["text"],num48["text"],num56["text"],num57["text"],num58["text"]].count(num36["text"])>1:
             deshabilitar_botones()
             num36.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
 
@@ -1729,7 +1730,7 @@ def jugar():
             deshabilitar_botones()
             num36.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
                     
@@ -1737,7 +1738,7 @@ def jugar():
             deshabilitar_botones()
             num36.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
         else:
@@ -1758,7 +1759,7 @@ def jugar():
             deshabilitar_botones()
             num37.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
 
@@ -1766,7 +1767,7 @@ def jugar():
             deshabilitar_botones()
             num37.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
 
@@ -1774,7 +1775,7 @@ def jugar():
             deshabilitar_botones()
             num37.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
                     
@@ -1782,7 +1783,7 @@ def jugar():
             deshabilitar_botones()
             num37.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
         else:
@@ -1803,14 +1804,14 @@ def jugar():
             deshabilitar_botones()
             num38.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
         elif [num36["text"],num37["text"],num38["text"],num46["text"],num47["text"],num48["text"],num56["text"],num57["text"],num58["text"]].count(num38["text"])>1:
             deshabilitar_botones()
             num38.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
 
@@ -1819,7 +1820,7 @@ def jugar():
             deshabilitar_botones()
             num38.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
                     
@@ -1827,7 +1828,7 @@ def jugar():
             deshabilitar_botones()
             num38.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
         else:
@@ -1848,7 +1849,7 @@ def jugar():
             deshabilitar_botones()
             num40.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
             
@@ -1856,7 +1857,7 @@ def jugar():
             deshabilitar_botones()
             num40.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
 
@@ -1864,7 +1865,7 @@ def jugar():
             deshabilitar_botones()
             num40.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
                     
@@ -1872,7 +1873,7 @@ def jugar():
             deshabilitar_botones()
             num40.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
         else:
@@ -1894,7 +1895,7 @@ def jugar():
             deshabilitar_botones()
             num41.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
             
@@ -1902,7 +1903,7 @@ def jugar():
             deshabilitar_botones()
             num41.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
 
@@ -1910,7 +1911,7 @@ def jugar():
             deshabilitar_botones()
             num41.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
                     
@@ -1918,7 +1919,7 @@ def jugar():
             deshabilitar_botones()
             num41.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
         else:
@@ -1940,7 +1941,7 @@ def jugar():
             deshabilitar_botones()
             num42.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
 
@@ -1948,7 +1949,7 @@ def jugar():
             deshabilitar_botones()
             num42.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
 
@@ -1956,7 +1957,7 @@ def jugar():
             deshabilitar_botones()
             num42.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
                     
@@ -1964,7 +1965,7 @@ def jugar():
             deshabilitar_botones()
             num42.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
         else:
@@ -1986,7 +1987,7 @@ def jugar():
             deshabilitar_botones()
             num43.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
             
@@ -1994,7 +1995,7 @@ def jugar():
             deshabilitar_botones()
             num43.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
 
@@ -2002,7 +2003,7 @@ def jugar():
             deshabilitar_botones()
             num43.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
                     
@@ -2010,7 +2011,7 @@ def jugar():
             deshabilitar_botones()
             num43.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
         else:
@@ -2032,7 +2033,7 @@ def jugar():
             deshabilitar_botones()
             num44.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
             
@@ -2040,7 +2041,7 @@ def jugar():
             deshabilitar_botones()
             num44.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
 
@@ -2048,7 +2049,7 @@ def jugar():
             deshabilitar_botones()
             num44.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
                     
@@ -2056,7 +2057,7 @@ def jugar():
             deshabilitar_botones()
             num44.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
         else:
@@ -2078,7 +2079,7 @@ def jugar():
             deshabilitar_botones()
             num45.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
 
@@ -2086,7 +2087,7 @@ def jugar():
             deshabilitar_botones()
             num45.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
 
@@ -2094,7 +2095,7 @@ def jugar():
             deshabilitar_botones()
             num45.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
                     
@@ -2102,7 +2103,7 @@ def jugar():
             deshabilitar_botones()
             num45.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
         else:
@@ -2124,7 +2125,7 @@ def jugar():
             deshabilitar_botones()
             num46.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
             
@@ -2132,7 +2133,7 @@ def jugar():
             deshabilitar_botones()
             num46.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
 
@@ -2140,7 +2141,7 @@ def jugar():
             deshabilitar_botones()
             num46.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
                     
@@ -2148,7 +2149,7 @@ def jugar():
             deshabilitar_botones()
             num46.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
         else:
@@ -2170,7 +2171,7 @@ def jugar():
             deshabilitar_botones()
             num47.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
             
@@ -2178,7 +2179,7 @@ def jugar():
             deshabilitar_botones()
             num47.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
 
@@ -2186,7 +2187,7 @@ def jugar():
             deshabilitar_botones()
             num47.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
                     
@@ -2194,7 +2195,7 @@ def jugar():
             deshabilitar_botones()
             num47.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
         else:
@@ -2216,7 +2217,7 @@ def jugar():
             deshabilitar_botones()
             num48.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
 
@@ -2224,7 +2225,7 @@ def jugar():
             deshabilitar_botones()
             num48.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
 
@@ -2232,7 +2233,7 @@ def jugar():
             deshabilitar_botones()
             num48.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
                     
@@ -2240,7 +2241,7 @@ def jugar():
             deshabilitar_botones()
             num48.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
         else:
@@ -2262,7 +2263,7 @@ def jugar():
             deshabilitar_botones()
             num50.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
 
@@ -2270,7 +2271,7 @@ def jugar():
             deshabilitar_botones()
             num50.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
 
@@ -2278,7 +2279,7 @@ def jugar():
             deshabilitar_botones()
             num50.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
                     
@@ -2286,7 +2287,7 @@ def jugar():
             deshabilitar_botones()
             num50.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
         else:
@@ -2309,7 +2310,7 @@ def jugar():
             deshabilitar_botones()
             num51.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
 
@@ -2317,7 +2318,7 @@ def jugar():
             deshabilitar_botones()
             num51.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
 
@@ -2325,7 +2326,7 @@ def jugar():
             deshabilitar_botones()
             num51.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
                     
@@ -2333,7 +2334,7 @@ def jugar():
             deshabilitar_botones()
             num51.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
         else:
@@ -2355,14 +2356,14 @@ def jugar():
             deshabilitar_botones()
             num52.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
         elif [num30["text"],num31["text"],num32["text"],num40["text"],num41["text"],num42["text"],num50["text"],num51["text"],num52["text"]].count(num52["text"])>1:
             deshabilitar_botones()
             num52.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
 
@@ -2370,7 +2371,7 @@ def jugar():
             deshabilitar_botones()
             num52.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
                     
@@ -2378,7 +2379,7 @@ def jugar():
             deshabilitar_botones()
             num52.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
         else:
@@ -2400,7 +2401,7 @@ def jugar():
             deshabilitar_botones()
             num53.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
 
@@ -2408,7 +2409,7 @@ def jugar():
             deshabilitar_botones()
             num53.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
 
@@ -2416,7 +2417,7 @@ def jugar():
             deshabilitar_botones()
             num53.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
                     
@@ -2424,7 +2425,7 @@ def jugar():
             deshabilitar_botones()
             num53.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
         else:
@@ -2447,7 +2448,7 @@ def jugar():
             deshabilitar_botones()
             num54.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
 
@@ -2455,7 +2456,7 @@ def jugar():
             deshabilitar_botones()
             num54.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
 
@@ -2463,7 +2464,7 @@ def jugar():
             deshabilitar_botones()
             num54.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
                     
@@ -2471,7 +2472,7 @@ def jugar():
             deshabilitar_botones()
             num54.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
         else:
@@ -2493,14 +2494,14 @@ def jugar():
             deshabilitar_botones()
             num55.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
         elif [num33["text"],num34["text"],num35["text"],num43["text"],num44["text"],num45["text"],num53["text"],num54["text"],num55["text"]].count(num55["text"])>1:
             deshabilitar_botones()
             num55.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
 
@@ -2508,7 +2509,7 @@ def jugar():
             deshabilitar_botones()
             num55.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
                     
@@ -2516,7 +2517,7 @@ def jugar():
             deshabilitar_botones()
             num55.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
         else:
@@ -2538,7 +2539,7 @@ def jugar():
             deshabilitar_botones()
             num56.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
 
@@ -2546,7 +2547,7 @@ def jugar():
             deshabilitar_botones()
             num56.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
 
@@ -2554,7 +2555,7 @@ def jugar():
             deshabilitar_botones()
             num56.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
                     
@@ -2562,7 +2563,7 @@ def jugar():
             deshabilitar_botones()
             num56.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
         else:
@@ -2585,7 +2586,7 @@ def jugar():
             deshabilitar_botones()
             num57.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
 
@@ -2593,7 +2594,7 @@ def jugar():
             deshabilitar_botones()
             num57.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
 
@@ -2601,7 +2602,7 @@ def jugar():
             deshabilitar_botones()
             num57.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
                     
@@ -2609,7 +2610,7 @@ def jugar():
             deshabilitar_botones()
             num57.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
         else:
@@ -2631,14 +2632,14 @@ def jugar():
             deshabilitar_botones()
             num58.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
         elif [num36["text"],num37["text"],num38["text"],num46["text"],num47["text"],num48["text"],num56["text"],num57["text"],num58["text"]].count(num58["text"])>1:
             deshabilitar_botones()
             num58.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
 
@@ -2646,7 +2647,7 @@ def jugar():
             deshabilitar_botones()
             num58.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
                     
@@ -2654,7 +2655,7 @@ def jugar():
             deshabilitar_botones()
             num58.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
         else:
@@ -2676,14 +2677,14 @@ def jugar():
             deshabilitar_botones()
             num60.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
         elif [num60["text"],num61["text"],num62["text"],num70["text"],num71["text"],num72["text"],num80["text"],num81["text"],num82["text"]].count(num60["text"])>1:
             deshabilitar_botones()
             num60.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
 
@@ -2691,7 +2692,7 @@ def jugar():
             deshabilitar_botones()
             num60.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
                     
@@ -2699,7 +2700,7 @@ def jugar():
             deshabilitar_botones()
             num60.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
         else:
@@ -2720,7 +2721,7 @@ def jugar():
             deshabilitar_botones()
             num61.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
 
@@ -2728,7 +2729,7 @@ def jugar():
             deshabilitar_botones()
             num61.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
 
@@ -2736,7 +2737,7 @@ def jugar():
             deshabilitar_botones()
             num61.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
                     
@@ -2744,7 +2745,7 @@ def jugar():
             deshabilitar_botones()
             num61.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
         else:
@@ -2765,14 +2766,14 @@ def jugar():
             deshabilitar_botones()
             num62.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
         elif [num60["text"],num61["text"],num62["text"],num70["text"],num71["text"],num72["text"],num80["text"],num81["text"],num82["text"]].count(num62["text"])>1:
             deshabilitar_botones()
             num62.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
 
@@ -2781,7 +2782,7 @@ def jugar():
             deshabilitar_botones()
             num62.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
                     
@@ -2789,7 +2790,7 @@ def jugar():
             deshabilitar_botones()
             num62.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
         else:
@@ -2810,14 +2811,14 @@ def jugar():
             deshabilitar_botones()
             num63.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
         elif [num63["text"],num64["text"],num65["text"],num73["text"],num74["text"],num75["text"],num83["text"],num84["text"],num85["text"]].count(num63["text"])>1:
             deshabilitar_botones()
             num63.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
 
@@ -2825,7 +2826,7 @@ def jugar():
             deshabilitar_botones()
             num63.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
                     
@@ -2833,7 +2834,7 @@ def jugar():
             deshabilitar_botones()
             num63.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
         else:
@@ -2854,7 +2855,7 @@ def jugar():
             deshabilitar_botones()
             num64.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
 
@@ -2862,7 +2863,7 @@ def jugar():
             deshabilitar_botones()
             num64.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
 
@@ -2870,7 +2871,7 @@ def jugar():
             deshabilitar_botones()
             num64.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
                     
@@ -2878,7 +2879,7 @@ def jugar():
             deshabilitar_botones()
             num64.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
         else:
@@ -2899,14 +2900,14 @@ def jugar():
             deshabilitar_botones()
             num65.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
         elif [num63["text"],num64["text"],num65["text"],num73["text"],num74["text"],num75["text"],num83["text"],num84["text"],num85["text"]].count(num65["text"])>1:
             deshabilitar_botones()
             num65.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
 
@@ -2915,7 +2916,7 @@ def jugar():
             deshabilitar_botones()
             num65.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
                     
@@ -2923,7 +2924,7 @@ def jugar():
             deshabilitar_botones()
             num65.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
         else:
@@ -2944,14 +2945,14 @@ def jugar():
             deshabilitar_botones()
             num66.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
         elif [num66["text"],num67["text"],num68["text"],num76["text"],num77["text"],num78["text"],num86["text"],num87["text"],num88["text"]].count(num66["text"])>1:
             deshabilitar_botones()
             num66.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
 
@@ -2959,7 +2960,7 @@ def jugar():
             deshabilitar_botones()
             num66.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
                     
@@ -2967,7 +2968,7 @@ def jugar():
             deshabilitar_botones()
             num66.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
         else:
@@ -2988,7 +2989,7 @@ def jugar():
             deshabilitar_botones()
             num67.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
 
@@ -2996,7 +2997,7 @@ def jugar():
             deshabilitar_botones()
             num67.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
 
@@ -3004,7 +3005,7 @@ def jugar():
             deshabilitar_botones()
             num67.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
                     
@@ -3012,7 +3013,7 @@ def jugar():
             deshabilitar_botones()
             num67.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
         else:
@@ -3033,14 +3034,14 @@ def jugar():
             deshabilitar_botones()
             num68.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
         elif [num66["text"],num67["text"],num68["text"],num76["text"],num77["text"],num78["text"],num86["text"],num87["text"],num88["text"]].count(num68["text"])>1:
             deshabilitar_botones()
             num68.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
 
@@ -3049,7 +3050,7 @@ def jugar():
             deshabilitar_botones()
             num68.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
                     
@@ -3057,7 +3058,7 @@ def jugar():
             deshabilitar_botones()
             num68.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
         else:
@@ -3078,7 +3079,7 @@ def jugar():
             deshabilitar_botones()
             num70.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
             
@@ -3086,7 +3087,7 @@ def jugar():
             deshabilitar_botones()
             num70.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
 
@@ -3094,7 +3095,7 @@ def jugar():
             deshabilitar_botones()
             num70.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
                     
@@ -3102,7 +3103,7 @@ def jugar():
             deshabilitar_botones()
             num70.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
         else:
@@ -3124,7 +3125,7 @@ def jugar():
             deshabilitar_botones()
             num71.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
             
@@ -3132,7 +3133,7 @@ def jugar():
             deshabilitar_botones()
             num71.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
 
@@ -3140,7 +3141,7 @@ def jugar():
             deshabilitar_botones()
             num71.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
                     
@@ -3148,7 +3149,7 @@ def jugar():
             deshabilitar_botones()
             num71.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
         else:
@@ -3170,7 +3171,7 @@ def jugar():
             deshabilitar_botones()
             num72.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
 
@@ -3178,7 +3179,7 @@ def jugar():
             deshabilitar_botones()
             num72.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
 
@@ -3186,7 +3187,7 @@ def jugar():
             deshabilitar_botones()
             num72.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
                     
@@ -3194,7 +3195,7 @@ def jugar():
             deshabilitar_botones()
             num72.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
         else:
@@ -3216,7 +3217,7 @@ def jugar():
             deshabilitar_botones()
             num73.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
             
@@ -3224,7 +3225,7 @@ def jugar():
             deshabilitar_botones()
             num73.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
 
@@ -3232,7 +3233,7 @@ def jugar():
             deshabilitar_botones()
             num73.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
                     
@@ -3240,7 +3241,7 @@ def jugar():
             deshabilitar_botones()
             num73.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
         else:
@@ -3262,7 +3263,7 @@ def jugar():
             deshabilitar_botones()
             num74.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
             
@@ -3270,7 +3271,7 @@ def jugar():
             deshabilitar_botones()
             num74.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
 
@@ -3278,7 +3279,7 @@ def jugar():
             deshabilitar_botones()
             num74.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
                     
@@ -3286,7 +3287,7 @@ def jugar():
             deshabilitar_botones()
             num74.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
         else:
@@ -3308,7 +3309,7 @@ def jugar():
             deshabilitar_botones()
             num75.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
 
@@ -3316,7 +3317,7 @@ def jugar():
             deshabilitar_botones()
             num75.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
 
@@ -3324,7 +3325,7 @@ def jugar():
             deshabilitar_botones()
             num75.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
                     
@@ -3332,7 +3333,7 @@ def jugar():
             deshabilitar_botones()
             num75.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
         else:
@@ -3354,7 +3355,7 @@ def jugar():
             deshabilitar_botones()
             num76.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
             
@@ -3362,7 +3363,7 @@ def jugar():
             deshabilitar_botones()
             num76.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
 
@@ -3370,7 +3371,7 @@ def jugar():
             deshabilitar_botones()
             num76.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
                     
@@ -3378,7 +3379,7 @@ def jugar():
             deshabilitar_botones()
             num76.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
         else:
@@ -3400,7 +3401,7 @@ def jugar():
             deshabilitar_botones()
             num77.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
             
@@ -3408,7 +3409,7 @@ def jugar():
             deshabilitar_botones()
             num77.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
 
@@ -3416,7 +3417,7 @@ def jugar():
             deshabilitar_botones()
             num77.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
                     
@@ -3424,7 +3425,7 @@ def jugar():
             deshabilitar_botones()
             num77.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
         else:
@@ -3446,7 +3447,7 @@ def jugar():
             deshabilitar_botones()
             num78.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
 
@@ -3454,7 +3455,7 @@ def jugar():
             deshabilitar_botones()
             num78.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
 
@@ -3462,7 +3463,7 @@ def jugar():
             deshabilitar_botones()
             num78.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
                     
@@ -3470,7 +3471,7 @@ def jugar():
             deshabilitar_botones()
             num78.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
         else:
@@ -3492,7 +3493,7 @@ def jugar():
             deshabilitar_botones()
             num80.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
 
@@ -3500,7 +3501,7 @@ def jugar():
             deshabilitar_botones()
             num80.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
 
@@ -3508,7 +3509,7 @@ def jugar():
             deshabilitar_botones()
             num80.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
                     
@@ -3516,7 +3517,7 @@ def jugar():
             deshabilitar_botones()
             num80.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
         else:
@@ -3539,7 +3540,7 @@ def jugar():
             deshabilitar_botones()
             num81.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
 
@@ -3547,7 +3548,7 @@ def jugar():
             deshabilitar_botones()
             num81.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
 
@@ -3555,7 +3556,7 @@ def jugar():
             deshabilitar_botones()
             num81.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
                     
@@ -3563,7 +3564,7 @@ def jugar():
             deshabilitar_botones()
             num81.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
         else:
@@ -3585,14 +3586,14 @@ def jugar():
             deshabilitar_botones()
             num82.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
         elif [num60["text"],num61["text"],num62["text"],num70["text"],num71["text"],num72["text"],num80["text"],num81["text"],num82["text"]].count(num82["text"])>1:
             deshabilitar_botones()
             num82.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
 
@@ -3600,7 +3601,7 @@ def jugar():
             deshabilitar_botones()
             num82.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
                     
@@ -3608,7 +3609,7 @@ def jugar():
             deshabilitar_botones()
             num82.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
         else:
@@ -3630,7 +3631,7 @@ def jugar():
             deshabilitar_botones()
             num83.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
 
@@ -3638,7 +3639,7 @@ def jugar():
             deshabilitar_botones()
             num83.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
 
@@ -3646,7 +3647,7 @@ def jugar():
             deshabilitar_botones()
             num83.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
                     
@@ -3654,7 +3655,7 @@ def jugar():
             deshabilitar_botones()
             num83.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
         else:
@@ -3677,7 +3678,7 @@ def jugar():
             deshabilitar_botones()
             num84.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
 
@@ -3685,7 +3686,7 @@ def jugar():
             deshabilitar_botones()
             num84.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
 
@@ -3693,7 +3694,7 @@ def jugar():
             deshabilitar_botones()
             num84.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
                     
@@ -3701,7 +3702,7 @@ def jugar():
             deshabilitar_botones()
             num84.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
         else:
@@ -3723,14 +3724,14 @@ def jugar():
             deshabilitar_botones()
             num85.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
         elif [num63["text"],num64["text"],num65["text"],num73["text"],num74["text"],num75["text"],num83["text"],num84["text"],num85["text"]].count(num85["text"])>1:
             deshabilitar_botones()
             num85.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
 
@@ -3738,7 +3739,7 @@ def jugar():
             deshabilitar_botones()
             num85.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
                     
@@ -3746,7 +3747,7 @@ def jugar():
             deshabilitar_botones()
             num85.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
         else:
@@ -3768,7 +3769,7 @@ def jugar():
             deshabilitar_botones()
             num86.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
 
@@ -3776,7 +3777,7 @@ def jugar():
             deshabilitar_botones()
             num86.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
 
@@ -3784,7 +3785,7 @@ def jugar():
             deshabilitar_botones()
             num86.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
                     
@@ -3792,7 +3793,7 @@ def jugar():
             deshabilitar_botones()
             num86.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
         else:
@@ -3815,7 +3816,7 @@ def jugar():
             deshabilitar_botones()
             num87.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
 
@@ -3823,7 +3824,7 @@ def jugar():
             deshabilitar_botones()
             num87.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
 
@@ -3831,7 +3832,7 @@ def jugar():
             deshabilitar_botones()
             num87.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
                     
@@ -3839,7 +3840,7 @@ def jugar():
             deshabilitar_botones()
             num87.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
         else:
@@ -3861,14 +3862,14 @@ def jugar():
             deshabilitar_botones()
             num88.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque la casillabanderocool contiene un elemento fijo")
+            lbl_advertencia_1.config(text="Jugada no es válida porque la casilla\n contiene un elemento fijo")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
         elif [num66["text"],num67["text"],num68["text"],num76["text"],num77["text"],num78["text"],num86["text"],num87["text"],num88["text"]].count(num88["text"])>1:
             deshabilitar_botones()
             num88.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la cuadrícula")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la cuadrícula")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
 
@@ -3876,7 +3877,7 @@ def jugar():
             deshabilitar_botones()
             num88.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la columna")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la columna")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
                     
@@ -3884,7 +3885,7 @@ def jugar():
             deshabilitar_botones()
             num88.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
-            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
+            lbl_advertencia_1.config(text="Jugada no es válida porque el elemento ya\n está en la fila")
             lbl_advertencia_1.place(x=370,y=450)
             ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
         else:
@@ -4154,18 +4155,37 @@ def jugar():
             messagebox.showerror("Nombre invalido", "El nombre del jugador debe contener máximo 30 caracteres")
         else:
             #  Disable : desabilita la ventana
+            jugando=True
             entryNombre.config(state='disabled')
+            btnIniciarPartida.config(state="disabled")
             habilitar_botones()
  
         return
     def deshacer_jugada():
-        global jugadas_viejas
-        cambio=jugadas_viejas.sacar()
-        cambio[0].config(text=cambio[1])
+        global jugando,jugadas_viejas,jugadas_nuevas
+        if jugando:
+            if len(jugadas_viejas.elementos)==0:
+                messagebox.showerror("Botón no válido", "No hay jugadas para deshacer")
+            else:
+                cambio=jugadas_viejas.sacar()
+                jugadas_nuevas.meter([cambio[0],cambio[0]["text"]])
+                cambio[0].config(text=cambio[1])
+        else:
+            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
         return
 
         return
     def rehacer_jugada():
+        global jugando,jugadas_viejas,jugadas_nuevas
+        if jugando:
+            if len(jugadas_nuevas.elementos)==0:
+                messagebox.showerror("Botón no válido", "No hay jugadas para rehacer")
+            else:
+                cambio=jugadas_nuevas.sacar()
+                jugadas_viejas.meter([cambio[0],cambio[0]["text"]])
+                cambio[0].config(text=cambio[1])
+        else:
+            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
         return
     def cargar_juego():
         return
@@ -4303,7 +4323,7 @@ def jugar():
         return
     def selecciona_9():
         global elección,jugadas_viejas
-        print(jugadas_viejas.elementos)
+        
         btn1.config(bg="#e9fb2c")
         btn2.config(bg="#e9fb2c")
         btn3.config(bg="#e9fb2c")
