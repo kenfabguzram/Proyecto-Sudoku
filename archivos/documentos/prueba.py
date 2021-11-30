@@ -97,7 +97,7 @@ string2="num{x}{y}.config(command=func{x}{y})"
 
 
 string00="""def func{x}{y}():
-    global elección 
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -135,12 +135,14 @@ string00="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 
 string01="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -179,13 +181,15 @@ string01="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 
 
 string02="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -224,12 +228,14 @@ string02="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 
 string10="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -268,12 +274,14 @@ string10="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 string11="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -312,6 +320,8 @@ string11="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
@@ -319,7 +329,7 @@ string11="""def func{x}{y}():
 
 
 string12="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -358,13 +368,15 @@ string12="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 
 string20="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -403,6 +415,8 @@ string20="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
 
 
@@ -410,7 +424,7 @@ string20="""def func{x}{y}():
         ganó()"""
 
 string21="""def func{x}{y}():
-    global elección
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -449,14 +463,15 @@ string21="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()"""
 
 string22="""def func{x}{y}():
-    global elección
-    print jugadas viejas
+    global elección,jugadas_viejas
     anterior=num{x}{y}["text"]
     color_anterior=num{x}{y}["bg"]
     num{x}{y}.config(text=elección)
@@ -494,6 +509,8 @@ string22="""def func{x}{y}():
         lbl_advertencia_1.config(text="Jugada no es válida porque el elemento yabanderocool está en la fila")
         lbl_advertencia_1.place(x=370,y=450)
         ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    else:
+        jugadas_viejas.meter([num{x}{y},anterior])
 
     if [num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"],num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"],num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"],num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"],num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"],num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"],num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"],num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"],num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]].count("")<1:
         ganó()
@@ -577,7 +594,4 @@ for x in range(9):
                 restay1=y-1
                 restay2=y-2
                 print(string22.format(x=x,sumax1=sumax1,sumax2=sumax2,restax1=restax1,restax2=restax2,y=y,sumay1=sumay1,sumay2=sumay2,restay1=restay1,restay2=restay2))
-for x in range(9):
-    for y in range(9):
-        print(string2.format(x=x,y=y))
 
