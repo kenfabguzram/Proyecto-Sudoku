@@ -3983,7 +3983,7 @@ def jugar():
 
     def ganó():
         return
-    """def convertir(n):
+    def convertir(n):
         horas_convertir = n // 3600
         minutos_convertir = n % 3600 // 60
         segundos_convertir = n % 3600 % 60
@@ -4031,7 +4031,7 @@ def jugar():
     # Llama a tac una vez para que aparezca en pantalla
     tac()
     run_timer()
-"""
+
     # Dibuja la matriz
     def draw(cuadrícula, matriz):
         for x in range(9):
@@ -4076,29 +4076,6 @@ def jugar():
         entryNombre.config(state='normal')
         # Limpiar el entry, end=constante que va desde el inicio hasta el final
         entryNombre.delete(0, tk.END)
-        
-    """def iniciarPausarPartida():
-        global jugando, nombre_jugador
-        # Obtiene el nombre del jugador
-        nombre_jugador = entryNombre.get()
-        if nombre_jugador == "":
-            # Envia mensaje de error si no se introduce el nombre
-            messagebox.showerror("Nombre no asignado",
-                                 "Debe ingresar el nombre del jugador antes de iniciar la partida")
-        elif len(nombre_jugador) > 30:
-            # Si el nombre ingresado es mayor a 30  retorna error
-            messagebox.showerror("Nombre invalido", "El nombre del jugador debe contener maximo 30 caracteres")
-        else:
-            #  Disable : desabilita la ventana
-            entryNombre.config(state='disabled')
-            # Me niega el valor que tenga jugando
-            jugando = not jugando
-            # Si esta jugando muestre  el boton pausar
-            if jugando:
-                btnIniciarPartida.config(text="PAUSAR \n  PARTIDA  ")
-            else:
-                # Si no esta jugando muestre el boton de iniciar partida
-                btnIniciarPartida.config(text="INICIAR \n  PARTIDA  ")
 
     def guardarJuego():
         global archivo_datos, nombre_jugador, tablero, jugando
@@ -4142,9 +4119,11 @@ def jugar():
             # Se guarda el nombre desde la primera posicion del entry (por eso el cero)
             entryNombre.insert(0, nombre_jugador)
             # Se vuelve a desabilitar entry
-            entryNombre.config(state='disabled')"""
+            entryNombre.config(state='disabled')
+
+            
     def iniciar_juego():
-        global jugando, jugadas_viejas
+        global jugando, jugadas_viejas,jugadas_nuevas
         nombre_jugador = entryNombre.get()
         if nombre_jugador == "":
             # Envia mensaje de error si no se introduce el nombre
@@ -4159,7 +4138,8 @@ def jugar():
             entryNombre.config(state='disabled')
             btnIniciarPartida.config(state="disabled")
             habilitar_botones()
- 
+            jugadas_viejas.elementos=[]
+            jugadas_nuevas.elementos=[]
         return
     def deshacer_jugada():
         global jugando,jugadas_viejas,jugadas_nuevas
@@ -4172,9 +4152,10 @@ def jugar():
                 cambio[0].config(text=cambio[1])
         else:
             messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
-        return
 
-        return
+
+
+
     def rehacer_jugada():
         global jugando,jugadas_viejas,jugadas_nuevas
         if jugando:
@@ -4186,35 +4167,43 @@ def jugar():
                 cambio[0].config(text=cambio[1])
         else:
             messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
-        return
+
+
+
+            
     def cargar_juego():
         return
     def guardar_juego():
         return
     
     def borrar_juego():
-        global dificultad,tablero,partida
-        partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb")
-        lista_diccionarios_partidas=pickle.load(partidas_iniciales)
-        partidas_iniciales.close()
-        diccionario_fácil=lista_diccionarios_partidas[0]
-        diccionario_intermedio=lista_diccionarios_partidas[1]
-        diccionario_difícil=lista_diccionarios_partidas[2]
+        global jugadas_viejas,jugadas_nuevas,jugando
         if not jugando:
             messagebox.showinfo(message="No se ha iniciado el juego", title="Atención")
         if jugando:
             deshabilitar_botones()
-            if messagebox.askyesno(message="¿Desea continuar?", title="Atención"):
-                if dificultad==1:
-                    tablero=diccionario_fácil[list(diccionario_fácil.keys())[partida]]
-                elif dificultad==2:
-                    tablero=diccionario_intermedio[list(diccionario_intermedio.keys())[partida]]
-                elif dificultad==3:
-                    tablero=diccionario_difícil[list(diccionario_difícil.keys())[partida]]
-                draw(grid,tablero) 
-        return
+            if messagebox.askyesno(message="¿Desea borrar el juego?", title="Atención"):
+                while jugadas_viejas.elementos!=[]:
+                    deshacer_jugada()
+                jugadas_viejas.elementos=[]
+                jugadas_nuevas.elementos=[]
+                habilitar_botones()
+                jugando=False
+                entryNombre.config(state='normal')
+                btnIniciarPartida.config(state="normal")
+            else:
+                habilitar_botones()
     def terminar_juego():
-        return
+        global jugando
+        if not jugando:
+            messagebox.showinfo(message="No se ha iniciado el juego", title="Atención")
+        if jugando:
+            deshabilitar_botones()
+            if messagebox.askyesno(message="¿Desea terminar el juego?", title="Atención"):
+                ventana_principal_juego.destroy()
+                jugar()
+            else:
+                habilitar_botones()
     def top_x():
         return
     def selecciona_1():
