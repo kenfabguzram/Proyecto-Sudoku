@@ -49,6 +49,10 @@ minutos = 0
 segundos = 0
 configuración_reloj = tk.IntVar()
 configuración_reloj.set(1)
+dificultad = tk.IntVar()
+dificultad.set(0)
+configuración_valores= tk.IntVar()
+configuración_valores.set(1)
 # indica si el juego inicio
 jugando = False
 hay_reloj = False
@@ -60,7 +64,7 @@ imagen.config(width="500",height="500")
 fondo = tk.Label(menú, image=imagen)
 fondo.config(image=imagen)
 fondo.place(x=70, y=70)
-dificultad=1
+
 def jugar():
     global grid, reloj
     reloj = 0
@@ -79,11 +83,11 @@ def jugar():
         diccionario_fácil=lista_diccionarios_partidas[0]
         diccionario_intermedio=lista_diccionarios_partidas[1]
         diccionario_difícil=lista_diccionarios_partidas[2]
-        if dificultad==1:
+        if dificultad.get()==0:
             tablero=diccionario_fácil[list(diccionario_fácil.keys())[partida]]
-        elif dificultad==2:
+        elif dificultad.get()==1:
             tablero=diccionario_intermedio[list(diccionario_intermedio.keys())[partida]]
-        elif dificultad==3:
+        elif dificultad.get()==2:
             tablero=diccionario_difícil[list(diccionario_difícil.keys())[partida]]
     
     ventana_principal_juego.title("Juego Sudoku")
@@ -4059,11 +4063,11 @@ def jugar():
         diccionario_fácil=lista_diccionarios_partidas[0]
         diccionario_intermedio=lista_diccionarios_partidas[1]
         diccionario_difícil=lista_diccionarios_partidas[2]
-        if dificultad==1:
+        if dificultad.get()==0:
             partida=random.randint(0,len(diccionario_fácil)-1)
-        elif dificultad==2:
+        elif dificultad.get()==1:
             partida=random.randint(0,len(diccionario_fácil)-1)
-        elif dificultad==3:
+        elif dificultad.get()==2:
             partida=random.randint(0,len(diccionario_fácil)-1)
         escoger_partida(partida)
         # Dibuja la matriz
@@ -4664,8 +4668,8 @@ def configuración():
     # Genera una ventana secundaria
     ventanaConfig = tk.Toplevel()
     ventanaConfig.title("Juego Sudoku")
-    ventanaConfig.geometry("{}x{}+{}+{}".format(400, 400, int((menú.winfo_screenwidth() / 2) - (400 / 2)),
-                                                int((menú.winfo_screenheight() / 2) - (400 / 2))))
+    ventanaConfig.geometry("{}x{}+{}+{}".format(700, 700, int((menú.winfo_screenwidth() / 2) - (750 / 2)),
+                                                int((menú.winfo_screenheight() / 2) - (750 / 2))))
     ventanaConfig.resizable(width=False, height=False)
     ventanaConfig.config(bg="#8c004b")
 
@@ -4692,6 +4696,35 @@ def configuración():
     entrySegundos.insert(0, str(segundos))
     entrySegundos.place(x=210, y=325)
 
+    entryTopX = tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryTopX.insert(0, str(segundos))
+    entryTopX.place(x=470, y=360)
+
+
+    entryEsp1= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp1.insert(0, "1")
+    entryEsp1.place(x=470, y=360)
+
+    entryEsp2= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp2.insert(0, "2")
+    entryEsp2.place(x=470, y=360)
+
+    entryEsp3= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp3.insert(0, "3")
+    entryEsp3.place(x=470, y=360)
+
+    entryEsp4= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp4.insert(0, "4")
+    entryEsp4.place(x=470, y=360)
+
+    entryEsp5= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp5.insert(0, "5")
+    entryEsp5.place(x=470, y=360)
+
+    entryEsp6= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp6.insert(0, "2")
+    entryEsp6.place(x=470, y=360)
+    
     def guardarConfig():
         global horas, minutos, segundos
         try:
@@ -4713,7 +4746,7 @@ def configuración():
                                  activebackground="#e8e54a",
                                  activeforeground="black",
                                  command=guardarConfig)
-    btnGuardarConfig.place(x=20, y=360)
+    btnGuardarConfig.place(x=20, y=650)
 
     btnCancelar = tk.Button(ventanaConfig, text="     Cancelar     ",
                             bg="#ed5caa", fg="black",
@@ -4721,7 +4754,25 @@ def configuración():
                             activebackground="#33cc6b",
                             activeforeground="black",
                             command=cancelarConfig)
-    btnCancelar.place(x=250, y=360)
+    btnCancelar.place(x=250, y=650)
+    
+    def recomendación_reloj():
+        if configuración_reloj.get()==3:
+            entrySegundos.delete(0,"end")
+            entryMinutos.delete(0,"end")
+            entryHoras.delete(0,"end")
+            entryMinutos.insert(0,"30")
+            entryHoras.insert(0,"0")
+            entrySegundos.insert(0,"0")
+            dificultad.set(0)
+        else:
+            entrySegundos.delete(0,"end")
+            entryMinutos.delete(0,"end")
+            entryHoras.delete(0,"end")
+            entryMinutos.insert(0,"0")
+            entryHoras.insert(0,"0")
+            entrySegundos.insert(0,"0")
+            
 
     rbtnSi = tk.Radiobutton(ventanaConfig,
                             text="Si",
@@ -4729,7 +4780,7 @@ def configuración():
                             variable=configuración_reloj,
                             bg="#8c004b",
                             font=("Century", 16),
-                            value=1)
+                            value=1,command=recomendación_reloj)
     rbtnSi.place(x=0, y=80)
 
     rbtnNo = tk.Radiobutton(ventanaConfig,
@@ -4738,7 +4789,7 @@ def configuración():
                             variable=configuración_reloj,
                             bg="#8c004b",
                             font=("Century", 16),
-                            value=2)
+                            value=2,command=recomendación_reloj)
     rbtnNo.place(x=0, y=110)
     rbtnTimer = tk.Radiobutton(ventanaConfig,
                                text="Timer",
@@ -4746,12 +4797,93 @@ def configuración():
                                variable=configuración_reloj,
                                bg="#8c004b",
                                font=("Century", 16),
-                               value=3)
+                               value=3,command=recomendación_reloj)
     rbtnTimer.place(x=0, y=50)
+    def recomendación_tiempos():
+        if dificultad.get()==0 and configuración_reloj.get()==3:
+            entrySegundos.delete(0,"end")
+            entryMinutos.delete(0,"end")
+            entryHoras.delete(0,"end")
+            entryMinutos.insert(0,"30")
+            entryHoras.insert(0,"0")
+            entrySegundos.insert(0,"0")
+        if dificultad.get()==1 and configuración_reloj.get()==3:
+            entrySegundos.delete(0,"end")
+            entryMinutos.delete(0,"end")
+            entryHoras.delete(0,"end")
+            entryHoras.insert(0,"1")
+            entrySegundos.insert(0,"0")
+            entryMinutos.insert(0,"0")
+        if dificultad.get()==2 and configuración_reloj.get()==3:
+            entrySegundos.delete(0,"end")
+            entryMinutos.delete(0,"end")
+            entryHoras.delete(0,"end")
+            entryHoras.insert(0,"2")
+            entrySegundos.insert(0,"0")
+            entryMinutos.insert(0,"0")
+        
+    rbtnIntermedio = tk.Radiobutton(ventanaConfig,
+                            text="Intermedio",
+                            padx=20,
+                            variable=dificultad,
+                            bg="#8c004b",
+                            font=("Century", 16),
+                            value=1,command=recomendación_tiempos)
+    rbtnIntermedio.place(x=150, y=80)
 
-    lblhora = tk.Label(ventanaConfig, text="¿Desea jugar con reloj?", bg="#8c004b", fg="black",
+    rbtnDifícil = tk.Radiobutton(ventanaConfig,
+                            text="Difícil",
+                            padx=20,
+                            variable=dificultad,
+                            bg="#8c004b",
+                            font=("Century", 16),
+                            value=2,command=recomendación_tiempos)
+    rbtnDifícil.place(x=150, y=110)
+    rbtnFácil = tk.Radiobutton(ventanaConfig,
+                               text="Fácil",
+                               padx=20,
+                               variable=dificultad,
+                               bg="#8c004b",
+                               font=("Century", 16),
+                               value=0,command=recomendación_tiempos)
+    rbtnFácil.place(x=150, y=50)
+
+    rbtnNúmeros = tk.Radiobutton(ventanaConfig,
+                            text="Números\n1\n2\n3\n4\n5\n6\n7\n8\n9",
+                            padx=20,
+                            variable=configuración_valores,
+                            bg="#8c004b",
+                            font=("Century", 16),
+                            value=1)
+    rbtnNúmeros.place(x=0, y=390)
+
+    rbtnLetras = tk.Radiobutton(ventanaConfig,
+                            text="Letras\nA\nB\nC\nD\nE\nF\nG\nH\nI",
+                            padx=20,
+                            variable=configuración_valores,
+                            bg="#8c004b",
+                            font=("Century", 16),
+                            value=2)
+    rbtnLetras.place(x=150, y=390)
+    rbtnEspecial = tk.Radiobutton(ventanaConfig,
+                               text="Usted lo define",
+                               padx=20,
+                               variable=configuración_valores,
+                               bg="#8c004b",
+                               font=("Century", 16),
+                               value=3)
+    rbtnEspecial.place(x=300, y=390)
+    lblhora = tk.Label(ventanaConfig, text="Reloj:", bg="#8c004b", fg="black",
                        font=("Century", 16))
     lblhora.place(x=0, y=15)
+    
+    lbldificultad = tk.Label(ventanaConfig, text="Dificultad:", bg="#8c004b", fg="black",
+                       font=("Century", 16))
+    lbldificultad.place(x=150, y=15)
+    
+    lbltopX = tk.Label(ventanaConfig, text="Cantidad de jugadas desplegadas en el TOP X:", bg="#8c004b", fg="black",
+                       font=("Century", 16))
+    lbltopX.place(x=0, y=360)
     return 
 
 def acerca_de():
