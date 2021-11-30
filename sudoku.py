@@ -4700,7 +4700,6 @@ def configuración():
             segundos = int(entrySegundos.get())
             menú.deiconify()
             ventanaConfig.destroy()
-            print(horas, minutos, segundos, rbtnSi,rbtnNo,rbtnTimer)
         except ValueError:
             messagebox.showerror('Error', 'Los campos no deben estar vacios')
 
