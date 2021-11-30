@@ -4703,11 +4703,11 @@ def configuración():
 
     entryEsp1= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp1.insert(0, "1")
-    entryEsp1.place(x=470, y=360)
+    entryEsp1.place(x=300, y=360)
 
     entryEsp2= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp2.insert(0, "2")
-    entryEsp2.place(x=470, y=360)
+    entryEsp2.place(x=300, y=360)
 
     entryEsp3= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryEsp3.insert(0, "3")
