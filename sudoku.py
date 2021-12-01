@@ -36,14 +36,21 @@ menú = tk.Tk()
 menú.title("Juego Sudoku")
 menú.geometry("{}x{}+{}+{}".format(370, 382, int((menú.winfo_screenwidth() / 2) - (370 / 2)),
                                    int((menú.winfo_screenheight() / 2) - (382 / 2)))) #decide el tamaño, la posición y algunos otros atributos del diseño de pantalla que vamos a crear.
+
+configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+configu=pickle.load(configuración_de_archivo) 
+configuración_de_archivo.close()                    
+
+
 jugadas_viejas=Pila()
 jugadas_nuevas=Pila()
 partida=0
 tablero=[]
 anterior=0
+cantidad_top=0
 elección=""
 reloj = 0
-temporizador = 0
+temporizador = configu["horas"]*3600+configu["minutos"]*60+configu["segundos"]
 horas = 0
 minutos = 0
 segundos = 0
@@ -72,28 +79,102 @@ fondo.place(x=70, y=70)
 ###################################################
 def jugar():
     global grid, reloj #globales
+    configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+    configu=pickle.load(configuración_de_archivo) 
+    configuración_de_archivo.close()
+    horas=configu["horas"]
+    minutos=configu["minutos"]
+    segundos=configu["segundos"]
+    dificultad=configu["dificultad"]
+    configuración_reloj=configu["reloj"]
+    configuración_valores=configu['símbolos_rbotón']
+
     reloj = 0 # se define la variable reloj
     # Esconde el menú
     menú.withdraw()
     # Con top level se crea una ventana secundaria donde se van a ingresar los datos del juego
     ventana_principal_juego = tk.Toplevel()
+    
     elección=""
     # se deshabilitan todos los botones
     # Aparecen numeros según la partida escogida del diccionario en configuración
     def escoger_partida(partida):
-        global dificultad,tablero
+        global tablero
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
         partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb")
         lista_diccionarios_partidas=pickle.load(partidas_iniciales)
         partidas_iniciales.close()
         diccionario_fácil=lista_diccionarios_partidas[0]
         diccionario_intermedio=lista_diccionarios_partidas[1]
         diccionario_difícil=lista_diccionarios_partidas[2]
-        if dificultad.get()==0:
+        if configu["dificultad"]==0:
             tablero=diccionario_fácil[list(diccionario_fácil.keys())[partida]]
-        elif dificultad.get()==1:
+            for fila in range(9):
+                for columna in range(9):
+                    if tablero[fila][columna]=="1":
+                        tablero[fila][columna]=configu["símbolos"][0]
+                    if tablero[fila][columna]=="2":
+                        tablero[fila][columna]=configu["símbolos"][1]
+                    if tablero[fila][columna]=="3":
+                        tablero[fila][columna]=configu["símbolos"][2]
+                    if tablero[fila][columna]=="4":
+                        tablero[fila][columna]=configu["símbolos"][3]
+                    if tablero[fila][columna]=="5":
+                        tablero[fila][columna]=configu["símbolos"][4]
+                    if tablero[fila][columna]=="6":
+                        tablero[fila][columna]=configu["símbolos"][5]
+                    if tablero[fila][columna]=="7":
+                        tablero[fila][columna]=configu["símbolos"][6]
+                    if tablero[fila][columna]=="8":
+                        tablero[fila][columna]=configu["símbolos"][7]
+                    if tablero[fila][columna]=="9":
+                        tablero[fila][columna]=configu["símbolos"][8]
+        elif configu["dificultad"]==1:
             tablero=diccionario_intermedio[list(diccionario_intermedio.keys())[partida]]
-        elif dificultad.get()==2:
+            for fila in range(9):
+                for columna in range(9):
+                    if tablero[fila][columna]=="1":
+                        tablero[fila][columna]=configu["símbolos"][0]
+                    if tablero[fila][columna]=="2":
+                        tablero[fila][columna]=configu["símbolos"][1]
+                    if tablero[fila][columna]=="3":
+                        tablero[fila][columna]=configu["símbolos"][2]
+                    if tablero[fila][columna]=="4":
+                        tablero[fila][columna]=configu["símbolos"][3]
+                    if tablero[fila][columna]=="5":
+                        tablero[fila][columna]=configu["símbolos"][4]
+                    if tablero[fila][columna]=="6":
+                        tablero[fila][columna]=configu["símbolos"][5]
+                    if tablero[fila][columna]=="7":
+                        tablero[fila][columna]=configu["símbolos"][6]
+                    if tablero[fila][columna]=="8":
+                        tablero[fila][columna]=configu["símbolos"][7]
+                    if tablero[fila][columna]=="9":
+                        tablero[fila][columna]=configu["símbolos"][8]
+        elif configu["dificultad"]==2:
             tablero=diccionario_difícil[list(diccionario_difícil.keys())[partida]]
+            for fila in range(9):
+                for columna in range(9):
+                    if tablero[fila][columna]=="1":
+                        tablero[fila][columna]=configu["símbolos"][0]
+                    if tablero[fila][columna]=="2":
+                        tablero[fila][columna]=configu["símbolos"][1]
+                    if tablero[fila][columna]=="3":
+                        tablero[fila][columna]=configu["símbolos"][2]
+                    if tablero[fila][columna]=="4":
+                        tablero[fila][columna]=configu["símbolos"][3]
+                    if tablero[fila][columna]=="5":
+                        tablero[fila][columna]=configu["símbolos"][4]
+                    if tablero[fila][columna]=="6":
+                        tablero[fila][columna]=configu["símbolos"][5]
+                    if tablero[fila][columna]=="7":
+                        tablero[fila][columna]=configu["símbolos"][6]
+                    if tablero[fila][columna]=="8":
+                        tablero[fila][columna]=configu["símbolos"][7]
+                    if tablero[fila][columna]=="9":
+                        tablero[fila][columna]=configu["símbolos"][8]
     
     ventana_principal_juego.title("Juego Sudoku") #Titulo de la ventana
     ventana_principal_juego.geometry("{}x{}+{}+{}".format(700, 500, int((menú.winfo_screenwidth() / 2) - (382 / 2)),
@@ -111,19 +192,13 @@ def jugar():
     lblJugador.place(x=0, y=0)
 
     lblClock = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
-    lblClock.place(x=350, y=0)
-
+    lblClock.place(x=300, y=0)
+    
     lblTimer = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
-    lblTimer.place(x=350, y=0)
-    #verifica si gana 
-    def invertir():
-        global tablero
-        m=tablero
-        resultado=[[],[],[],[],[],[],[],[],[]]
-        for fila in range(len(m)):
-            for elemento in range(len(m[fila])):
-                resultado[elemento].append(m[fila][elemento])
-        return resultado
+    lblTimer.place(x=300, y=0)
+
+    
+        
     # Label que dibuja  la matriz
             
     grid = [[tk.Button(frame, width=2, height=1, borderwidth=2, relief="solid", font=("Century", 18)) for i in
@@ -211,7 +286,9 @@ def jugar():
     num88=grid[8][8]
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
-#validaciones de cada elemento del tablero
+# validaciones de cada elemento del tablero y funciones dependientes de la variable elección para establecer cambios en los textos de
+# los botones
+
 
     def func00():
         global elección,jugadas_viejas #globales
@@ -4007,13 +4084,41 @@ def jugar():
         else:
             segundos_convertir = str(segundos_convertir)
         return str(horas_convertir) + ":" + minutos_convertir + ":" + str(segundos_convertir)
-
+    configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+    configu=pickle.load(configuración_de_archivo) 
+    configuración_de_archivo.close()
+    if configu["reloj"]==3:
+        lblhoras = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16),text="Horas:")
+        lblhoras.place(x=470, y=0)
+        lblminutos = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16),text="Minutos:")
+        lblminutos.place(x=470, y=30)
+        lblsegundos = tk.Label(ventana_principal_juego, bg="#8c004b", font=("Century", 16),text="Segundos:")
+        lblsegundos.place(x=470, y=60)
+        entryhoras = tk.Entry(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
+        entryhoras.place(x=575, y=0)
+        entryminutos = tk.Entry(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
+        entryminutos.place(x=575, y=30)
+        entrysegundos = tk.Entry(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
+        entrysegundos.place(x=575,y=60)
+        def actualiza_reloj():
+            global temporizador
+            temporizador = int(entryhoras.get())*3600+int(entryminutos.get())*60+int(entrysegundos.get())
+        btnActualizar = tk.Button(ventana_principal_juego, text="Actualizar reloj",
+                                  bg="#6ae997", fg="black",
+                                  font=("Century", 12),
+                                  activebackground="#a4e647",
+                                  activeforeground="black",
+                                  command=actualiza_reloj)
+        btnActualizar.place(x=475, y=100)
     # Dibuja el reloj en la pantalla
     def tic():
         global reloj, temporizador, configuración_reloj
-        if configuración_reloj.get() == 1:
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
+        if configu["reloj"] == 1:
             lblClock['text'] = convertir(reloj)
-        if configuración_reloj.get() == 3:
+        if configu["reloj"] == 3:
             lblTimer['text'] = convertir(temporizador)
 
     # Llama solo una vez al reloj
@@ -4061,9 +4166,12 @@ def jugar():
     def iniciarPartida():
         global grid, tablero, jugando, nombre_jugador, reloj, temporizador, configuración_reloj,dificultad,partida #globales
         global horas, minutos, segundos, jugadas_viejas #globales
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
         jugando = False #flag
         reloj = 0 # define la variable de reloj
-        temporizador = horas * 3600 + minutos * 60 + segundos #contiene la cantidad de los tiempos  
+        temporizador = configu["horas"] * 3600 + configu["minutos"]* 60 + configu["segundos"] #contiene la cantidad de los tiempos  
         # Inicia la matriz con numeros del diccionario deseado
         partidas_iniciales=open("archivos\\documentos\\sudoku2021partidas.dat","rb") #abre el archivo 
         lista_diccionarios_partidas=pickle.load(partidas_iniciales) #lee varios archivos
@@ -4220,7 +4328,9 @@ def jugar():
                 habilitar_botones()
     def top_x():
         return
-    
+    configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+    configu=pickle.load(configuración_de_archivo) 
+    configuración_de_archivo.close()
     def selecciona_1():
         global elección
         btn1.config(bg="light blue")
@@ -4232,7 +4342,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="1"
+        elección=configu["símbolos"][0]
         return
     def selecciona_2():
         global elección
@@ -4245,7 +4355,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="2"
+        elección=configu["símbolos"][1]
         return
     def selecciona_3():
         global elección
@@ -4258,7 +4368,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="3"
+        elección=configu["símbolos"][2]
         return
     def selecciona_4():
         global elección
@@ -4271,7 +4381,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="4"
+        elección=configu["símbolos"][3]
         return
     def selecciona_5():
         global elección
@@ -4284,7 +4394,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="5"
+        elección=configu["símbolos"][4]
         return
     def selecciona_6():
         global elección
@@ -4297,7 +4407,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="6"
+        elección=configu["símbolos"][5]
         return
     def selecciona_7():
         global elección
@@ -4310,7 +4420,7 @@ def jugar():
         btn7.config(bg="light blue")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="#e9fb2c")
-        elección="7"
+        elección=configu["símbolos"][6]
         return
     def selecciona_8():
         global elección
@@ -4323,7 +4433,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="light blue")
         btn9.config(bg="#e9fb2c")
-        elección="8"
+        elección=configu["símbolos"][7]
         return
     def selecciona_9():
         global elección,jugadas_viejas
@@ -4337,7 +4447,7 @@ def jugar():
         btn7.config(bg="#e9fb2c")
         btn8.config(bg="#e9fb2c")
         btn9.config(bg="light blue")
-        elección="9"
+        elección=configu["símbolos"][8]
         return
     
     # Agrega espacio donde se coloca el nombre del jugador
@@ -4407,7 +4517,7 @@ def jugar():
                                 command=top_x)
     btnTopX.place(x=500, y=340)
 
-    btn1 = tk.Button(ventana_principal_juego, text=" 1 ",
+    btn1 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][0]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4415,7 +4525,7 @@ def jugar():
                                 command=selecciona_1)
     btn1.place(x=370, y=50)
 
-    btn2 = tk.Button(ventana_principal_juego, text=" 2 ",
+    btn2 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][1]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4423,7 +4533,7 @@ def jugar():
                                 command=selecciona_2)
     btn2.place(x=405, y=50)
 
-    btn3 = tk.Button(ventana_principal_juego, text=" 3 ",
+    btn3 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][2]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4431,7 +4541,7 @@ def jugar():
                                 command=selecciona_3)
     btn3.place(x=440, y=50)
 
-    btn4 = tk.Button(ventana_principal_juego, text=" 4 ",
+    btn4 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][3]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4439,7 +4549,7 @@ def jugar():
                                 command=selecciona_4)
     btn4.place(x=370, y=85)
 
-    btn5 = tk.Button(ventana_principal_juego, text=" 5 ",
+    btn5 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][4]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4447,7 +4557,7 @@ def jugar():
                                 command=selecciona_5)
     btn5.place(x=405, y=85)
 
-    btn6 = tk.Button(ventana_principal_juego, text=" 6 ",
+    btn6 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][5]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4455,7 +4565,7 @@ def jugar():
                                 command=selecciona_6)
     btn6.place(x=440, y=85)
 
-    btn7 = tk.Button(ventana_principal_juego, text=" 7 ",
+    btn7 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][6]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4463,7 +4573,7 @@ def jugar():
                                 command=selecciona_7)
     btn7.place(x=370, y=120)
 
-    btn8 = tk.Button(ventana_principal_juego, text=" 8 ",
+    btn8 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][7]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4471,7 +4581,7 @@ def jugar():
                                 command=selecciona_8)
     btn8.place(x=405, y=120)
 
-    btn9 = tk.Button(ventana_principal_juego, text=" 9 ",
+    btn9 = tk.Button(ventana_principal_juego, text=str(configu["símbolos"][8]),
                                 bg="#e9fb2c", fg="black",
                                 font=("Century", 12),
                                 activebackground="#e08a89",
@@ -4681,7 +4791,8 @@ def jugar():
 
 #------------------------Funcion de configuracion------------------------#
 def configuración():
-    global hay_reloj, hay_temporizador, configuración_reloj, horas, minutos, segundos #globales
+    global hay_reloj, hay_temporizador, configuración_reloj,configuración_valores, horas, minutos, segundos, configu #globales
+    global dificultad,cantidad_top,símbolos
     menú.withdraw()
     # Genera una ventana secundaria
     ventanaConfig = tk.Toplevel()
@@ -4701,6 +4812,15 @@ def configuración():
     lblsegundos = tk.Label(ventanaConfig, text="Ingrese segundos:", bg="#8c004b", fg="black",
                            font=("Century", 16))
     lblsegundos.place(x=0, y=325)
+    
+    dificultad.set(configu["dificultad"])
+    configuración_reloj.set(configu["reloj"])
+    configuración_valores.set(configu['símbolos_rbotón'])
+    horas=configu["horas"]
+    minutos=configu["minutos"]
+    segundos=configu["segundos"]
+    cantidad_top=configu['cantidad_Top']
+    símbolos=configu["símbolos"]
 
     entryHoras = tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
     entryHoras.insert(0, str(horas))
@@ -4715,43 +4835,77 @@ def configuración():
     entrySegundos.place(x=210, y=325)
 
     entryTopX = tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryTopX.insert(0, str(segundos))
-    entryTopX.place(x=470, y=360)
-
+    entryTopX.insert(0, str(cantidad_top))
+    entryTopX.place(x=475, y=360)
 
     entryEsp1= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp1.insert(0, "1")
-    entryEsp1.place(x=470, y=360)
+    entryEsp1.insert(0,str(símbolos[0]))
+    entryEsp1.place(x=335, y=430)
 
     entryEsp2= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp2.insert(0, "2")
-    entryEsp2.place(x=470, y=360)
+    entryEsp2.insert(0, str(símbolos[1]))
+    entryEsp2.place(x=335, y=455)
 
     entryEsp3= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp3.insert(0, "3")
-    entryEsp3.place(x=470, y=360)
+    entryEsp3.insert(0, str(símbolos[2]))
+    entryEsp3.place(x=335, y=475)
 
     entryEsp4= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp4.insert(0, "4")
-    entryEsp4.place(x=470, y=360)
+    entryEsp4.insert(0, str(símbolos[3]))
+    entryEsp4.place(x=335, y=495)
 
     entryEsp5= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp5.insert(0, "5")
-    entryEsp5.place(x=470, y=360)
+    entryEsp5.insert(0, str(símbolos[4]))
+    entryEsp5.place(x=335, y=515)
 
     entryEsp6= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
-    entryEsp6.insert(0, "2")
-    entryEsp6.place(x=470, y=360)
+    entryEsp6.insert(0, str(símbolos[5]))
+    entryEsp6.place(x=335, y=535)
+
+    entryEsp7= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp7.insert(0, str(símbolos[6]))
+    entryEsp7.place(x=335, y=555)
+
+    entryEsp8= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp8.insert(0, str(símbolos[7]))
+    entryEsp8.place(x=335, y=575)
+
+    entryEsp9= tk.Entry(ventanaConfig, bd=2, bg="white", font=("Century", 12))
+    entryEsp9.insert(0, str(símbolos[8]))
+    entryEsp9.place(x=335, y=595)
     
     #guarda los datos ingresados 
     def guardarConfig():
-        global horas, minutos, segundos
         try:
             horas = int(entryHoras.get())
             minutos = int(entryMinutos.get())
             segundos = int(entrySegundos.get())
-            menú.deiconify()
-            ventanaConfig.destroy()
+            cantidad_top = int(entryTopX.get())
+            if horas in range(0,5):
+                if minutos in range(0,60):
+                    if segundos in range(0,60):
+                        if configuración_valores.get()==1:
+                            símbolos=["1","2","3","4","5","6","7","8","9"]
+                        elif configuración_valores.get()==2:
+                            símbolos=["A","B","C","D","E","F","G","H","I"]
+                        elif configuración_valores.get()==3:
+                            símbolos=[entryEsp1.get(),entryEsp2.get(),entryEsp3.get(),entryEsp4.get(),entryEsp5.get(),entryEsp6.get(),entryEsp7.get(),entryEsp8.get(),entryEsp9.get()]
+            
+                        for símbolo in símbolos:
+                            if símbolos.count(símbolo)!=1:
+                                messagebox.showerror('Error', 'Los símbolos deben ser diferentes')
+                            else:
+                                partidas_iniciales=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
+                                pickle.dump({"reloj":configuración_reloj.get(),"dificultad":dificultad.get(),"horas":horas,"minutos":minutos,"segundos":segundos,"cantidad_Top":cantidad_top,"símbolos":símbolos,"símbolos_rbotón":configuración_valores.get()},partidas_iniciales)                    
+                                partidas_iniciales.close()
+                                menú.deiconify()
+                                ventanaConfig.destroy()
+                    else:
+                        messagebox.showerror("Error", "Los segundos no están dentro del límite")
+                else:
+                    messagebox.showerror("Error", "Los minutos no están dentro del límite")
+            else:
+                messagebox.showerror("Error", "Los horas no están dentro del límite")
         except ValueError:
             messagebox.showerror('Error', 'Los campos no deben estar vacios')
             
@@ -4759,7 +4913,6 @@ def configuración():
     def cancelarConfig():
         menú.deiconify()
         ventanaConfig.destroy()
-        
     #botones de la configuracion 
     btnGuardarConfig = tk.Button(ventanaConfig, text="     Guardar     ",
                                  bg="#de2644", fg="black",
