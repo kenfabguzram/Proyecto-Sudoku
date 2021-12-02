@@ -4328,6 +4328,7 @@ def jugar():
                 habilitar_botones()
     def top_x():
         return
+    
     configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
     configu=pickle.load(configuración_de_archivo) 
     configuración_de_archivo.close()
