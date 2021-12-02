@@ -327,15 +327,22 @@ def jugar():
 
 
     def func00():
-        global elección,jugadas_viejas #globales
-        anterior=num00["text"] # se define la variable anterior
-        color_anterior=num00["bg"] #se define una variable para el color
-        num00.config(text=elección) 
+        global elección,jugadas_viejas
+        anterior=num00["text"]
+        color_anterior=num00["bg"]
+        num00.config(text=elección)
         def cerrar_advertencia00(event):
             habilitar_botones()
             num00.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num00["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num00.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia00)
+        elif num00["bg"]!="#02ac66":
             deshabilitar_botones()
             num00.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -379,7 +386,14 @@ def jugar():
             habilitar_botones()
             num01.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num01["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num01.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia01)
+        elif num01["bg"]!="#02ac66":
             deshabilitar_botones()
             num01.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -424,7 +438,14 @@ def jugar():
             habilitar_botones()
             num02.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num02["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num02.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia02)
+        elif num02["bg"]!="#02ac66":
             deshabilitar_botones()
             num02.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -469,7 +490,14 @@ def jugar():
             habilitar_botones()
             num03.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num03["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num03.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia03)
+        elif num03["bg"]!="#02ac66":
             deshabilitar_botones()
             num03.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -513,7 +541,14 @@ def jugar():
             habilitar_botones()
             num04.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num04["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num04.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia04)
+        elif num04["bg"]!="#02ac66":
             deshabilitar_botones()
             num04.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -558,7 +593,14 @@ def jugar():
             habilitar_botones()
             num05.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num05["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num05.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia05)
+        elif num05["bg"]!="#02ac66":
             deshabilitar_botones()
             num05.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -603,7 +645,14 @@ def jugar():
             habilitar_botones()
             num06.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num06["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num06.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia06)
+        elif num06["bg"]!="#02ac66":
             deshabilitar_botones()
             num06.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -647,7 +696,14 @@ def jugar():
             habilitar_botones()
             num07.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num07["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num07.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia07)
+        elif num07["bg"]!="#02ac66":
             deshabilitar_botones()
             num07.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -692,7 +748,14 @@ def jugar():
             habilitar_botones()
             num08.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num08["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num08.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia08)
+        elif num08["bg"]!="#02ac66":
             deshabilitar_botones()
             num08.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -737,7 +800,14 @@ def jugar():
             habilitar_botones()
             num10.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num10["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num10.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia10)
+        elif num10["bg"]!="#02ac66":
             deshabilitar_botones()
             num10.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -783,7 +853,14 @@ def jugar():
             habilitar_botones()
             num11.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num11["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num11.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia11)
+        elif num11["bg"]!="#02ac66":
             deshabilitar_botones()
             num11.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -829,7 +906,14 @@ def jugar():
             habilitar_botones()
             num12.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num12["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num12.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia12)
+        elif num12["bg"]!="#02ac66":
             deshabilitar_botones()
             num12.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -875,7 +959,14 @@ def jugar():
             habilitar_botones()
             num13.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num13["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num13.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia13)
+        elif num13["bg"]!="#02ac66":
             deshabilitar_botones()
             num13.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -921,7 +1012,14 @@ def jugar():
             habilitar_botones()
             num14.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num14["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num14.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia14)
+        elif num14["bg"]!="#02ac66":
             deshabilitar_botones()
             num14.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -967,7 +1065,14 @@ def jugar():
             habilitar_botones()
             num15.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num15["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num15.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia15)
+        elif num15["bg"]!="#02ac66":
             deshabilitar_botones()
             num15.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1013,7 +1118,14 @@ def jugar():
             habilitar_botones()
             num16.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num16["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num16.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia16)
+        elif num16["bg"]!="#02ac66":
             deshabilitar_botones()
             num16.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1059,7 +1171,14 @@ def jugar():
             habilitar_botones()
             num17.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num17["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num17.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia17)
+        elif num17["bg"]!="#02ac66":
             deshabilitar_botones()
             num17.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1105,7 +1224,14 @@ def jugar():
             habilitar_botones()
             num18.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num18["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num18.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia18)
+        elif num18["bg"]!="#02ac66":
             deshabilitar_botones()
             num18.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1151,7 +1277,14 @@ def jugar():
             habilitar_botones()
             num20.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num20["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num20.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia20)
+        elif num20["bg"]!="#02ac66":
             deshabilitar_botones()
             num20.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1198,7 +1331,14 @@ def jugar():
             habilitar_botones()
             num21.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num21["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num21.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia21)
+        elif num21["bg"]!="#02ac66":
             deshabilitar_botones()
             num21.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1244,7 +1384,14 @@ def jugar():
             habilitar_botones()
             num22.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num22["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num22.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia22)
+        elif num22["bg"]!="#02ac66":
             deshabilitar_botones()
             num22.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1289,7 +1436,14 @@ def jugar():
             habilitar_botones()
             num23.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num23["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num23.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia23)
+        elif num23["bg"]!="#02ac66":
             deshabilitar_botones()
             num23.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1336,7 +1490,14 @@ def jugar():
             habilitar_botones()
             num24.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num24["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num24.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia24)
+        elif num24["bg"]!="#02ac66":
             deshabilitar_botones()
             num24.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1382,7 +1543,14 @@ def jugar():
             habilitar_botones()
             num25.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num25["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num25.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia25)
+        elif num25["bg"]!="#02ac66":
             deshabilitar_botones()
             num25.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1427,7 +1595,14 @@ def jugar():
             habilitar_botones()
             num26.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num26["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num26.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia26)
+        elif num26["bg"]!="#02ac66":
             deshabilitar_botones()
             num26.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1474,7 +1649,14 @@ def jugar():
             habilitar_botones()
             num27.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num27["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num27.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia27)
+        elif num27["bg"]!="#02ac66":
             deshabilitar_botones()
             num27.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1520,7 +1702,14 @@ def jugar():
             habilitar_botones()
             num28.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num28["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num28.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia28)
+        elif num28["bg"]!="#02ac66":
             deshabilitar_botones()
             num28.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1565,7 +1754,14 @@ def jugar():
             habilitar_botones()
             num30.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num30["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num30.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia30)
+        elif num30["bg"]!="#02ac66":
             deshabilitar_botones()
             num30.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1609,7 +1805,14 @@ def jugar():
             habilitar_botones()
             num31.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num31["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num31.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia31)
+        elif num31["bg"]!="#02ac66":
             deshabilitar_botones()
             num31.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1654,7 +1857,14 @@ def jugar():
             habilitar_botones()
             num32.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num32["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num32.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia32)
+        elif num32["bg"]!="#02ac66":
             deshabilitar_botones()
             num32.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1699,7 +1909,14 @@ def jugar():
             habilitar_botones()
             num33.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num33["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num33.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia33)
+        elif num33["bg"]!="#02ac66":
             deshabilitar_botones()
             num33.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1743,7 +1960,14 @@ def jugar():
             habilitar_botones()
             num34.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num34["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num34.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia34)
+        elif num34["bg"]!="#02ac66":
             deshabilitar_botones()
             num34.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1788,7 +2012,14 @@ def jugar():
             habilitar_botones()
             num35.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num35["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num35.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia35)
+        elif num35["bg"]!="#02ac66":
             deshabilitar_botones()
             num35.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1833,7 +2064,14 @@ def jugar():
             habilitar_botones()
             num36.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num36["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num36.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia36)
+        elif num36["bg"]!="#02ac66":
             deshabilitar_botones()
             num36.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1877,7 +2115,14 @@ def jugar():
             habilitar_botones()
             num37.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num37["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num37.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia37)
+        elif num37["bg"]!="#02ac66":
             deshabilitar_botones()
             num37.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1922,7 +2167,14 @@ def jugar():
             habilitar_botones()
             num38.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num38["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num38.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia38)
+        elif num38["bg"]!="#02ac66":
             deshabilitar_botones()
             num38.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -1967,7 +2219,14 @@ def jugar():
             habilitar_botones()
             num40.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num40["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num40.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia40)
+        elif num40["bg"]!="#02ac66":
             deshabilitar_botones()
             num40.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2013,7 +2272,14 @@ def jugar():
             habilitar_botones()
             num41.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num41["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num41.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia41)
+        elif num41["bg"]!="#02ac66":
             deshabilitar_botones()
             num41.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2059,7 +2325,14 @@ def jugar():
             habilitar_botones()
             num42.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num42["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num42.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia42)
+        elif num42["bg"]!="#02ac66":
             deshabilitar_botones()
             num42.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2105,7 +2378,14 @@ def jugar():
             habilitar_botones()
             num43.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num43["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num43.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia43)
+        elif num43["bg"]!="#02ac66":
             deshabilitar_botones()
             num43.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2151,7 +2431,14 @@ def jugar():
             habilitar_botones()
             num44.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num44["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num44.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia44)
+        elif num44["bg"]!="#02ac66":
             deshabilitar_botones()
             num44.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2197,7 +2484,14 @@ def jugar():
             habilitar_botones()
             num45.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num45["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num45.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia45)
+        elif num45["bg"]!="#02ac66":
             deshabilitar_botones()
             num45.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2243,7 +2537,14 @@ def jugar():
             habilitar_botones()
             num46.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num46["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num46.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia46)
+        elif num46["bg"]!="#02ac66":
             deshabilitar_botones()
             num46.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2289,7 +2590,14 @@ def jugar():
             habilitar_botones()
             num47.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num47["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num47.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia47)
+        elif num47["bg"]!="#02ac66":
             deshabilitar_botones()
             num47.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2335,7 +2643,14 @@ def jugar():
             habilitar_botones()
             num48.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num48["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num48.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia48)
+        elif num48["bg"]!="#02ac66":
             deshabilitar_botones()
             num48.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2381,7 +2696,14 @@ def jugar():
             habilitar_botones()
             num50.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num50["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num50.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia50)
+        elif num50["bg"]!="#02ac66":
             deshabilitar_botones()
             num50.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2428,7 +2750,14 @@ def jugar():
             habilitar_botones()
             num51.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num51["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num51.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia51)
+        elif num51["bg"]!="#02ac66":
             deshabilitar_botones()
             num51.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2474,7 +2803,14 @@ def jugar():
             habilitar_botones()
             num52.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num52["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num52.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia52)
+        elif num52["bg"]!="#02ac66":
             deshabilitar_botones()
             num52.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2519,7 +2855,14 @@ def jugar():
             habilitar_botones()
             num53.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num53["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num53.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia53)
+        elif num53["bg"]!="#02ac66":
             deshabilitar_botones()
             num53.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2566,7 +2909,14 @@ def jugar():
             habilitar_botones()
             num54.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num54["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num54.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia54)
+        elif num54["bg"]!="#02ac66":
             deshabilitar_botones()
             num54.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2612,7 +2962,14 @@ def jugar():
             habilitar_botones()
             num55.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num55["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num55.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia55)
+        elif num55["bg"]!="#02ac66":
             deshabilitar_botones()
             num55.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2657,7 +3014,14 @@ def jugar():
             habilitar_botones()
             num56.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num56["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num56.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia56)
+        elif num56["bg"]!="#02ac66":
             deshabilitar_botones()
             num56.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2704,7 +3068,14 @@ def jugar():
             habilitar_botones()
             num57.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num57["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num57.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia57)
+        elif num57["bg"]!="#02ac66":
             deshabilitar_botones()
             num57.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2750,7 +3121,14 @@ def jugar():
             habilitar_botones()
             num58.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num58["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num58.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia58)
+        elif num58["bg"]!="#02ac66":
             deshabilitar_botones()
             num58.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2795,7 +3173,14 @@ def jugar():
             habilitar_botones()
             num60.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num60["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num60.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia60)
+        elif num60["bg"]!="#02ac66":
             deshabilitar_botones()
             num60.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2839,7 +3224,14 @@ def jugar():
             habilitar_botones()
             num61.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num61["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num61.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia61)
+        elif num61["bg"]!="#02ac66":
             deshabilitar_botones()
             num61.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2884,7 +3276,14 @@ def jugar():
             habilitar_botones()
             num62.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num62["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num62.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia62)
+        elif num62["bg"]!="#02ac66":
             deshabilitar_botones()
             num62.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2929,7 +3328,14 @@ def jugar():
             habilitar_botones()
             num63.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num63["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num63.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia63)
+        elif num63["bg"]!="#02ac66":
             deshabilitar_botones()
             num63.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -2973,7 +3379,14 @@ def jugar():
             habilitar_botones()
             num64.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num64["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num64.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia64)
+        elif num64["bg"]!="#02ac66":
             deshabilitar_botones()
             num64.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3018,7 +3431,14 @@ def jugar():
             habilitar_botones()
             num65.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num65["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num65.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia65)
+        elif num65["bg"]!="#02ac66":
             deshabilitar_botones()
             num65.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3063,7 +3483,14 @@ def jugar():
             habilitar_botones()
             num66.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num66["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num66.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia66)
+        elif num66["bg"]!="#02ac66":
             deshabilitar_botones()
             num66.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3107,7 +3534,14 @@ def jugar():
             habilitar_botones()
             num67.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num67["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num67.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia67)
+        elif num67["bg"]!="#02ac66":
             deshabilitar_botones()
             num67.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3152,7 +3586,14 @@ def jugar():
             habilitar_botones()
             num68.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num68["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num68.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia68)
+        elif num68["bg"]!="#02ac66":
             deshabilitar_botones()
             num68.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3197,7 +3638,14 @@ def jugar():
             habilitar_botones()
             num70.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num70["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num70.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia70)
+        elif num70["bg"]!="#02ac66":
             deshabilitar_botones()
             num70.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3243,7 +3691,14 @@ def jugar():
             habilitar_botones()
             num71.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num71["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num71.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia71)
+        elif num71["bg"]!="#02ac66":
             deshabilitar_botones()
             num71.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3289,7 +3744,14 @@ def jugar():
             habilitar_botones()
             num72.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num72["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num72.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia72)
+        elif num72["bg"]!="#02ac66":
             deshabilitar_botones()
             num72.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3335,7 +3797,14 @@ def jugar():
             habilitar_botones()
             num73.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num73["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num73.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia73)
+        elif num73["bg"]!="#02ac66":
             deshabilitar_botones()
             num73.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3381,7 +3850,14 @@ def jugar():
             habilitar_botones()
             num74.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num74["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num74.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia74)
+        elif num74["bg"]!="#02ac66":
             deshabilitar_botones()
             num74.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3427,7 +3903,14 @@ def jugar():
             habilitar_botones()
             num75.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num75["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num75.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia75)
+        elif num75["bg"]!="#02ac66":
             deshabilitar_botones()
             num75.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3473,7 +3956,14 @@ def jugar():
             habilitar_botones()
             num76.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num76["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num76.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia76)
+        elif num76["bg"]!="#02ac66":
             deshabilitar_botones()
             num76.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3519,7 +4009,14 @@ def jugar():
             habilitar_botones()
             num77.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num77["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num77.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia77)
+        elif num77["bg"]!="#02ac66":
             deshabilitar_botones()
             num77.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3565,7 +4062,14 @@ def jugar():
             habilitar_botones()
             num78.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num78["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num78.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia78)
+        elif num78["bg"]!="#02ac66":
             deshabilitar_botones()
             num78.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3611,7 +4115,14 @@ def jugar():
             habilitar_botones()
             num80.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num80["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num80.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia80)
+        elif num80["bg"]!="#02ac66":
             deshabilitar_botones()
             num80.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3658,7 +4169,14 @@ def jugar():
             habilitar_botones()
             num81.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num81["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num81.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia81)
+        elif num81["bg"]!="#02ac66":
             deshabilitar_botones()
             num81.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3704,7 +4222,14 @@ def jugar():
             habilitar_botones()
             num82.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num82["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num82.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia82)
+        elif num82["bg"]!="#02ac66":
             deshabilitar_botones()
             num82.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3749,7 +4274,14 @@ def jugar():
             habilitar_botones()
             num83.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num83["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num83.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia83)
+        elif num83["bg"]!="#02ac66":
             deshabilitar_botones()
             num83.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3796,7 +4328,14 @@ def jugar():
             habilitar_botones()
             num84.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num84["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num84.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia84)
+        elif num84["bg"]!="#02ac66":
             deshabilitar_botones()
             num84.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3842,7 +4381,14 @@ def jugar():
             habilitar_botones()
             num85.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num85["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num85.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia85)
+        elif num85["bg"]!="#02ac66":
             deshabilitar_botones()
             num85.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3887,7 +4433,14 @@ def jugar():
             habilitar_botones()
             num86.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num86["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num86.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia86)
+        elif num86["bg"]!="#02ac66":
             deshabilitar_botones()
             num86.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3934,7 +4487,14 @@ def jugar():
             habilitar_botones()
             num87.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num87["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num87.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia87)
+        elif num87["bg"]!="#02ac66":
             deshabilitar_botones()
             num87.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -3980,7 +4540,14 @@ def jugar():
             habilitar_botones()
             num88.config(text=anterior,bg=color_anterior)
             lbl_advertencia_1.destroy()
-        if num88["bg"]!="#02ac66":
+        if elección=="":
+                deshabilitar_botones()
+                num88.config(bg="red")
+                lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+                lbl_advertencia_1.config(text="Jugada no es válida porque no ha  ya\n seleccionado ningún elemento")
+                lbl_advertencia_1.place(x=370,y=450)
+                ventana_principal_juego.bind("<Return>", cerrar_advertencia88)
+        elif num88["bg"]!="#02ac66":
             deshabilitar_botones()
             num88.config(bg="red")
             lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
