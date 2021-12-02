@@ -45,6 +45,7 @@ configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.d
 configu=pickle.load(configuración_de_archivo) 
 configuración_de_archivo.close()                    
 
+tiempo_expirado=0
 guardado=[]
 cuadrí_cargando=[]
 cargando=False
@@ -4082,6 +4083,10 @@ def jugar():
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     def ganó():
+        global top_jugadores
+        messagebox.showinfo(message="Logró completar el juego", title="Felicidades!")
+        top_jugadores[str(entryNombre.get())]=tic.split()
+            
         return
     def convertir(n):
         horas_convertir = n // 3600
@@ -4114,7 +4119,7 @@ def jugar():
         entrysegundos = tk.Entry(ventana_principal_juego, bg="#8c004b", font=("Century", 16))
         entrysegundos.place(x=575,y=60)
         def actualiza_reloj():
-            global temporizador
+            global temporizador,tiempo_expirado
             try:
                 configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
                 configu=pickle.load(configuración_de_archivo) 
@@ -4122,7 +4127,7 @@ def jugar():
                 configu["horas"]=int(entryhoras.get())
                 configu["minutos"]=int(entryminutos.get())
                 configu["segundos"]=int(entrysegundos.get())
-                
+                tiempo_expirado=int(entryhoras.get())*3600+int(entryminutos.get())*60+int(entrysegundos.get())
                 configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
                 pickle.dump(configu,configuración_de_archivo)
                 configuración_de_archivo.close()
@@ -4176,14 +4181,31 @@ def jugar():
             reloj += 1
 
     def run_timer():
-        global temporizador, configuración_reloj, jugando
+        global temporizador, configuración_reloj, jugando,tiempo_expirado,reloj
         # Sigue dibujando para estar actualizando el reloj
         tic()
-        # Cada 1000 milisegundos llama a la funcion tac (after)
+        # Cada 1000 milisegundos llama a la funcion run timer (after)
         lblTimer.after(1000, run_timer)
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
         configu=pickle.load(configuración_de_archivo) 
         configuración_de_archivo.close()
+        if temporizador==0 and configu["reloj"]==3 and jugando:
+            jugando=False
+            if messagebox.askyesno(message="¿Desea continuar con el mismo juego (sí o no)?", title="Tiempo expirado."):
+                configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+                configu=pickle.load(configuración_de_archivo) 
+                configuración_de_archivo.close()
+                lblTimer.config(text="")
+                reloj=tiempo_expirado
+                configu["reloj"]=1
+                partidas_iniciales=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
+                pickle.dump(configu,partidas_iniciales)                    
+                partidas_iniciales.close()
+                jugando=True
+            else:
+                ventana_principal_juego.destroy()
+                jugar()
+                    
         if configu["reloj"] == 3 and jugando:
             temporizador -= 1
 
@@ -4249,7 +4271,6 @@ def jugar():
         if cargando:
             entryNombre.insert(0,guardado[3])
         
-    print(guardado)
     def iniciar_juego():
         #inicia partida si se escribe el nombre
         global jugando, jugadas_viejas,jugadas_nuevas,playreloj
@@ -4365,9 +4386,7 @@ def jugar():
             
             
             nombre=entryNombre.get()
-            a=jugadas_viejas.elementos
-            b=jugadas_nuevas.elementos
-            pickle.dump([tablero,partida,configu,nombre,colores,list(a),list(b)],configuración_de_archivo)
+            pickle.dump([tablero,partida,configu,nombre,colores],configuración_de_archivo)
             configuración_de_archivo.close()
             
         return
@@ -4967,6 +4986,7 @@ def configuración():
     
     #guarda los datos ingresados 
     def guardarConfig():
+        global tiempo_expirado
         try:
             horas = int(entryHoras.get())
             minutos = int(entryMinutos.get())
@@ -4986,6 +5006,7 @@ def configuración():
                             if símbolos.count(símbolo)!=1:
                                 messagebox.showerror('Error', 'Los símbolos deben ser diferentes')
                             else:
+                                tiempo_expirado=horas*3600+minutos*60+segundos
                                 partidas_iniciales=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
                                 pickle.dump({"reloj":configuración_reloj.get(),"dificultad":dificultad.get(),"horas":horas,"minutos":minutos,"segundos":segundos,"cantidad_Top":cantidad_top,"símbolos":símbolos,"símbolos_rbotón":configuración_valores.get()},partidas_iniciales)                    
                                 partidas_iniciales.close()
