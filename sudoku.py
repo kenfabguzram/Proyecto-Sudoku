@@ -6,6 +6,7 @@ from tkinter import messagebox
 import os
 import random
 import pickle
+from reportlab.pdfgen import canvas
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Clases
 class Pila:
@@ -30,6 +31,21 @@ class Pila:
     def cantidad(self):
         """número de elementos en la pila"""
         return len(self.elementos)
+class Top:
+    def __init__(self):
+        self.elementos = []
+    def meter(self, elemento,tiempo,modalidad):
+        """Agrega un elemento al final de la pila y ordena"""
+        self.elementos.append([elemento,tiempo])
+        sorted(self.elementos, key=lambda x:x[1])
+        for i in range(len(self.elementos)):
+            hora=self.elementos[i][1]//3600
+            minuto=self.elementos[i][1]%3600//60
+            segundo=self.elementos[i][1]%3600%60
+            self.elementos[i][1]=str(hora)+":"str(minuto)+":"+str(segundo)
+    def parcial(self, cantidad):
+        return self.elementos[:cantidad-1]
+    
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Definición de variables iniciales requeridas para las funciones
 menú = tk.Tk()
@@ -44,7 +60,9 @@ partidas_iniciales.close()
 configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
 configu=pickle.load(configuración_de_archivo) 
 configuración_de_archivo.close()                    
-
+fácilTop=Top()
+intermedioTop=Top()
+difícilTop=Top()
 tiempo_expirado=0
 guardado=[]
 cuadrí_cargando=[]
@@ -4085,8 +4103,17 @@ def jugar():
     def ganó():
         global top_jugadores
         messagebox.showinfo(message="Logró completar el juego", title="Felicidades!")
-        top_jugadores[str(entryNombre.get())]=tic.split()
-            
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
+        reloj=
+        if configu["reloj"]==1:
+            if configu["dificultad"]==0:
+                fácilTop.meter(entryNombre.get(),reloj)
+            if configu["dificultad"]==1:
+                intermedioTop.meter(entryNombre.get(),reloj)
+            if configu["dificultad"]==2:
+                difícilTop.meter(entryNombre.get(),reloj)
         return
     def convertir(n):
         horas_convertir = n // 3600
@@ -4172,7 +4199,7 @@ def jugar():
         global reloj, configuración_reloj, jugando
         # Sigue dibujando para estar actualizando el reloj
         tic()
-        lblTimer.after(1000, tac)
+        lblTimer.after(1000, tac
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
         configu=pickle.load(configuración_de_archivo) 
         configuración_de_archivo.close()
@@ -4435,6 +4462,19 @@ def jugar():
             else:
                 habilitar_botones()
     def top_x():
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
+        c = canvas.Canvas("archivos\\documentos\\TopPdf.pdf", pagesize="A4")
+        text = c.beginText(50, 750)
+        text.setFont("Times-Roman", 12)
+
+            
+        c.drawString(50, 750, "Top "+str(configu["cantidad_Top"])+" mejores tiempos en el Juego de Sudoku")
+        c.drawString(50, 730, "Top "+str(configu["cantidad_Top"])+" mejores tiempos en el Juego de Sudoku")
+        c.showPage()
+        c.save()
+        os.system("archivos\\documentos\\TopPdf.pdf")
         return
     configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
     configu=pickle.load(configuración_de_archivo) 
