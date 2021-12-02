@@ -37,11 +37,15 @@ menú.title("Juego Sudoku")
 menú.geometry("{}x{}+{}+{}".format(370, 382, int((menú.winfo_screenwidth() / 2) - (370 / 2)),
                                    int((menú.winfo_screenheight() / 2) - (382 / 2)))) #decide el tamaño, la posición y algunos otros atributos del diseño de pantalla que vamos a crear.
 
+partidas_iniciales=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
+pickle.dump({"reloj":1,"dificultad":0,"horas":0,"minutos":0,"segundos":0,"cantidad_Top":0,"símbolos":["1","2","3","4","5","6","7","8","9"],"símbolos_rbotón":1},partidas_iniciales)                    
+partidas_iniciales.close()
+
 configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
 configu=pickle.load(configuración_de_archivo) 
 configuración_de_archivo.close()                    
 
-
+playreloj=False
 jugadas_viejas=Pila()
 jugadas_nuevas=Pila()
 partida=0
@@ -4102,7 +4106,23 @@ def jugar():
         entrysegundos.place(x=575,y=60)
         def actualiza_reloj():
             global temporizador
-            temporizador = int(entryhoras.get())*3600+int(entryminutos.get())*60+int(entrysegundos.get())
+            try:
+                configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+                configu=pickle.load(configuración_de_archivo) 
+                configuración_de_archivo.close()
+                configu["horas"]=int(entryhoras.get())
+                configu["minutos"]=int(entryminutos.get())
+                configu["segundos"]=int(entrysegundos.get())
+                
+                configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
+                pickle.dump(configu,configuración_de_archivo)
+                configuración_de_archivo.close()
+                
+                temporizador = int(entryhoras.get())*3600+int(entryminutos.get())*60+int(entrysegundos.get())
+                
+            except ValueError:
+                messagebox.showerror("Error", "Los números de entrada deben ser enteros")
+                
         btnActualizar = tk.Button(ventana_principal_juego, text="Actualizar reloj",
                                   bg="#6ae997", fg="black",
                                   font=("Century", 12),
@@ -4126,12 +4146,12 @@ def jugar():
 
     # Actualiza el cronometro
     def tac():
-        global reloj, configuración_reloj, jugando
+        global reloj, configuración_reloj, jugando,playreloj
         # Sigue dibujando para estar actualizando el reloj
         tic()
         lblTimer.after(1000, tac)
         # Cada 1000 milisegundos llama a la funcion tac (after)
-        if configuración_reloj.get() == 1 and jugando:
+        if configuración_reloj.get() == 1 and jugando and playreloj:
             reloj += 1
 
     def run_timer():
@@ -4140,7 +4160,7 @@ def jugar():
         tic()
         # Cada 1000 milisegundos llama a la funcion tac (after)
         lblTimer.after(1000, run_timer)
-        if configuración_reloj.get() == 3 and jugando:
+        if configuración_reloj.get() == 3 and jugando and playreloj:
             temporizador -= 1
 
     # Llama a tac una vez para que aparezca en pantalla
@@ -4245,7 +4265,8 @@ def jugar():
             
     def iniciar_juego():
         #inicia partida si se escribe el nombre
-        global jugando, jugadas_viejas,jugadas_nuevas
+        global jugando, jugadas_viejas,jugadas_nuevas,playreloj
+        playreloj=True
         nombre_jugador = entryNombre.get() #recupera el valor del diccionario
         if nombre_jugador == "":
             # Envia mensaje de error si no se introduce el nombre
@@ -4260,6 +4281,15 @@ def jugar():
             jugando=True
             entryNombre.config(state='disabled')
             btnIniciarPartida.config(state="disabled")
+            configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+            configu=pickle.load(configuración_de_archivo) 
+            configuración_de_archivo.close()
+            if configu["reloj"]==3:
+
+                entryhoras.config(state="disabled")
+                entryminutos.config(state="disabled")
+                entrysegundos.config(state="disabled")
+                btnActualizar.config(state="disabled")
             habilitar_botones() #habilita los botones
             jugadas_viejas.elementos=[]
             jugadas_nuevas.elementos=[]
@@ -4290,17 +4320,46 @@ def jugar():
             messagebox.showerror("Botón no válido", "Juego no se ha iniciado.") #envia mensaje de error si no se ha iniciado una partida
 
     def cargar_juego():
+        global jugando
+        if jugando:
+            messagebox.showerror("Botón no válido", "Juego ya se ha iniciado.")
+        else:
+            
+            
         return
     def guardar_juego():
+        global jugando,partida
+        if not jugando:
+            messagebox.showerror("Botón no válido", "Juego no se ha iniciado.")
+        else:
+            configuración_de_archivo=open("archivos\\documentos\\sudoku2021juegoactual.dat","wb")
+            tablero=[[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],[num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],[num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],[num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],[num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],[num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],[num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],[num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],[num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]]
+            configuración_de_archivo2=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+            configu=pickle.load(configuración_de_archivo2) 
+            configuración_de_archivo2.close()
+            if configu["reloj"] == 1:
+                reloj_guardar=lblClock.split(":")
+            if configu["reloj"] == 3:
+                reloj_guardar=lblTimer.split(":")
+            configu["horas"]=int(reloj_guardar[0])
+            configu["minutos"]=int(reloj_guardar[1])
+            configu["segundos"]=int(reloj_guardar[2])
+            
+            
+            nombre=entryNombre.get()
+            pickle.dump([tablero,partida,configu,nombre],configuración_de_archivo)
+            configuración_de_archivo.close()
+            
         return
     
     def borrar_juego():
-        global jugadas_viejas,jugadas_nuevas,jugando
+        global jugadas_viejas,jugadas_nuevas,jugando,reloj, temporizador, configuración_reloj
         if not jugando:
             messagebox.showinfo(message="No se ha iniciado el juego", title="Atención") #envia un mensaje de que no se puede borrar el juego si no hay una partida iniciada 
         if jugando:
             deshabilitar_botones() # deshabilita los botones 
             if messagebox.askyesno(message="¿Desea borrar el juego?", title="Atención"): #envia un mensaje de que si está seguro de borrar el juego ya iniciado
+                
                 # deshace la jugada si indica que si 
                 while jugadas_viejas.elementos!=[]:
                     deshacer_jugada()
@@ -4308,6 +4367,16 @@ def jugar():
                 jugadas_nuevas.elementos=[]
                 habilitar_botones()
                 jugando=False
+                configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+                configu=pickle.load(configuración_de_archivo) 
+                configuración_de_archivo.close()
+                if configu["reloj"] == 1:
+                    reloj=0
+                    lblClock['text'] = convertir(reloj)
+                if configu["reloj"] == 3:
+                    temporizador=configu["horas"]*3600+configu["minutos"]*60+configu["segundos"]
+                    lblTimer['text'] = convertir(temporizador)
+                deshabilitar_botones()
                 entryNombre.config(state='normal')
                 btnIniciarPartida.config(state="normal")
               # si no sigue con la partida
