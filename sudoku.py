@@ -38,13 +38,17 @@ class Top:
         """Agrega un elemento al final de la pila y ordena"""
         self.elementos.append([elemento,tiempo])
         sorted(self.elementos, key=lambda x:x[1])
-        for i in range(len(self.elementos)):
-            hora=self.elementos[i][1]//3600
-            minuto=self.elementos[i][1]%3600//60
-            segundo=self.elementos[i][1]%3600%60
-            self.elementos[i][1]=str(hora)+":"str(minuto)+":"+str(segundo)
+        
     def parcial(self, cantidad):
-        return self.elementos[:cantidad-1]
+        if cantidad==0:
+            return self.elementos
+        if cantidad in range(1,101):
+            return self.elementos[:cantidad-1]
+    def concatenar(self, lista_nueva):
+        self.elementos=self.elementos+lista_nueva
+        sorted(self.elementos, key=lambda x:x[1])
+        return self.elementos
+        
     
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Definición de variables iniciales requeridas para las funciones
@@ -4101,19 +4105,31 @@ def jugar():
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     def ganó():
-        global top_jugadores
+        global top_jugadores,reloj,jugando
+        jugando=False
         messagebox.showinfo(message="Logró completar el juego", title="Felicidades!")
-        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
-        configu=pickle.load(configuración_de_archivo) 
-        configuración_de_archivo.close()
-        reloj=
         if configu["reloj"]==1:
+            configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+            configu=pickle.load(configuración_de_archivo) 
+            configuración_de_archivo.close()
+            configuración_de_archivo=open("archivos\\documentos\\sudoku2021topx.dat","rb")
+            top_viejo=pickle.load(configuración_de_archivo) 
+            configuración_de_archivo.close()
             if configu["dificultad"]==0:
                 fácilTop.meter(entryNombre.get(),reloj)
             if configu["dificultad"]==1:
                 intermedioTop.meter(entryNombre.get(),reloj)
             if configu["dificultad"]==2:
                 difícilTop.meter(entryNombre.get(),reloj)
+            lista_final=[list(fácilTop.concatenar(top_viejo[0])),list(intermedioTop.concatenar(top_viejo[1])),list(difícilTop.concatenar(top_viejo[2]))]
+            partidas_iniciales=open("archivos\\documentos\\sudoku2021topx.dat","wb")
+            pickle.dump(lista_final,partidas_iniciales)                    
+            partidas_iniciales.close()
+            
+            sudoku2021topx
+        else:
+            ventana_principal_juego.destroy()
+            jugar()
         return
     def convertir(n):
         horas_convertir = n // 3600
@@ -4199,7 +4215,7 @@ def jugar():
         global reloj, configuración_reloj, jugando
         # Sigue dibujando para estar actualizando el reloj
         tic()
-        lblTimer.after(1000, tac
+        lblTimer.after(1000, tac)
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
         configu=pickle.load(configuración_de_archivo) 
         configuración_de_archivo.close()
@@ -4462,20 +4478,25 @@ def jugar():
             else:
                 habilitar_botones()
     def top_x():
+        global fácilTop, intermedioTop, difícilTop
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
         configu=pickle.load(configuración_de_archivo) 
         configuración_de_archivo.close()
         c = canvas.Canvas("archivos\\documentos\\TopPdf.pdf", pagesize="A4")
         text = c.beginText(50, 750)
         text.setFont("Times-Roman", 12)
-
-            
         c.drawString(50, 750, "Top "+str(configu["cantidad_Top"])+" mejores tiempos en el Juego de Sudoku")
-        c.drawString(50, 730, "Top "+str(configu["cantidad_Top"])+" mejores tiempos en el Juego de Sudoku")
+        lista_fácil=fácilTop.parcial(configu["cantidad_Top"])
+        lista_intermedio=intermedioTop.parcial(configu["cantidad_Top"])
+        lista_difícil=difícilTop.parcial(configu["cantidad_Top"])
+        lista_top=[[lista_fácil],[lista_intermedio],[lista_difícil]]
+        
+        
         c.showPage()
         c.save()
         os.system("archivos\\documentos\\TopPdf.pdf")
         return
+    
     configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
     configu=pickle.load(configuración_de_archivo) 
     configuración_de_archivo.close()
