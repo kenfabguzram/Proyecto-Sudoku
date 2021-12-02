@@ -45,6 +45,9 @@ configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.d
 configu=pickle.load(configuración_de_archivo) 
 configuración_de_archivo.close()                    
 
+guardado=[]
+cuadrí_cargando=[]
+cargando=False
 playreloj=False
 jugadas_viejas=Pila()
 jugadas_nuevas=Pila()
@@ -82,7 +85,7 @@ fondo.place(x=70, y=70)
 #           SECCIÓN DE FUNCIONES                  #
 ###################################################
 def jugar():
-    global grid, reloj #globales
+    global grid, reloj,guardado,cargando #globales
     configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
     configu=pickle.load(configuración_de_archivo) 
     configuración_de_archivo.close()
@@ -102,6 +105,12 @@ def jugar():
     elección=""
     # se deshabilitan todos los botones
     # Aparecen numeros según la partida escogida del diccionario en configuración
+    def invertir(m):
+        resultado=[[],[],[],[],[],[],[],[],[]]
+        for fila in range(len(m)):
+            for elemento in range(len(m[fila])):
+                resultado[elemento].append(m[fila][elemento])
+        return resultado
     def escoger_partida(partida):
         global tablero
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
@@ -4131,6 +4140,15 @@ def jugar():
                                   command=actualiza_reloj)
         btnActualizar.place(x=475, y=100)
     # Dibuja el reloj en la pantalla
+    if cargando:
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
+        if configu["reloj"] == 1:
+            reloj=guardado[3]
+        if configu["reloj"] == 3:
+            temporizador=guardado[3]
+            
     def tic():
         global reloj, temporizador, configuración_reloj
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
@@ -4146,12 +4164,15 @@ def jugar():
 
     # Actualiza el cronometro
     def tac():
-        global reloj, configuración_reloj, jugando,playreloj
+        global reloj, configuración_reloj, jugando
         # Sigue dibujando para estar actualizando el reloj
         tic()
         lblTimer.after(1000, tac)
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
         # Cada 1000 milisegundos llama a la funcion tac (after)
-        if configuración_reloj.get() == 1 and jugando and playreloj:
+        if configu["reloj"] == 1 and jugando:
             reloj += 1
 
     def run_timer():
@@ -4160,7 +4181,10 @@ def jugar():
         tic()
         # Cada 1000 milisegundos llama a la funcion tac (after)
         lblTimer.after(1000, run_timer)
-        if configuración_reloj.get() == 3 and jugando and playreloj:
+        configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
+        configu=pickle.load(configuración_de_archivo) 
+        configuración_de_archivo.close()
+        if configu["reloj"] == 3 and jugando:
             temporizador -= 1
 
     # Llama a tac una vez para que aparezca en pantalla
@@ -4184,8 +4208,8 @@ def jugar():
 #Funciones de los botones 
 
     def iniciarPartida():
-        global grid, tablero, jugando, nombre_jugador, reloj, temporizador, configuración_reloj,dificultad,partida #globales
-        global horas, minutos, segundos, jugadas_viejas #globales
+        global grid, tablero, jugando, nombre_jugador, reloj, temporizador,guardado, configuración_reloj,dificultad,partida,cargando,cuadrí_cargando #globales
+        global horas, minutos, segundos, jugadas_viejas,guardado,cargando #globales
         configuración_de_archivo=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
         configu=pickle.load(configuración_de_archivo) 
         configuración_de_archivo.close()
@@ -4200,69 +4224,32 @@ def jugar():
         diccionario_fácil=lista_diccionarios_partidas[0]
         diccionario_intermedio=lista_diccionarios_partidas[1]
         diccionario_difícil=lista_diccionarios_partidas[2]
-        if dificultad.get()==0:
-            partida=random.randint(0,len(diccionario_fácil)-1)
-        elif dificultad.get()==1:
-            partida=random.randint(0,len(diccionario_fácil)-1)
-        elif dificultad.get()==2:
-            partida=random.randint(0,len(diccionario_fácil)-1)
+        if not cargando:
+            if dificultad.get()==0:
+                partida=random.randint(0,len(diccionario_fácil)-1)
+            elif dificultad.get()==1:
+                partida=random.randint(0,len(diccionario_fácil)-1)
+            elif dificultad.get()==2:
+                partida=random.randint(0,len(diccionario_fácil)-1)
+                
         escoger_partida(partida)
+        
+        if cargando:
+            for fila in range(len(tablero)):
+                for columna in range(len(tablero[fila])):
+                    tablero[fila][columna]=guardado[0][fila][columna]
         # Dibuja la matriz
         draw(grid, tablero)
         deshabilitar_botones()
-        
-        
+
         btnIniciarPartida.config(text="INICIAR \n  PARTIDA  ")
         #  Se habilita nuevamente el espacio para escribir el nombre
         entryNombre.config(state='normal')
         # Limpiar el entry, end=constante que va desde el inicio hasta el final
-        entryNombre.delete(0, tk.END)
-
-    def guardarJuego():
-        global archivo_datos, nombre_jugador, tablero, jugando
-        # si se esta jugando
-        if jugando:
-            # Abre el archivo
-            archivo_para_escribir = open(archivo_datos, 'w')
-            # Escribe  el nombre del jugador
-            archivo_para_escribir.write(nombre_jugador + '\n')
-            # Escribe la matriz como string
-            archivo_para_escribir.write(str(tablero))
-            # Se cierra el archivo
-            archivo_para_escribir.close()
-            messagebox.showinfo("Guardado", "Partida guardada") #envia el mensaje una vez guardada la partida
-        else:
-            messagebox.showerror("Error", "No hay partida en curso") #envia un mensaje de que no se puede guardar si la partida no se ha iniciado
-
-    def cargarJuego():
-        global archivo_datos, nombre_jugador, tablero, jugando, grid
-        # Lee los datos guardados
-        archivo_para_cargar = open(archivo_datos, 'r') #abre el archivo de datos
-        datos = archivo_para_cargar.read()
-        # Si no hay datos muestra el error
-        if datos == "":
-            messagebox.showerror("Error", "No hay partida guardada") #envia un mensaje de que no se puede cargar la partida si no hay partidas grabadas
-        else:
-            # Me devuelve los datos separados
-            lineas = datos.split('\n')
-            # El nombre del jugador va a ser el primer elemento del string
-            nombre_jugador = lineas[0]
-            # Devuelve la matriz en su estado  original
-            tablero = eval(lineas[1])
-            # Se habilita el juego de nuevo
-            jugando = True
-            # Se dibuja la matriz de nuevo
-            draw(grid, tablero)
-            # Se habilita espacio para esribir nombre
-            entryNombre.config(state='normal')
-            #  Limpia el entry
-            entryNombre.delete(0, tk.END)
-            # Se guarda el nombre desde la primera posicion del entry (por eso el cero)
-            entryNombre.insert(0, nombre_jugador)
-            # Se vuelve a desabilitar entry
-            entryNombre.config(state='disabled')
-
-            
+        if cargando:
+            entryNombre.insert(0,guardado[3])
+        
+    print(guardado)
     def iniciar_juego():
         #inicia partida si se escribe el nombre
         global jugando, jugadas_viejas,jugadas_nuevas,playreloj
@@ -4293,6 +4280,9 @@ def jugar():
             habilitar_botones() #habilita los botones
             jugadas_viejas.elementos=[]
             jugadas_nuevas.elementos=[]
+            if not guardado==[]:
+                jugadas_viejas.elementos=guardado[5]
+                jugadas_nuevas.elementos=guardado[6]
         return
     
     def deshacer_jugada():
@@ -4320,11 +4310,36 @@ def jugar():
             messagebox.showerror("Botón no válido", "Juego no se ha iniciado.") #envia mensaje de error si no se ha iniciado una partida
 
     def cargar_juego():
-        global jugando
+        global jugando, reloj, temporizador, configuración_reloj,tablero,grid,partida,cuadrí_cargando,config,guardado
         if jugando:
             messagebox.showerror("Botón no válido", "Juego ya se ha iniciado.")
         else:
-            
+            configuración_de_archivo=open("archivos\\documentos\\sudoku2021juegoactual.dat","rb")
+            guardado=pickle.load(configuración_de_archivo)
+            configuración_de_archivo.close()
+            config=guardado[2]
+            partidas_iniciales=open("archivos\\documentos\\sudoku2021configuración.dat","wb")
+            pickle.dump(guardado[2],partidas_iniciales)                    
+            partidas_iniciales.close()
+
+            ventana_principal_juego.destroy() #elimina el juego si indica que si
+            cargando=True
+            jugar()
+            config=guardado[2]               
+            partida=guardado[1]
+            cuadrí_cargando=guardado[0]
+            colores=guardado[4]
+            colores=invertir(colores)
+            cargando=False
+            jugando=False
+            cuadrí_cargando=guardado[0]
+            cuadrí_cargando=invertir(cuadrí_cargando)
+            playreloj=True
+            for x in range(len(grid)):
+                for y in range(len(grid)):
+                    grid[y][x].config(text=cuadrí_cargando[x][y])
+                    grid[y][x].config(bg=colores[x][y])
+                    
             
         return
     def guardar_juego():
@@ -4334,20 +4349,25 @@ def jugar():
         else:
             configuración_de_archivo=open("archivos\\documentos\\sudoku2021juegoactual.dat","wb")
             tablero=[[num00["text"],num01["text"],num02["text"],num03["text"],num04["text"],num05["text"],num06["text"],num07["text"],num08["text"]],[num10["text"],num11["text"],num12["text"],num13["text"],num14["text"],num15["text"],num16["text"],num17["text"],num18["text"]],[num20["text"],num21["text"],num22["text"],num23["text"],num24["text"],num25["text"],num26["text"],num27["text"],num28["text"]],[num30["text"],num31["text"],num32["text"],num33["text"],num34["text"],num35["text"],num36["text"],num37["text"],num38["text"]],[num40["text"],num41["text"],num42["text"],num43["text"],num44["text"],num45["text"],num46["text"],num47["text"],num48["text"]],[num50["text"],num51["text"],num52["text"],num53["text"],num54["text"],num55["text"],num56["text"],num57["text"],num58["text"]],[num60["text"],num61["text"],num62["text"],num63["text"],num64["text"],num65["text"],num66["text"],num67["text"],num68["text"]],[num70["text"],num71["text"],num72["text"],num73["text"],num74["text"],num75["text"],num76["text"],num77["text"],num78["text"]],[num80["text"],num81["text"],num82["text"],num83["text"],num84["text"],num85["text"],num86["text"],num87["text"],num88["text"]]]
+            colores=[[num00["bg"],num01["bg"],num02["bg"],num03["bg"],num04["bg"],num05["bg"],num06["bg"],num07["bg"],num08["bg"]],[num10["bg"],num11["bg"],num12["bg"],num13["bg"],num14["bg"],num15["bg"],num16["bg"],num17["bg"],num18["bg"]],[num20["bg"],num21["bg"],num22["bg"],num23["bg"],num24["bg"],num25["bg"],num26["bg"],num27["bg"],num28["bg"]],[num30["bg"],num31["bg"],num32["bg"],num33["bg"],num34["bg"],num35["bg"],num36["bg"],num37["bg"],num38["bg"]],[num40["bg"],num41["bg"],num42["bg"],num43["bg"],num44["bg"],num45["bg"],num46["bg"],num47["bg"],num48["bg"]],[num50["bg"],num51["bg"],num52["bg"],num53["bg"],num54["bg"],num55["bg"],num56["bg"],num57["bg"],num58["bg"]],[num60["bg"],num61["bg"],num62["bg"],num63["bg"],num64["bg"],num65["bg"],num66["bg"],num67["bg"],num68["bg"]],[num70["bg"],num71["bg"],num72["bg"],num73["bg"],num74["bg"],num75["bg"],num76["bg"],num77["bg"],num78["bg"]],[num80["bg"],num81["bg"],num82["bg"],num83["bg"],num84["bg"],num85["bg"],num86["bg"],num87["bg"],num88["bg"]]]
             configuración_de_archivo2=open("archivos\\documentos\\sudoku2021configuración.dat","rb")
             configu=pickle.load(configuración_de_archivo2) 
             configuración_de_archivo2.close()
             if configu["reloj"] == 1:
-                reloj_guardar=lblClock.split(":")
+                reloj_guardar=lblClock["text"].split(":")
             if configu["reloj"] == 3:
-                reloj_guardar=lblTimer.split(":")
+                reloj_guardar=lblTimer["text"].split(":")
+            else:
+                reloj_guardar=["0","0","0"]
             configu["horas"]=int(reloj_guardar[0])
             configu["minutos"]=int(reloj_guardar[1])
             configu["segundos"]=int(reloj_guardar[2])
             
             
             nombre=entryNombre.get()
-            pickle.dump([tablero,partida,configu,nombre],configuración_de_archivo)
+            a=jugadas_viejas.elementos
+            b=jugadas_nuevas.elementos
+            pickle.dump([tablero,partida,configu,nombre,colores,list(a),list(b)],configuración_de_archivo)
             configuración_de_archivo.close()
             
         return
@@ -4522,6 +4542,8 @@ def jugar():
     # Agrega espacio donde se coloca el nombre del jugador
     entryNombre = tk.Entry(ventana_principal_juego, bd=2, bg="#8c004b", font=("Century", 13))
     entryNombre.place(x=100, y=0)
+    if not guardado==[]:
+        entryNombre.insert(0,guardado[3])
     #botones de la ventana jugar 
     btnIniciarPartida = tk.Button(ventana_principal_juego, text="INICIAR \n  JUEGO  ",
                                   bg="#de14e5", fg="black",
