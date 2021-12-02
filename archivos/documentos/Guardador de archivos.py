@@ -84,3 +84,8 @@ partidas=[diccionario_fácil,diccionario_intermedio,diccionario_difícil]
 partidas_iniciales=open("sudoku2021partidas.dat","wb")
 pickle.dump(partidas,partidas_iniciales)
 partidas_iniciales.close()
+
+partidas_iniciales=open("archivos\\documentos\\sudoku2021topx.dat","rb")
+listilla=pickle.dump(partidas_iniciales)
+partidas_iniciales.close()
+print(listilla)

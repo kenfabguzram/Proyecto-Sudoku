@@ -105,7 +105,14 @@ string00="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -150,7 +157,14 @@ string01="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -197,7 +211,14 @@ string02="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -243,7 +264,14 @@ string10="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -289,7 +317,14 @@ string11="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -337,7 +372,14 @@ string12="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -384,7 +426,14 @@ string20="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -432,7 +481,14 @@ string21="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
@@ -479,7 +535,14 @@ string22="""def func{x}{y}():
         habilitar_botones()
         num{x}{y}.config(text=anterior,bg=color_anterior)
         lbl_advertencia_1.destroy()
-    if num{x}{y}["bg"]!="#02ac66":
+    if elección=="":
+            deshabilitar_botones()
+            num{x}{y}.config(bg="red")
+            lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
+            lbl_advertencia_1.config(text="Jugada no es válida porque no ha  yabanderocool seleccionado ningún elemento")
+            lbl_advertencia_1.place(x=370,y=450)
+            ventana_principal_juego.bind("<Return>", cerrar_advertencia{x}{y})
+    elif num{x}{y}["bg"]!="#02ac66":
         deshabilitar_botones()
         num{x}{y}.config(bg="red")
         lbl_advertencia_1 = tk.Label(ventana_principal_juego,bd=3, bg="#e9bd15", fg="black",font=("Century", 11))
