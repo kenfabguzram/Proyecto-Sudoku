@@ -118,7 +118,6 @@ def jugar():
     dificultad=configu["dificultad"]
     configuración_reloj=configu["reloj"]
     configuración_valores=configu['símbolos_rbotón']
-
     reloj = 0 # se define la variable reloj
     # Esconde el menú
     menú.withdraw()
